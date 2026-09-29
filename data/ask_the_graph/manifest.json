@@ -1,0 +1,63 @@
+{
+  "epic_id": "ask-the-graph",
+  "title": "Ask the graph",
+  "intent": "Let a user ask a natural-language question over a customer's Cognite Data Fusion project and get an answer grounded in assets, time series, and files — with citations — without inventing tag names or asset IDs.",
+  "sources": [
+    {
+      "id": "cxo-slide",
+      "title": "Q3 bet — board slide",
+      "kind": "cxo_slide",
+      "filename": "00_cxo_slide.md",
+      "persona_owner": "business"
+    },
+    {
+      "id": "gtm-one-pager",
+      "title": "Ask the graph — GTM one-pager",
+      "kind": "gtm",
+      "filename": "01_gtm_one_pager.md",
+      "persona_owner": "business"
+    },
+    {
+      "id": "prd-v1",
+      "title": "PRD: Ask the graph v1",
+      "kind": "prd",
+      "filename": "02_prd.md",
+      "persona_owner": "product"
+    },
+    {
+      "id": "adr-014-grounding",
+      "title": "ADR-014: Grounding and ID honesty",
+      "kind": "adr",
+      "filename": "03_adr_014_grounding.md",
+      "persona_owner": "tech"
+    },
+    {
+      "id": "adr-015-tools",
+      "title": "ADR-015: Tool surface for v1",
+      "kind": "adr",
+      "filename": "04_adr_015_tools.md",
+      "persona_owner": "tech"
+    },
+    {
+      "id": "tickets",
+      "title": "Sprint tickets",
+      "kind": "ticket",
+      "filename": "05_tickets.md",
+      "persona_owner": "product"
+    },
+    {
+      "id": "intern-file-coverage",
+      "title": "Intern field note — demo tenant file links",
+      "kind": "intern_note",
+      "filename": "06_intern_file_coverage.md",
+      "persona_owner": "tech"
+    },
+    {
+      "id": "slack-architect",
+      "title": "Slack export — architecture thread",
+      "kind": "slack",
+      "filename": "07_slack_architect.md",
+      "persona_owner": "tech"
+    }
+  ]
+}

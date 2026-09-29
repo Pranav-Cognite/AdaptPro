@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AdaptPro — skip-level demo, 7 Oct 2026</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #14120e; color: #f6f1e7; font-family: "Iowan Old Style", Palatino, Georgia, serif; }
+    .deck { height: 100%; }
+    section.slide {
+      display: none;
+      height: 100%;
+      padding: 7vh 9vw;
+      flex-direction: column;
+      justify-content: center;
+    }
+    section.slide.active { display: flex; }
+    .kicker { font-family: ui-sans-serif, system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; font-size: 13px; color: #d7a15a; margin-bottom: 18px; }
+    h1 { font-size: clamp(40px, 5vw, 68px); line-height: 1.05; font-weight: 560; margin: 0 0 18px; }
+    h2 { font-size: clamp(32px, 4vw, 52px); line-height: 1.12; font-weight: 560; margin: 0 0 22px; }
+    p, li { font-size: clamp(20px, 2.1vw, 28px); line-height: 1.35; }
+    ul { margin: 0; padding-left: 1.1em; }
+    li + li { margin-top: 0.45em; }
+    .foot { position: fixed; bottom: 18px; left: 9vw; right: 9vw; display: flex; justify-content: space-between; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 13px; color: #b7ad9e; }
+    .notes { display: none; position: fixed; left: 0; right: 0; bottom: 0; background: #0e0d0b; color: #f6f1e7; padding: 16px 9vw 48px; border-top: 1px solid #3a342b; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 16px; line-height: 1.4; }
+    body.show-notes .notes.active { display: block; }
+    body.show-notes section.slide { height: calc(100% - 140px); }
+    code { font-family: ui-monospace, monospace; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+    <section class="slide">
+      <div class="kicker">Skip-level demo · 7 October 2026</div>
+      <h1>One epic. One wiki. The page that says we agree.</h1>
+      <p>AdaptPro, shown only as an LLM wiki. The useful part and the failure are both in the demo.</p>
+      <aside class="notes">Say this is a working slice, not the DevCon talk and not the final design. You will demo first, then spend the rest on what the wiki gets wrong.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">The situation</div>
+      <h2>Three people can share a sentence and still mean three products.</h2>
+      <p>Kickoff feels agreed because the GTM note, the PRD, and the ADR are never on the same page.</p>
+      <aside class="notes">Do not explain agents. One example is enough: Ask the graph.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Today’s scope</div>
+      <h2>LLM wiki only.</h2>
+      <ul>
+        <li>Ingest the documents.</li>
+        <li>Query the compiled wiki.</li>
+        <li>Lint it.</li>
+      </ul>
+      <p>Then we look at what that compilation did.</p>
+      <aside class="notes">Promise the downsides explicitly so the green badge is not mistaken for success.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">The epic</div>
+      <h2>Ask the graph.</h2>
+      <p>Ask a question over a customer’s plant data. Ground the answer. Do not invent tag names.</p>
+      <aside class="notes">Eight planted sources: board slide, GTM one-pager, PRD, two ADRs, tickets, an intern note, a Slack thread.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Already in the documents</div>
+      <ul>
+        <li>GTM: ask anything, then create a work order.</li>
+        <li>PRD: three templates, read-only, no work orders.</li>
+        <li>ADR: no write tools registered.</li>
+      </ul>
+      <aside class="notes">Read them slowly. The demo’s overview will try to make these the same idea.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Live</div>
+      <h2>Demo</h2>
+      <p><code>poetry run python -m adaptpro.wiki.server</code></p>
+      <p>http://127.0.0.1:8765</p>
+      <aside class="notes">No model is called. The wiki is compiled the way a helpful LLM wiki writes: one smooth overview, three faithful persona pages. Click path: Ingest → read Overview (Ready) → Business, then Tech → ask “Are we ready to kick this off?” on Overview only → ask the work-order question → switch to Every page and ask it again → ask the file-link question both ways → Lint → point at the badge, still Ready → Ingest again and show the log. Then come back here.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">What worked</div>
+      <h2>There is one place to read the epic.</h2>
+      <p>Business, Product, and Tech each have a page. You can ask a question without opening eight files.</p>
+      <aside class="notes">Give the wiki that credit in one breath, then go to the failures. Do not linger.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Downside</div>
+      <h2>The overview declares the epic ready.</h2>
+      <p>“Create a work order” becomes “a path to close the loop.” Disagreements become wording. The badge stays green.</p>
+      <aside class="notes">This is the false green. The compilation is doing the smoothing, not the sources.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Downside</div>
+      <h2>The default question reads that page.</h2>
+      <p>The PRD and the ADR are in the wiki. The answer does not open them unless you force it to.</p>
+      <aside class="notes">Same wiki, two answers. Overview only says yes. Every page says Business, Product, and Tech disagree.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Downside</div>
+      <h2>Lint does not stop anyone.</h2>
+      <p>It can list the tension and still leave kickoff status on Ready. There is no sign-off, and no version a sign-off would point at.</p>
+      <aside class="notes">Health: usable. That phrase is the product failing politely.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Downside</div>
+      <h2>The intern’s finding never reaches the overview.</h2>
+      <p>About 40% of demo tenants have no file links. Lint does not mention it. The board slide stays a happy path.</p>
+      <aside class="notes">Show that Every page can see the note and Overview only cannot. A wiki that compiles “the story” drops the inconvenient fact.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Downside · scalability</div>
+      <h2>Every ingest rewrites the wiki.</h2>
+      <p>Eight sources became a dozen compiled pages. The next sprint adds tickets and another epic. The health check rereads the compilation, and the compilation gets smoother.</p>
+      <aside class="notes">Tie to the DevCon theme without giving the whole later talk. Scale here means the cost of rereading and rewriting, not token throughput.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Not claimed today</div>
+      <h2>This is not a gate on sprint planning.</h2>
+      <p>Putting more agents on this wiki does not fix the green status. The piece that holds is a record of the claims, and a check the writer cannot override.</p>
+      <aside class="notes">If asked “what next”: agents are the next experiment and they are not the arrival. Claim records plus a deterministic check on the change are. Do not open that design unless they ask.</aside>
+    </section>
+    <section class="slide">
+      <div class="kicker">Discussion</div>
+      <h2>Where this would have to sit to matter.</h2>
+      <p>Before sprint planning. With a red status someone has to clear. Otherwise it is another readable wiki.</p>
+      <aside class="notes">Stop. Ask what they would need to see before sharing it more widely. Do not fill the silence.</aside>
+    </section>
+  </div>
+  <div class="foot"><span>AdaptPro · LLM wiki demo</span><span id="count"></span></div>
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const notes = [...document.querySelectorAll(".notes")];
+    let index = 0;
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      notes.forEach((note, i) => note.classList.toggle("active", i === index));
+      document.getElementById("count").textContent = `${index + 1} / ${slides.length}`;
+    }
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === " ") { event.preventDefault(); show(index + 1); }
+      if (event.key === "ArrowLeft") show(index - 1);
+      if (event.key === "s" || event.key === "S") document.body.classList.toggle("show-notes");
+    });
+    show(0);
+  </script>
+</body>
+</html>

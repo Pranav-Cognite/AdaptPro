@@ -1,0 +1,217 @@
+{
+  "epic_id": "ask-the-graph",
+  "findings": [
+    {
+      "id": "FF-realtime",
+      "failure_mode": "false_friend",
+      "title": "False friend: real-time",
+      "summary": "GTM means live-on-the-call freshness; PRD means a snappy UI; architecture rejects streaming ingest in v1.",
+      "evidence": [
+        {
+          "source_id": "gtm-one-pager",
+          "must_contain": "in real-time, while you are still on the call"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "Real-time means the UI feels instant"
+        },
+        {
+          "source_id": "adr-015-tools",
+          "must_contain": "\"Real-time\" as streaming ingest is out of scope"
+        }
+      ]
+    },
+    {
+      "id": "FF-understands-plant",
+      "failure_mode": "false_friend",
+      "title": "False friend: understands the plant",
+      "summary": "The CXO headline is fluency; Product scoped templates; Tech requires ID honesty and retrieval.",
+      "evidence": [
+        {
+          "source_id": "cxo-slide",
+          "must_contain": "AI that understands the plant"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "Three starter question templates"
+        },
+        {
+          "source_id": "adr-014-grounding",
+          "must_contain": "Inventing an `externalId` is worse than saying \"I don't know.\""
+        }
+      ]
+    },
+    {
+      "id": "FF-mvp",
+      "failure_mode": "false_friend",
+      "title": "False friend: MVP",
+      "summary": "GTM wants a sales-cycle demo next month; Product means three templates; Tech means a narrow tool surface with SLOs.",
+      "evidence": [
+        {
+          "source_id": "gtm-one-pager",
+          "must_contain": "something we can show in a sales cycle next month"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "MVP means these three templates"
+        },
+        {
+          "source_id": "adr-015-tools",
+          "must_contain": "No write tools registered"
+        }
+      ]
+    },
+    {
+      "id": "FF-source-of-truth",
+      "failure_mode": "false_friend",
+      "title": "False friend: source of truth",
+      "summary": "GTM says Cognite; Product says never leave Fusion; Tech means a named view, not RAW.",
+      "evidence": [
+        {
+          "source_id": "gtm-one-pager",
+          "must_contain": "Cognite is the source of truth"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "The user never has to leave Fusion"
+        },
+        {
+          "source_id": "adr-015-tools",
+          "must_contain": "Source of truth is a specific view in a specific space — not RAW"
+        }
+      ]
+    },
+    {
+      "id": "UP-ask-anything",
+      "failure_mode": "unpriced_promise",
+      "title": "Unpriced promise: ask anything vs three templates",
+      "summary": "GTM and the board slide promise open-ended operations Q&A; Product scoped three templates; architecture can build a narrow read-only tool surface.",
+      "evidence": [
+        {
+          "source_id": "gtm-one-pager",
+          "must_contain": "Ask anything about your operations"
+        },
+        {
+          "source_id": "cxo-slide",
+          "must_contain": "ask anything about your operations"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "not an open-ended assistant"
+        }
+      ]
+    },
+    {
+      "id": "OC-cluster-local",
+      "failure_mode": "orphaned_constraint",
+      "title": "Orphaned constraint: cluster-local answers",
+      "summary": "Architecture forbids leaving the customer cluster; the PRD and GTM one-pager never say so.",
+      "evidence": [
+        {
+          "source_id": "adr-014-grounding",
+          "must_contain": "Answers must not leave the customer's CDF cluster / region"
+        },
+        {
+          "source_id": "slack-architect",
+          "must_contain": "Cluster-local stays non-negotiable"
+        }
+      ]
+    },
+    {
+      "id": "OC-no-invented-ids",
+      "failure_mode": "orphaned_constraint",
+      "title": "Orphaned constraint: no invented externalIds",
+      "summary": "ID hallucination is an architecture Sev-1. The intern ticket and GTM copy do not mention it.",
+      "evidence": [
+        {
+          "source_id": "adr-014-grounding",
+          "must_contain": "Inventing an `externalId` is worse than saying \"I don't know.\""
+        },
+        {
+          "source_id": "tickets",
+          "must_contain": "Add a text box on Search"
+        }
+      ]
+    },
+    {
+      "id": "OC-p95-and-citations",
+      "failure_mode": "orphaned_constraint",
+      "title": "Orphaned constraint: p95 and citation coverage as launch blockers",
+      "summary": "PRD treats snappy UI as a feel; Slack and ADRs treat p95 and citation coverage as launch blockers.",
+      "evidence": [
+        {
+          "source_id": "prd-v1",
+          "must_contain": "p95 target: snappy"
+        },
+        {
+          "source_id": "slack-architect",
+          "must_contain": "p95 latency and citation coverage are launch blockers, not polish"
+        },
+        {
+          "source_id": "adr-014-grounding",
+          "must_contain": "Citation coverage is a launch blocker, not polish"
+        }
+      ]
+    },
+    {
+      "id": "AS-write-from-chat",
+      "failure_mode": "artifact_silo",
+      "title": "Artifact silo: write-from-chat",
+      "summary": "GTM implies CMMS write; PRD forbids writes; HLD registers no write tools. Each document is internally consistent.",
+      "evidence": [
+        {
+          "source_id": "gtm-one-pager",
+          "must_contain": "create a work order from the answer"
+        },
+        {
+          "source_id": "prd-v1",
+          "must_contain": "Write actions (no CMMS, no work orders)"
+        },
+        {
+          "source_id": "adr-015-tools",
+          "must_contain": "No write tools registered"
+        }
+      ]
+    },
+    {
+      "id": "SL-downward-grounding",
+      "failure_mode": "seniority_lossy",
+      "title": "Downward loss: grounding dies into a text box",
+      "summary": "CXO said AI that understands the plant. The intern ticket is add a text box on Search.",
+      "evidence": [
+        {
+          "source_id": "cxo-slide",
+          "must_contain": "AI that understands the plant"
+        },
+        {
+          "source_id": "tickets",
+          "must_contain": "Add a text box on Search"
+        },
+        {
+          "source_id": "tickets",
+          "must_contain": "No link to the CXO sentence, grounding rules, or citations"
+        }
+      ]
+    },
+    {
+      "id": "SL-upward-file-coverage",
+      "failure_mode": "seniority_lossy",
+      "title": "Upward loss: intern file-link finding never reaches the board",
+      "summary": "An intern found ~40% of demo tenants lack file links. The CXO slide is still happy-path only.",
+      "evidence": [
+        {
+          "source_id": "intern-file-coverage",
+          "must_contain": "~40% of demo tenants have no file links to assets"
+        },
+        {
+          "source_id": "intern-file-coverage",
+          "must_contain": "This never made it into the board deck"
+        },
+        {
+          "source_id": "cxo-slide",
+          "must_contain": "Happy path only"
+        }
+      ]
+    }
+  ]
+}
