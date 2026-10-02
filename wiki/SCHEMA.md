@@ -154,16 +154,30 @@ time is whatever commit it's at — there is no separate `v1`/`v2` label on page
 conflicts record. A later sign-off mechanism (recording which commit a named person accepted)
 is deferred; for now, git history is the only version record.
 
-**Cross-persona briefing.** When someone asks to understand the other two personas' views of
-an epic (e.g. "explain the business and tech side to me" from Product), read: (1) the asker's
-own persona page, (2) both other personas' pages for that epic, and (3)
-`wiki/synthesis/<epic-slug>-conflicts.md`. Produce a short, plain-language brief covering, for
-the asker's persona: what the other two personas are claiming that the asker should know,
-which of the asker's own commitments have no source in the other two personas' pages, and
-which open conflicts the asker should expect to be asked about in a cross-functional meeting.
-File the brief as `wiki/synthesis/<epic-slug>-briefing-<persona>.md`. This is the "homework"
-artifact — the thing a person reads before walking into a meeting, not a new document type;
-it is a synthesis page like any other.
+**Cross-persona briefing has three dedicated agents, each with two phases.** Implemented as
+Claude Code subagents under `.claude/agents/`: `brief-product-on-business-and-tech.md`,
+`brief-business-on-product-and-tech.md`, `brief-tech-on-business-and-product.md`. Each is
+hardcoded to this wiki's three personas and read-only (`tools: Read, Grep, Glob` — no
+write/edit access). Invoke by declaring persona and asking to be briefed, e.g. "I am a product
+guy, explain business and tech to me."
+
+- **Phase 1 — Homework** (fixed format, same invocation that starts the agent). Reads the
+  asker's own persona page, both other personas' pages, and
+  `wiki/synthesis/knowledge-base-conflicts.md`. Produces: what the other two personas are
+  claiming that the asker should know, which of the asker's own commitments have no source in
+  the other two pages, the sharpest question to expect in a cross-functional meeting, and one
+  thing to walk in already knowing. May be filed as
+  `wiki/synthesis/knowledge-base-briefing-<persona>.md`, but only on request — never
+  unprompted.
+- **Phase 2 — Exploration** (anything asked after the brief, in the same session). Open-ended:
+  not limited to this one epic or to the business/product/tech comparison — the agent may read
+  any file under `wiki/`, `docs/`, or `mock-cdf-project/` to answer. Exploration answers are
+  **never** filed, even on request — they are intentionally ephemeral. If someone wants a
+  persistent record, they ask for a Phase 1 brief instead.
+
+These agents are deliberately specific to this one use case, not general-purpose — they do not
+take an epic name as a parameter. If a second epic is added to this wiki, decide then whether
+to extend these agents or add new ones; don't speculatively generalize them now.
 
 ## User preferences
 
