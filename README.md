@@ -4,6 +4,25 @@ LLMs and Agentic AI at the intersection of Business, product and tech
 
 https://github.com/praneybehl/llm-wiki-plugin
 
+## Prerequisites
+
+To actually use this repo (not just read it), you need:
+
+- **Claude Code**, with this repo open as the working directory.
+- **The `llm-wiki` skill installed** at `~/.claude/skills/llm-wiki` — this repo's `wiki/`
+  directory was bootstrapped with it (`scripts/init_wiki.py`) and its scripts
+  (`wiki_lint.py`, `wiki_search.py`, etc.) are referenced throughout this README and
+  `wiki/SCHEMA.md` by that path. Without it, the wiki's markdown is still fully readable, but
+  the lint/search tooling won't resolve.
+- **Python 3 and [`uv`](https://docs.astral.sh/uv/)** — the `llm-wiki` skill's scripts are
+  run via `uv run --script ...` or plain `python3`, and `uv` is what installs their pinned
+  dependencies (FastEmbed, sqlite-vec, PyYAML) on first use.
+- **A fresh Claude Code session** the first time you use the three persona agents under
+  `.claude/agents/` — see Known gaps below for why.
+
+Nothing here requires a real Cognite Data Fusion project, tenant, or credentials —
+`mock-cdf-project/` is static and fictional (see that section below).
+
 ## What this is
 
 A working demo of one specific idea: instead of Business, Product, and Tech each keeping
@@ -115,7 +134,7 @@ real, instead of being invented in prose.
 **Get briefed before a cross-functional meeting.** Declare which persona you are and ask to
 be briefed — in a fresh Claude Code session in this repo:
 
-> "I am a product guy, explain business and tech to me."
+> "I am a product guy, explain business and tech to me......"
 
 This invokes one of `.claude/agents/brief-{business,product,tech}-on-....md`. Each one runs
 two phases in the same conversation:
