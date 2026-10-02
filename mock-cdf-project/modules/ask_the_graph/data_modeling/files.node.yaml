@@ -1,0 +1,22 @@
+# CogniteFile node instances. `assets` links a file to the CogniteAsset(s) it documents.
+# File content itself is not included — this is a static fixture, not a running File
+# service — only the metadata needed for citation exists.
+
+- space: sp_veridion_demo
+  externalId: file_line3_oee_calculation_sop
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — OEE Calculation SOP
+        description: Standard operating procedure defining how Availability, Performance, and Quality are calculated for Line 3.
+        tags: [sop, oee, line-3]
+        aliases: []
+        mimeType: application/pdf
+        directory: /plant-docs/caldervalley/line-3/
+        isUploaded: true
+        uploadedTime: "2025-09-01T09:00:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]

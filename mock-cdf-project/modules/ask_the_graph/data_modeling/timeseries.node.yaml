@@ -1,0 +1,114 @@
+# CogniteTimeSeries node instances for Line 3 OEE. `assets` links a time series back to
+# the CogniteAsset(s) it belongs to (assets.node.yaml). Data points themselves are not
+# included — this is a static fixture, not a running time series store.
+#
+# OEE = Availability x Performance x Quality. ts_line3_oee_pct is the composite; the three
+# component series below it are what "what's driving the loss" questions decompose into.
+
+- space: sp_veridion_demo
+  externalId: ts_line3_oee_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — OEE
+        description: Overall Equipment Effectiveness for Production Line 3 (Availability x Performance x Quality).
+        tags: [oee, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+
+- space: sp_veridion_demo
+  externalId: ts_line3_availability_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — Availability
+        description: Actual run time over planned production time for Line 3.
+        tags: [oee, availability, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+
+- space: sp_veridion_demo
+  externalId: ts_line3_performance_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — Performance
+        description: Actual throughput over theoretical maximum throughput for Line 3.
+        tags: [oee, performance, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+
+- space: sp_veridion_demo
+  externalId: ts_line3_quality_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — Quality
+        description: Good units over total units produced on Line 3.
+        tags: [oee, quality, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+
+- space: sp_veridion_demo
+  externalId: ts_line3_output_rate_kg_per_hr
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Line 3 — Output Rate
+        description: Extruded output rate from Extruder EX-302, feeds the Performance component.
+        tags: [throughput, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: kg/h
+        assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_temperature_degc
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: Reactor R-301 — Temperature
+        description: Reactor process temperature, a leading indicator for unplanned stops.
+        tags: [temperature, reactor, line-3]
+        aliases: []
+        isStep: false
+        type: numeric
+        sourceUnit: degC
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]

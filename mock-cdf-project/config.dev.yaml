@@ -1,0 +1,11 @@
+# Fictional Cognite Toolkit environment config.
+# There is no such project or cluster. This file exists only to make the module layout
+# below recognizable as "CDF project shaped" — it is not meant to be deployed.
+
+environment:
+  name: dev
+  project: veridion-demo
+  cluster: westeurope-1
+  type: dev
+  selected:
+    - modules/ask_the_graph

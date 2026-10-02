@@ -1,0 +1,50 @@
+# CogniteActivity node instances — downtime events that drive the Availability component
+# of Line 3's OEE. Note there is no CogniteEvent view in the Core Data Model;
+# CogniteActivity is the correct concept, and it carries scheduling fields
+# (CogniteSchedulable) instead of a single timestamp.
+
+- space: sp_veridion_demo
+  externalId: activity_line3_changeover
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: Planned changeover — Line 3
+        description: >
+          Scheduled grade changeover on Line 3, counted as planned downtime
+          and excluded from the Availability loss calculation.
+        tags: [changeover, planned, line-3]
+        aliases: []
+        startTime: "2026-09-29T06:00:00Z"
+        endTime: "2026-09-29T07:30:00Z"
+        scheduledStartTime: "2026-09-29T06:00:00Z"
+        scheduledEndTime: "2026-09-29T07:30:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        timeSeries: []
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_valve_fault
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: Unplanned stop — Reactor R-301 valve fault
+        description: >
+          Unplanned stop on Line 3 caused by a feed valve fault on Reactor
+          R-301. Counted as Availability loss.
+        tags: [unplanned-stop, reactor, line-3]
+        aliases: []
+        startTime: "2026-09-30T14:22:00Z"
+        endTime: "2026-09-30T15:47:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets:
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+        timeSeries: [{ space: sp_veridion_demo, externalId: ts_reactor_r301_temperature_degc }]

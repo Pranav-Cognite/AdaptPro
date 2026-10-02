@@ -1,0 +1,86 @@
+# CogniteAsset node instances — the hierarchy for the Veridion Chemicals Calder Valley plant.
+# Follows the Cognite Toolkit node-instance schema: each node is (space, externalId),
+# with one entry under `sources` per view it populates (source.space/externalId/version
+# identify the view; properties are nested under that source).
+#
+# Hierarchy:
+#   plant_caldervalley
+#   └── area_polymer_unit
+#       └── asset_line3
+#           ├── asset_reactor_r301
+#           └── asset_extruder_ex302
+
+- space: sp_veridion_demo
+  externalId: plant_caldervalley
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: Calder Valley Plant
+        description: Veridion Chemicals specialty polymers manufacturing site.
+        tags: [plant, chemical]
+        aliases: [Calder Valley]
+        parent: null
+
+- space: sp_veridion_demo
+  externalId: area_polymer_unit
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: Polymer Production Unit
+        description: Production area housing the polymer manufacturing lines.
+        tags: [production-unit, polymer]
+        aliases: []
+        parent: { space: sp_veridion_demo, externalId: plant_caldervalley }
+
+- space: sp_veridion_demo
+  externalId: asset_line3
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: Production Line 3
+        description: Continuous polymerization line, reactor through extrusion and packaging.
+        tags: [line, line-3, oee]
+        aliases: [Line 3, L3]
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: Reactor R-301
+        description: Continuous polymerization reactor feeding Line 3.
+        tags: [reactor, line-3]
+        aliases: [R-301]
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+
+- space: sp_veridion_demo
+  externalId: asset_extruder_ex302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: Extruder EX-302
+        description: Extrusion unit downstream of Reactor R-301 on Line 3.
+        tags: [extruder, line-3]
+        aliases: [EX-302]
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
