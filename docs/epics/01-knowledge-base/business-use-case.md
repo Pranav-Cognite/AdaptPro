@@ -1,4 +1,4 @@
-# Business use case — Ask the Graph
+# Business use case — OEE Chat Assistant
 
 **Customer:** Veridion Chemicals, specialty polymers manufacturer, Calder Valley Plant.
 **Owner:** Business / Solutions.
@@ -18,7 +18,7 @@ same conversation.
 > moment OEE drops below target.**
 
 This is the line Sales has used in the Veridion account conversation and in the generic
-"Ask the Graph" one-pager shown to prospects.
+"OEE Chat Assistant" one-pager shown to prospects.
 
 ## Example scenario
 

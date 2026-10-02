@@ -1,14 +1,14 @@
-# PRD — Ask the Graph: OEE for Production Line 3
+# PRD — OEE Chat Assistant: OEE for Production Line 3
 
 **Status:** Draft, v1 scope
 **Owner:** Product
-**Epic:** Ask the Graph (Veridion Chemicals, Calder Valley Plant)
+**Epic:** OEE Chat Assistant (Veridion Chemicals, Calder Valley Plant)
 
 ## Problem
 
 Production supervisors at Calder Valley pull OEE numbers from a separate reporting tool,
 after a shift ends, with no easy way to see what drove a drop — downtime, slow running, or
-scrap. "Ask the Graph" puts OEE for Production Line 3 into a chat interface, grounded in real
+scrap. "OEE Chat Assistant" puts OEE for Production Line 3 into a chat interface, grounded in real
 CDF data, with every answer citing what it used.
 
 ## Data architecture — how OEE data gets into CDF
@@ -48,7 +48,7 @@ Every answer cites the specific `(space, externalId)` instances it used.
   not scope a path back from CDF into SAP, and does not scope any new work-order resource in
   CDF either. "Automatically generate a corrective work order on OEE drop" — the promise
   Business has made to Veridion — is not in this PRD. See `adr.md` for why, and see
-  `../../../wiki/synthesis/ask-the-graph-conflicts.md` for the open conflict this creates with
+  `../../../wiki/synthesis/knowledge-base-conflicts.md` for the open conflict this creates with
   Business's commitment.
 - Any OEE threshold/alerting policy (what counts as "OEE dropped below target") — not defined
   anywhere yet, and a prerequisite for any future write capability.

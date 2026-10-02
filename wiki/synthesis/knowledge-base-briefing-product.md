@@ -1,17 +1,17 @@
 ---
 type: synthesis
-title: "Ask the Graph — Product's briefing on Business and Tech"
-tags: [ask-the-graph, briefing, oee]
-sources: [ask-the-graph-business-use-case, ask-the-graph-prd, ask-the-graph-adr]
+title: "OEE Chat Assistant — Product's briefing on Business and Tech"
+tags: [knowledge-base, briefing, oee]
+sources: [knowledge-base-business-use-case, knowledge-base-prd, knowledge-base-adr]
 created: 2026-10-03
 updated: 2026-10-03
 ---
 
-# Ask the Graph — Product's briefing on Business and Tech
+# OEE Chat Assistant — Product's briefing on Business and Tech
 
-Generated for: **Product**, before a cross-functional meeting on `ask-the-graph`. Reads
-[[ask-the-graph-product]], [[ask-the-graph-business]], [[ask-the-graph-tech]], and
-[[ask-the-graph-conflicts]].
+Generated for: **Product**, before a cross-functional meeting on `knowledge-base`. Reads
+[[knowledge-base-product]], [[knowledge-base-business]], [[knowledge-base-tech]], and
+[[knowledge-base-conflicts]].
 
 ## What Business is telling the customer that you should know
 
@@ -43,6 +43,6 @@ for this meeting, not something Product can resolve alone.
 
 ## One thing to walk in already knowing
 
-You are not the one who is wrong here. Point to [[ask-the-graph-conflicts]]: it's Business's
+You are not the one who is wrong here. Point to [[knowledge-base-conflicts]]: it's Business's
 promise against both Product and Tech, not a three-way disagreement where you need to pick a
 side.

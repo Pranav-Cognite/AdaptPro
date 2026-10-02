@@ -1,12 +1,12 @@
-# ADR 001 — Ask the Graph: read-only tool set for v1
+# ADR 001 — OEE Chat Assistant: read-only tool set for v1
 
 **Status:** Accepted
 **Owner:** Tech / Architecture
-**Epic:** Ask the Graph (Veridion Chemicals, Calder Valley Plant)
+**Epic:** OEE Chat Assistant (Veridion Chemicals, Calder Valley Plant)
 
 ## Context
 
-"Ask the Graph" lets a user ask natural-language questions about OEE (Overall Equipment
+"OEE Chat Assistant" lets a user ask natural-language questions about OEE (Overall Equipment
 Effectiveness) for a production line, grounded in the Veridion CDF project's Core Data Model
 instances (`CogniteAsset`, `CogniteTimeSeries`, `CogniteActivity`, `CogniteFile` — see
 `mock-cdf-project/`). We need to decide what the agent is allowed to do: read OEE data only,

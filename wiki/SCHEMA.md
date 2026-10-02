@@ -18,7 +18,7 @@ This wiki uses these page types, each with a dedicated subdirectory:
 - `entity` (in `wiki/entities/`) — pages about specific things: people, papers, products, places, organizations.
 - `concept` (in `wiki/concepts/`) — pages about ideas, methods, frameworks, abstractions.
 - `synthesis` (in `wiki/synthesis/`) — cross-cutting analyses, comparisons, query answers filed back. Also holds conflict/lint records (what promised/scoped/buildable disagree on, per epic).
-- `persona` (in `wiki/personas/`) — one page per `(epic, persona)` pair. A persona page is one function's reading of an epic's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<epic-slug>-<persona>.md` (e.g. `ask-the-graph-business.md`).
+- `persona` (in `wiki/personas/`) — one page per `(epic, persona)` pair. A persona page is one function's reading of an epic's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<epic-slug>-<persona>.md` (e.g. `knowledge-base-business.md`).
 
 Add additional types here as the wiki evolves.
 

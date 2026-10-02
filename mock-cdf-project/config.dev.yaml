@@ -8,4 +8,4 @@ environment:
   cluster: westeurope-1
   type: dev
   selected:
-    - modules/ask_the_graph
+    - modules/knowledge_base

@@ -1,7 +1,7 @@
 # Mock CDF project — Veridion Chemicals
 
 This is a **fictional, static** Cognite Data Fusion project. It exists only to ground the
-`ask-the-graph` epic (see `../docs/epics/01-ask-the-graph/`) in real Core Data Model (CDM)
+`knowledge-base` epic (see `../docs/epics/01-knowledge-base/`) in real Core Data Model (CDM)
 shapes, so that:
 
 - every `externalId` referenced by the business use case and the ADR resolves to something
@@ -28,7 +28,7 @@ there is no `CogniteEvent` view.
 ```
 mock-cdf-project/
 ├── config.dev.yaml                              fictional project/cluster name
-└── modules/ask_the_graph/
+└── modules/knowledge_base/
     └── data_modeling/
         ├── 01_space.yaml                         the one space used for this demo
         ├── assets.node.yaml                      plant -> polymer unit -> Line 3 -> reactor/extruder

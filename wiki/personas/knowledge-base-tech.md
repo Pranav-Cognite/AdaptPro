@@ -1,19 +1,19 @@
 ---
 type: persona
-title: "Ask the Graph — Tech view"
+title: "OEE Chat Assistant — Tech view"
 persona: tech
-epic: ask-the-graph
+epic: knowledge-base
 status: current
-tags: [ask-the-graph, tech, oee]
-sources: [ask-the-graph-adr]
+tags: [knowledge-base, tech, oee]
+sources: [knowledge-base-adr]
 created: 2026-10-02
 updated: 2026-10-02
 ---
 
-# Ask the Graph — Tech view
+# OEE Chat Assistant — Tech view
 
-This is Tech's reading of the `ask-the-graph` epic, drawn only from [[ask-the-graph-adr]]. It
-does not reflect what Business has promised the customer — see [[ask-the-graph-conflicts]]
+This is Tech's reading of the `knowledge-base` epic, drawn only from [[knowledge-base-adr]]. It
+does not reflect what Business has promised the customer — see [[knowledge-base-conflicts]]
 for where this view disagrees with the other personas.
 
 ## What Tech has committed to build (v1)
@@ -46,7 +46,7 @@ project.
 
 ## Open conflicts involving this view
 
-See [[ask-the-graph-conflicts]] — the "no write tool" decision above directly contradicts the
-auto-work-order promise in [[ask-the-graph-business]]. [[ask-the-graph-product]] independently
+See [[knowledge-base-conflicts]] — the "no write tool" decision above directly contradicts the
+auto-work-order promise in [[knowledge-base-business]]. [[knowledge-base-product]] independently
 scoped the same read-only boundary, so this is Business against both Product and Tech, not
 Tech alone.

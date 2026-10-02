@@ -1,20 +1,20 @@
 ---
 type: persona
-title: "Ask the Graph — Product view"
+title: "OEE Chat Assistant — Product view"
 persona: product
-epic: ask-the-graph
+epic: knowledge-base
 status: current
-tags: [ask-the-graph, product, oee]
-sources: [ask-the-graph-prd]
+tags: [knowledge-base, product, oee]
+sources: [knowledge-base-prd]
 created: 2026-10-02
 updated: 2026-10-03
 ---
 
-# Ask the Graph — Product view
+# OEE Chat Assistant — Product view
 
-This is Product's reading of the `ask-the-graph` epic, drawn only from [[ask-the-graph-prd]].
+This is Product's reading of the `knowledge-base` epic, drawn only from [[knowledge-base-prd]].
 It does not reflect what Business has promised the customer or how Tech phrases its
-constraints — see [[ask-the-graph-conflicts]] for where this view disagrees with the other
+constraints — see [[knowledge-base-conflicts]] for where this view disagrees with the other
 personas.
 
 ## How the data gets into CDF
@@ -43,9 +43,9 @@ downtime history — all with citations. Product scoped this deliberately read-o
 
 ## Open conflicts involving this view
 
-See [[ask-the-graph-conflicts]] — Product's read-only scope here **matches** Tech's ADR, not
-Business's promise. The auto-work-order promise in [[ask-the-graph-business]] is therefore in
+See [[knowledge-base-conflicts]] — Product's read-only scope here **matches** Tech's ADR, not
+Business's promise. The auto-work-order promise in [[knowledge-base-business]] is therefore in
 conflict with both Product and Tech, not just Tech alone.
 
-See [[ask-the-graph-briefing-product]] for Product's homework on Business and Tech before a
+See [[knowledge-base-briefing-product]] for Product's homework on Business and Tech before a
 cross-functional meeting on this epic.
