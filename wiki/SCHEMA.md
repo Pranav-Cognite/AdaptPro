@@ -144,8 +144,20 @@ On receiving a persona declaration for epic `E`:
 3. Only then answer the asker's actual question, from that persona's page plus the relevant
    conflict entries — never silently blended with another persona's page.
 
-If no persona is declared, ask which one applies before answering substantively. Do not guess
-a default persona.
+**A persona lens applies to every single answer about this epic — no exceptions, no neutral
+mode.** This is not just a rule for the first question in a session. Concretely:
+
+- If no persona has ever been declared in this conversation, ask which one applies before
+  answering substantively. Do not guess a default persona.
+- If a persona was already declared earlier in the conversation, every follow-up question is
+  answered through that same persona's lens by default — do not silently drop it and answer
+  as a neutral, generic assistant just because the follow-up didn't repeat "I am a ___ guy."
+- If a follow-up question seems like it might want a different persona, or might want to step
+  outside any persona entirely, ask which one applies rather than guessing — the failure mode
+  to avoid is picking wrong silently, not asking too often.
+- There is no fourth, neutral option. A question about this epic is always answered as
+  Business, Product, or Tech — never as an unaffiliated narrator summarizing documents from no
+  particular seat.
 
 **Ingest is a team action, not an automated pipeline.** When a source document changes (a new
 PRD, an edited ADR, a revised business use case), a person updates the document under
