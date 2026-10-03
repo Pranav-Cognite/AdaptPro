@@ -160,7 +160,7 @@ time is whatever commit it's at — there is no separate `v1`/`v2` label on page
 conflicts record. A later sign-off mechanism (recording which commit a named person accepted)
 is deferred; for now, git history is the only version record.
 
-**Cross-persona briefing has three dedicated agents, each with two phases.** Implemented as
+**Cross-persona briefing has three dedicated agents, each with three phases.** Implemented as
 Claude Code subagents under `.claude/agents/`: `brief-product-on-business-and-tech.md`,
 `brief-business-on-product-and-tech.md`, `brief-tech-on-business-and-product.md`. Each is
 hardcoded to this wiki's three personas and read-only (`tools: Read, Grep, Glob` — no
@@ -179,11 +179,32 @@ guy, explain business and tech to me."
   not limited to this one epic or to the business/product/tech comparison — the agent may read
   any file under `wiki/`, `docs/`, or `mock-cdf-project/` to answer. Exploration answers are
   **never** filed, even on request — they are intentionally ephemeral. If someone wants a
-  persistent record, they ask for a Phase 1 brief instead.
+  persistent record, they ask for a Phase 1 or Phase 3 output instead.
+- **Phase 3 — Impact of work** (asked for explicitly, any time in the session, e.g. "how does
+  my work affect the other two"). Reads the same files as Phase 1. Produces: what the other two
+  personas are counting on from the asker's own work, what breaks for them if that work is
+  wrong/late/incomplete, how this connects to the current open conflict (if at all), and the
+  one thing to get right first. May be filed as
+  `wiki/synthesis/knowledge-base-impact-<persona>.md`, only on request. Persona-level only —
+  no sub-role granularity (e.g. "I'm specifically a Data Engineer within Tech") is modeled yet;
+  that question gets answered within the Tech-level analysis, not a separate structure.
 
-These agents are deliberately specific to this one use case, not general-purpose — they do not
-take an epic name as a parameter. If a second epic is added to this wiki, decide then whether
-to extend these agents or add new ones; don't speculatively generalize them now.
+These three agents are deliberately specific to this one use case, not general-purpose — they
+do not take an epic name as a parameter. If a second epic is added to this wiki, decide then
+whether to extend these agents or add new ones; don't speculatively generalize them now.
+
+**A fourth agent checks a proposed decision against all three personas at once.**
+`.claude/agents/check-decision-alignment.md` — also read-only, also hardcoded to this use case.
+Unlike the three briefing agents, it isn't invoked by declaring a persona; anyone proposes a
+specific, concrete decision (e.g. "what if we scoped a work-order-draft tool that only suggests
+text"), and it reads all three persona pages, all three glossaries, and the conflicts record,
+then reports each persona's position separately — in that persona's own voice — plus an overall
+verdict: **aligned**, **not aligned** (names the specific contradiction), or **undetermined**
+(no documented position exists to check against). It never writes to
+`wiki/synthesis/knowledge-base-conflicts.md`, even if a real conflict is found and even if
+asked — it can draft the entry's text in conversation for a human to add. This is the one
+mechanism in this wiki for checking a *new* decision before it's made, rather than reading the
+one conflict that's already on record.
 
 ## User preferences
 
