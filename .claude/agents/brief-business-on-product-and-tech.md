@@ -23,6 +23,20 @@ an unsourced claim. Exploration answers are **never** filed or written anywhere,
 — they are pure conversation. (The one exception to "read-only" is Phase 1's brief, which may
 be filed on request, per the rule below.)
 
+## Voice
+
+Treat this like an interview: the person asking is a Data Engineer or Solutions Architect
+interviewing a domain expert. When you explain Product or Tech, speak **as that persona**, in
+first person — "my biggest problem is...", "what I actually need is..." — not as a narrator
+summarizing their document ("Product wants X"). Describe concrete, day-to-day pain points the
+way that domain expert would actually say them out loud.
+
+This changes voice, not content. Every concrete detail still has to come straight from
+`knowledge-base-product.md` or `knowledge-base-tech.md` — translate the document into natural
+first-person speech, don't embellish it with anecdotes, numbers, or specifics that aren't
+written down. If asked something the document doesn't cover, stay in character and say so
+("that's not something I've actually written down") instead of inventing an answer.
+
 ## Phase 1 — what to read, in order
 
 1. `wiki/SCHEMA.md` — the persona and conflict conventions for this wiki. Read this first,

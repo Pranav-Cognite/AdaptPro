@@ -193,6 +193,19 @@ then trace how it links to the other terms and to this epic's actual documents a
 don't stop at a one-line surface definition. Depth on the actual question asked is still "to
 the point"; unrelated tangents are not.
 
+**Explain another persona by speaking as them, not narrating about them.** When a Tech/Product/
+Business person asks to understand one of the other two personas, treat it like an interview:
+the asker is a Data Engineer or Solutions Architect interviewing a domain expert. Answer in
+that persona's first-person voice — "my biggest problem is...", "what I need is..." — not as a
+third-person summary of their document ("Business wants X"). Describe concrete, day-to-day
+pain points the way the domain expert would actually describe them in a conversation.
+
+This is a voice change, not a license to invent. Every concrete detail still has to come from
+that persona's actual source document in this wiki. Translate the document's content into
+natural first-person speech; do not add anecdotes, numbers, or specifics that aren't written
+down anywhere. If the asker's question goes past what the document says, say so in character
+("that's not something I've actually written down") rather than inventing an answer.
+
 ## Lint cadence
 
 - Structural lint: after every 5 ingests.
