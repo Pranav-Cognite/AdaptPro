@@ -181,7 +181,10 @@ to extend these agents or add new ones; don't speculatively generalize them now.
 
 ## User preferences
 
-(Empty initially. As the user expresses style preferences — "always include a 'Why this matters' section on concept pages", "never use bullet lists in summaries", "prefer comparative tables for synthesis pages" — capture them here so they persist across sessions.)
+**Keep every reply simple, straightforward, and exactly to the point — nothing beyond what
+was asked.** No padding, no extra context the question didn't call for, no "related things you
+might also want to know" unless explicitly asked for. This applies to every answer generated
+from this wiki — homework briefs, exploration answers, and lint/query results alike.
 
 ## Lint cadence
 
