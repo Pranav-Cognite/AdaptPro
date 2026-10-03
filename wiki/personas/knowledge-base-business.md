@@ -44,3 +44,5 @@ anyone leaving the chat.
 See [[knowledge-base-conflicts]] — the auto-work-order promise above has no backing tool, no
 threshold policy, and no work-order schema in either [[knowledge-base-product]] or
 [[knowledge-base-tech]].
+
+See [[business-glossary]] for the vocabulary used above, written for Product and Tech.

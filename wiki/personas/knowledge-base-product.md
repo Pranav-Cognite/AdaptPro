@@ -49,3 +49,5 @@ conflict with both Product and Tech, not just Tech alone.
 
 See [[knowledge-base-briefing-product]] for Product's homework on Business and Tech before a
 cross-functional meeting on this epic.
+
+See [[product-glossary]] for the vocabulary used above, written for Business and Tech.

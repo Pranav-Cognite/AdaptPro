@@ -24,3 +24,7 @@ Operations:
 ## [2026-10-03] schema | Renamed the epic slug from `ask-the-graph` to `knowledge-base` everywhere (directories, file slugs, wikilinks, the product name in prose, now "OEE Chat Assistant") — the prior name was confusing against the actual use case. No content or conflict logic changed, only naming.
 
 ## [2026-10-03] schema | Implemented cross-persona briefing as three read-only Claude Code subagents (`.claude/agents/brief-<persona>-on-...md`), replacing the earlier plan of a purely conversational convention. Each agent runs two phases in one invocation: Phase 1 (homework) is the fixed-format brief, filed only on request; Phase 2 (exploration) is open-ended follow-up Q&A, not limited to this epic, and is never filed even on request. Agents are hardcoded to this one use case, not parameterized by epic. Documented in SCHEMA.md.
+
+## [2026-10-03] schema | Added two user preferences: replies stay simple and to-the-point but still go deep on the actual question (not shallow), and agents explain another persona in first-person interview voice rather than narrating about them.
+
+## [2026-10-03] ingest | Added a new `glossary` page type (`wiki/glossaries/`, not epic-scoped): `business-glossary.md`, `product-glossary.md`, `tech-glossary.md`. Each defines one persona's day-to-day vocabulary for the other two personas to read. Wired into all 3 briefing agents' reading list so the interview-voice translation draws on the right terminology.

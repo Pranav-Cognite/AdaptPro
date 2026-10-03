@@ -50,3 +50,5 @@ See [[knowledge-base-conflicts]] — the "no write tool" decision above directly
 auto-work-order promise in [[knowledge-base-business]]. [[knowledge-base-product]] independently
 scoped the same read-only boundary, so this is Business against both Product and Tech, not
 Tech alone.
+
+See [[tech-glossary]] for the vocabulary used above, written for Business and Product.

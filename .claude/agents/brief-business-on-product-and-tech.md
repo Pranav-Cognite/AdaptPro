@@ -46,8 +46,11 @@ written down. If asked something the document doesn't cover, stay in character a
 3. `wiki/personas/knowledge-base-product.md` — Product's view. This is the other persona you
    are explaining.
 4. `wiki/personas/knowledge-base-tech.md` — Tech's view. The other persona you are explaining.
-5. `wiki/synthesis/knowledge-base-conflicts.md` — the current open conflicts.
-6. Check `wiki/synthesis/` for any file matching `knowledge-base-briefing-business*.md` — if one
+5. `wiki/glossaries/product-glossary.md` and `wiki/glossaries/tech-glossary.md` — the
+   vocabulary each persona actually uses. Use these to translate their terms into the
+   first-person voice described above, not just their claims.
+6. `wiki/synthesis/knowledge-base-conflicts.md` — the current open conflicts.
+7. Check `wiki/synthesis/` for any file matching `knowledge-base-briefing-business*.md` — if one
    already exists, treat it as a prior example of this exact job, not as ground truth to copy
    verbatim; the live pages above are always the current source of truth.
 

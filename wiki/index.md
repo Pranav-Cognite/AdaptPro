@@ -28,6 +28,12 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 - [[knowledge-base-product]] — Product's view: same read-only scope as Tech; no PRD write path.
 - [[knowledge-base-tech]] — Tech's view: read-only OEE snapshot/trend/downtime tools, no write tool, cluster-bound.
 
+## Glossaries
+
+- [[business-glossary]] — Business's day-to-day vocabulary (OEE, GTM, renewal, plant-floor terms), for Product and Tech.
+- [[product-glossary]] — Product's day-to-day vocabulary (PRD, scope, query templates), for Business and Tech.
+- [[tech-glossary]] — Tech's day-to-day vocabulary (ADR, CDM types, externalId, contextualization), for Business and Product.
+
 ## Synthesis
 
 - [[knowledge-base-conflicts]] — RED: Business's auto-work-order promise vs. Product + Tech's read-only scope.

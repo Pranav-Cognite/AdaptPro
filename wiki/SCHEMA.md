@@ -19,6 +19,12 @@ This wiki uses these page types, each with a dedicated subdirectory:
 - `concept` (in `wiki/concepts/`) — pages about ideas, methods, frameworks, abstractions.
 - `synthesis` (in `wiki/synthesis/`) — cross-cutting analyses, comparisons, query answers filed back. Also holds conflict/lint records (what promised/scoped/buildable disagree on, per epic).
 - `persona` (in `wiki/personas/`) — one page per `(epic, persona)` pair. A persona page is one function's reading of an epic's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<epic-slug>-<persona>.md` (e.g. `knowledge-base-business.md`).
+- `glossary` (in `wiki/glossaries/`) — one page per persona, not per epic: `business-glossary.md`,
+  `product-glossary.md`, `tech-glossary.md`. Each defines the terms that persona uses
+  day-to-day, written for one of the **other two** personas to read — not for the persona
+  itself. Maintained whenever a new term comes up in a source document or a cross-persona
+  conversation, same team-action rule as ingest. Not epic-scoped because a persona's working
+  vocabulary mostly outlives any one epic.
 
 Add additional types here as the wiki evolves.
 
