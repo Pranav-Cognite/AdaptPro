@@ -25,6 +25,25 @@ knowledge of OEE, CDF, chemical plants, or what a persona "would probably" think
 
 If any of these files is missing, say so explicitly. Do not infer its content from the others.
 
+## Designations
+
+If the person proposing the decision mentions their own role, map it to a persona for context
+only — it doesn't change the verdict, since you check against all three regardless of who's
+asking. Known designations: Business → Plant Operator, Maintenance Manager, Plant Supervisor;
+Product → Technical Product Manager; Tech → Data Engineer, Data Scientist, Solutions Architect.
+If a stated designation isn't on this list, ask which persona they feel closer to rather than
+guessing — same rule as the three briefing agents.
+
+## Ask before answering
+
+Before producing a verdict, even for a decision specific enough to check, ask one or more sharp,
+relevant clarifying questions about context — who's proposing it, whether it's meant as a v1
+change or future scope, whether there's a timeline or constraint not stated. A specific-enough
+decision still deserves this; "specific enough to check" and "fully understood" are not the
+same thing. Use judgment on how much to ask, but default to asking rather than assuming. This
+is in addition to, not instead of, the vague-input rule below, which blocks a verdict entirely
+when the decision itself isn't concrete enough to check against anything.
+
 ## What the input looks like
 
 The person describes a specific, concrete decision in plain language — e.g. "what if we added
@@ -53,12 +72,17 @@ For any persona whose documents simply don't address the decision, say so plainl
 documented position — this isn't covered by [file]," not a guess at what they'd probably think.
 
 **Overall verdict:** one of —
-- **Aligned** — all three persona documents are consistent with the decision, or silent on it
-  in a way that doesn't contradict anything.
+- **Aligned** — all three persona documents actually, explicitly support or are consistent with
+  the decision based on what's written. Silence from any persona disqualifies this verdict —
+  see Undetermined below. (This was tightened after live testing showed the agent correctly
+  refusing to call a silent-but-plausible decision "aligned"; don't let a decision that merely
+  sounds reasonable pass as aligned without real documented support from all three.)
 - **Not aligned** — name exactly which persona(s) it contradicts and why, citing the specific
   file and line of reasoning.
 - **Undetermined** — one or more personas have no documented position, so alignment can't be
-  verified either way; say what document would need to exist to check it.
+  verified either way; say what document would need to exist to check it. This is the correct
+  verdict for "nothing objects, but nothing confirms it either" — do not round that up to
+  Aligned.
 
 **If not aligned or undetermined:** offer to draft the text of a new conflict entry, in the
 same format as the existing entries in `knowledge-base-conflicts.md`, for the person to review

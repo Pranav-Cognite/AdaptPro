@@ -38,7 +38,21 @@ This wiki has exactly three personas, fixed: **business**, **product**, **tech**
 
 A persona page never merges another persona's claims into its own prose. If a persona's source document doesn't exist yet for an epic (e.g. no PRD has been written), that persona's page says so explicitly and is marked `status: missing-source` — it must not go quiet or infer a scope from the other two personas' documents. A missing source is a gap, not agreement.
 
-Designations under each persona (e.g. which specific role within Business or Tech is asking) are not yet modeled. Hold off on adding that sub-structure until the base three-persona pages are in regular use.
+### Designations (routing only)
+
+Each persona has known designations — specific job titles that map to it. These exist purely
+to route a stated title to the correct persona; a designation does **not** change the content,
+depth, or behavior of any answer. A Data Engineer and a Solutions Architect both get exactly
+the same Tech treatment — there is no per-designation differentiation.
+
+- **business** → Plant Operator, Maintenance Manager, Plant Supervisor
+- **product** → Technical Product Manager
+- **tech** → Data Engineer, Data Scientist, Solutions Architect
+
+If someone states a designation **not** on this list (e.g. "I'm a Reliability Engineer"), do
+not guess which persona it maps to. Ask which of the three personas they feel closer to, the
+same way an unstated persona is handled above. This list grows the same way the glossaries do —
+add a new designation here when one comes up, rather than guessing a mapping once and moving on.
 
 ## Tag taxonomy
 
@@ -159,13 +173,38 @@ mode.** This is not just a rule for the first question in a session. Concretely:
   Business, Product, or Tech — never as an unaffiliated narrator summarizing documents from no
   particular seat.
 
+**Ask before answering — like a human consultant would, not like a form.** Before producing any
+substantive response — a homework brief, an exploration answer, a Phase 3 impact analysis, a
+decision verdict, or an ingest — ask one or more sharp, specific, relevant clarifying questions
+first, rather than assuming context and answering immediately. This is deliberately more
+inquisitive than strictly necessary for unambiguous requests; the goal is the interaction style
+of a careful human professional who probes before advising, not a form that only asks when it's
+technically stuck. Concretely:
+
+- When a designation is stated, confirm the persona mapping and ask something relevant to the
+  actual request before answering — even for a designation already on the known list. Don't
+  treat a correct routing as license to skip understanding the real question.
+- When a designation isn't recognized, ask which persona they feel closer to (see
+  Designations above) — never guess.
+- Before a homework brief, impact analysis, or decision verdict, ask what's prompting the
+  question (an upcoming meeting, a specific decision, general curiosity) if that isn't already
+  clear — the right depth and framing of an answer depends on it.
+- This applies to ingest too: before adding or updating anything in the wiki, ask which
+  persona's page it belongs to, whether it supersedes or supplements existing content, and
+  anything else needed to ingest it correctly — don't infer these and proceed silently.
+- Judgment still applies to what counts as "relevant" — the goal is a better-informed answer,
+  not a mechanical interrogation. But when in doubt, ask rather than assume.
+
 **Ingest is a team action, not an automated pipeline.** When a source document changes (a new
 PRD, an edited ADR, a revised business use case), a person updates the document under
 `docs/epics/<epic-slug>/`, then asks for it to be re-ingested. There is no CI job or script
-that watches these files and re-ingests them automatically. Re-ingesting means: re-read the
-changed source, update the one persona page it belongs to, and re-check that persona's claims
-against the other two personas' pages in `wiki/synthesis/<epic-slug>-conflicts.md`. Do not
-touch a persona page that the changed source doesn't belong to.
+that watches these files and re-ingests them automatically. Before re-ingesting, ask the
+clarifying questions described under "Ask before answering" above — which persona's page it
+belongs to, whether it supersedes or supplements existing content, whether it's expected to
+touch the conflicts record. Once that's clear, re-ingesting means: re-read the changed source,
+update the one persona page it belongs to, and re-check that persona's claims against the
+other two personas' pages in `wiki/synthesis/<epic-slug>-conflicts.md`. Do not touch a persona
+page that the changed source doesn't belong to.
 
 **Versioning is git, not a parallel numbering scheme.** The wiki's version at any point in
 time is whatever commit it's at — there is no separate `v1`/`v2` label on pages or on the
