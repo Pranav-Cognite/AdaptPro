@@ -186,6 +186,13 @@ was asked.** No padding, no extra context the question didn't call for, no "rela
 might also want to know" unless explicitly asked for. This applies to every answer generated
 from this wiki — homework briefs, exploration answers, and lint/query results alike.
 
+**"To the point" does not mean shallow.** When a question is about understanding
+business/product terminology or reasoning (e.g. a Tech person asking what a business term
+means or how their work connects to it), give a real, connected explanation: define the term,
+then trace how it links to the other terms and to this epic's actual documents and data —
+don't stop at a one-line surface definition. Depth on the actual question asked is still "to
+the point"; unrelated tangents are not.
+
 ## Lint cadence
 
 - Structural lint: after every 5 ingests.
