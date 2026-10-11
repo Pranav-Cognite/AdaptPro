@@ -18,7 +18,7 @@ This wiki uses these page types, each with a dedicated subdirectory:
 - `entity` (in `wiki/entities/`) — pages about specific things: people, papers, products, places, organizations.
 - `concept` (in `wiki/concepts/`) — pages about ideas, methods, frameworks, abstractions.
 - `synthesis` (in `wiki/synthesis/`) — cross-cutting analyses, comparisons, query answers filed back. Also holds conflict/lint records (what promised/scoped/buildable disagree on, per slug).
-- `persona` (in `wiki/personas/`) — one page per `(slug, persona)` pair. A persona page is one function's reading of that slug's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<slug>-<persona>.md` (e.g. `knowledge-base-business.md`).
+- `persona` (in `wiki/personas/`) — one page per `(slug, persona)` pair. A persona page is one function's reading of that slug's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<slug>-<persona>.md` (e.g. `veridion-line3-oee-business.md`).
 - `glossary` (in `wiki/glossaries/`) — one page per persona, not per slug: `business-glossary.md`,
   `product-glossary.md`, `tech-glossary.md`. Each defines the terms that persona uses
   day-to-day, written for one of the **other two** personas to read — not for the persona
@@ -167,11 +167,11 @@ Generation is reproducible from markdown via `scripts/wiki_graph_extract.py`. Th
 
 ## Workflow customizations
 
-**Raw sources live in `docs/epics/<slug>/`, not `raw/`.** These source documents (business use
+**Raw sources live in `docs/engagements/<slug>/`, not `raw/`.** These source documents (business use
 case, ADR) are versioned project documents, not freeform clippings, so they stay in
-`docs/epics/` as the canonical copy. `raw/` is left for anything genuinely external (e.g. a
+`docs/engagements/` as the canonical copy. `raw/` is left for anything genuinely external (e.g. a
 pasted Slack export) if that's ever added later. Source pages in `wiki/sources/` cite back to
-`docs/epics/...` paths instead of `raw/...` paths.
+`docs/engagements/...` paths instead of `raw/...` paths.
 
 **Persona declaration opens a query session.** Before answering any substantive question, the
 asker states which persona they're asking as: "I am a business guy" / "I am a product guy" /
@@ -255,7 +255,7 @@ probes before advising, not a form that only asks when it's technically stuck. C
 
 **Ingest is a team action, not an automated pipeline.** When a source document changes (a new
 PRD, an edited ADR, a revised business use case), a person updates the document under
-`docs/epics/<slug>/`, then asks for it to be re-ingested. There is no CI job or script
+`docs/engagements/<slug>/`, then asks for it to be re-ingested. There is no CI job or script
 that watches these files and re-ingests them automatically. Before re-ingesting, ask the
 clarifying questions described under "Ask before answering" above — which persona's page it
 belongs to, whether it supersedes or supplements existing content, whether it's expected to
@@ -278,11 +278,11 @@ guy, explain business and tech to me."
 
 - **Phase 1 — Homework** (fixed format, same invocation that starts the agent). Reads the
   asker's own persona page, both other personas' pages, and
-  `wiki/synthesis/knowledge-base-conflicts.md`. Produces: what the other two personas are
+  `wiki/synthesis/veridion-line3-oee-conflicts.md`. Produces: what the other two personas are
   claiming that the asker should know, which of the asker's own commitments have no source in
   the other two pages, the sharpest question to expect in a cross-functional meeting, and one
   thing to walk in already knowing. May be filed as
-  `wiki/synthesis/knowledge-base-briefing-<persona>.md`, but only on request — never
+  `wiki/synthesis/veridion-line3-oee-briefing-<persona>.md`, but only on request — never
   unprompted.
 - **Phase 2 — Exploration** (anything asked after the brief, in the same session). Open-ended:
   not limited to this one use case or to the business/product/tech comparison — the agent may read
@@ -294,23 +294,24 @@ guy, explain business and tech to me."
   personas are counting on from the asker's own work, what breaks for them if that work is
   wrong/late/incomplete, how this connects to the current open conflict (if at all), and the
   one thing to get right first. May be filed as
-  `wiki/synthesis/knowledge-base-impact-<persona>.md`, only on request. Persona-level only —
+  `wiki/synthesis/veridion-line3-oee-impact-<persona>.md`, only on request. Persona-level only —
   no sub-role granularity (e.g. "I'm specifically a Data Engineer within Tech") is modeled yet;
   that question gets answered within the Tech-level analysis, not a separate structure.
 
-These three agents are deliberately specific to this one use case, not general-purpose — they
-do not take a slug as a parameter. If a second use case is added to this wiki, decide then
-whether to extend these agents or add new ones; don't speculatively generalize them now.
+These three agents are deliberately specific to this one engagement (`veridion-line3-oee`),
+not general-purpose — they do not take a slug as a parameter. If a second engagement is added
+to this wiki, decide then whether to extend these agents or add new ones; don't speculatively
+generalize them now.
 
 **A fourth agent checks a proposed decision against all three personas at once.**
-`.claude/agents/check-decision-alignment.md` — also read-only, also hardcoded to this use case.
+`.claude/agents/check-decision-alignment.md` — also read-only, also hardcoded to this engagement.
 Unlike the three briefing agents, it isn't invoked by declaring a persona; anyone proposes a
-specific, concrete decision (e.g. "what if we scoped a work-order-draft tool that only suggests
+specific, concrete decision (e.g. "what if we scoped a work-order-draft path that only suggests
 text"), and it reads all three persona pages, all three glossaries, and the conflicts record,
 then reports each persona's position separately — in that persona's own voice — plus an overall
 verdict: **aligned**, **not aligned** (names the specific contradiction), or **undetermined**
 (no documented position exists to check against). It never writes to
-`wiki/synthesis/knowledge-base-conflicts.md`, even if a real conflict is found and even if
+`wiki/synthesis/veridion-line3-oee-conflicts.md`, even if a real conflict is found and even if
 asked — it can draft the entry's text in conversation for a human to add. This is the one
 mechanism in this wiki for checking a *new* decision before it's made, rather than reading the
 one conflict that's already on record.

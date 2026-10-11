@@ -3,7 +3,7 @@ type: glossary
 title: "Product glossary — for Business and Tech"
 persona: product
 tags: [glossary, product, oee]
-sources: [knowledge-base-prd]
+sources: [veridion-line3-oee-prd]
 created: 2026-10-03
 updated: 2026-10-03
 ---
@@ -14,7 +14,7 @@ Terms Product (PM/BA) uses day-to-day. Written for Business and Tech to read whe
 understand what Product means, not for Product's own reference.
 
 - **PRD (Product Requirements Document)** — the scoping document: what's actually planned to
-  ship, with explicit acceptance criteria. `knowledge-base-prd` here.
+  ship, with explicit acceptance criteria. `veridion-line3-oee-prd` here.
 - **In scope / out of scope** — explicit boundaries in the PRD. "Out of scope" means "not
   decided or built yet," not "never" — that distinction is exactly where the conflict with
   Business's promise lives.

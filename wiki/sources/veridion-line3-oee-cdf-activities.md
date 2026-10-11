@@ -1,16 +1,16 @@
 ---
 type: source
-title: "OEE Chat Assistant — CDF activities (mock-cdf-project)"
-tags: [knowledge-base, tech, cdf, cdm, activities, downtime]
+title: "Veridion Line 3 OEE — CDF activities (mock-cdf-project)"
+tags: [veridion-line3-oee, tech, cdf, cdm, activities, downtime]
 authors: [Tech/Architecture]
 url: null
-raw: mock-cdf-project/modules/knowledge_base/data_modeling/activities.node.yaml
+raw: mock-cdf-project/modules/veridion_line3_oee/data_modeling/activities.node.yaml
 ingested: 2026-10-04
 created: 2026-10-04
 updated: 2026-10-04
 ---
 
-# OEE Chat Assistant — CDF activities (mock-cdf-project)
+# Veridion Line 3 OEE — CDF activities (mock-cdf-project)
 
 The two `CogniteActivity` node instances driving the Availability component of Line 3's OEE:
 `activity_line3_changeover` (a planned grade changeover, excluded from loss) and
@@ -19,12 +19,12 @@ loss). `CogniteActivity` is the Core Data Model's equivalent of a legacy "event"
 `CogniteEvent` view — so this is the correct concept, and it carries scheduling fields instead
 of a single timestamp.
 
-Full text: `mock-cdf-project/modules/knowledge_base/data_modeling/activities.node.yaml`
+Full text: `mock-cdf-project/modules/veridion_line3_oee/data_modeling/activities.node.yaml`
 
 ## Where this fits
 
-- [[knowledge-base-tech]] — Tech's "Downtime history" tool lists exactly these activity
+- [[veridion-line3-oee-tech]] — Tech's "Downtime history" tool lists exactly these activity
   instances; Tech owns and maintains this CDF project.
-- [[knowledge-base-cdf-assets]] — the assets each activity is linked to via `assets`.
-- [[knowledge-base-cdf-timeseries]] — `activity_line3_unplanned_stop_valve_fault` cross-links to
+- [[veridion-line3-oee-cdf-assets]] — the assets each activity is linked to via `assets`.
+- [[veridion-line3-oee-cdf-timeseries]] — `activity_line3_unplanned_stop_valve_fault` cross-links to
   `ts_reactor_r301_temperature_degc` via `timeSeries`.

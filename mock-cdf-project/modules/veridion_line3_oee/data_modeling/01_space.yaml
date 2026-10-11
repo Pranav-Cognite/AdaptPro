@@ -1,9 +1,9 @@
-# Fictional data space for the knowledge-base demo.
+# Fictional data space for the Veridion Line 3 OEE demo.
 # Numbered "01_" per Toolkit convention: spaces must exist before any instances reference them.
 space: sp_veridion_demo
-name: Veridion Chemicals — knowledge-base demo
+name: Veridion Chemicals — Veridion Line 3 OEE demo
 description: >
   Static demo space for the Veridion Chemicals Calder Valley plant used by the
-  knowledge-base epic (OEE for Production Line 3). All instances in this module
+  veridion-line3-oee engagement (OEE for Production Line 3). All instances in this module
   live in this space and use the standard Cognite Core Data Model (CDM) views
   (CogniteAsset, CogniteTimeSeries, CogniteActivity, CogniteFile).

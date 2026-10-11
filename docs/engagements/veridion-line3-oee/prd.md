@@ -1,19 +1,19 @@
-# PRD — OEE Chat Assistant: OEE for Production Line 3
+# PRD — Veridion Line 3 OEE engagement: OEE for Production Line 3
 
-**Status:** Draft, v1 scope
-**Owner:** Product
-**Epic:** OEE Chat Assistant (Veridion Chemicals, Calder Valley Plant)
+**Status:** Draft, v1 scope  
+**Owner:** Product  
+**Engagement:** Veridion Line 3 OEE (`veridion-line3-oee`) — Veridion Chemicals, Calder Valley Plant
 
 ## Problem
 
 Production supervisors at Calder Valley pull OEE numbers from a separate reporting tool,
 after a shift ends, with no easy way to see what drove a drop — downtime, slow running, or
-scrap. "OEE Chat Assistant" puts OEE for Production Line 3 into a chat interface, grounded in real
-CDF data, with every answer citing what it used.
+scrap. This engagement scopes a **CDF-grounded OEE capability for Production Line 3**: read
+OEE and explain loss drivers from real CDF data, with every answer citing the instances used.
 
 ## Data architecture — how OEE data gets into CDF
 
-Three Cognite extractors feed the Core Data Model instances this epic queries
+Three Cognite extractors feed the Core Data Model instances this engagement queries
 (`mock-cdf-project/`):
 
 | Extractor | Source system | Feeds |
@@ -43,13 +43,13 @@ Every answer cites the specific `(space, externalId)` instances it used.
 
 ## Explicitly out of scope for v1
 
-- **Creating, updating, or triggering any SAP work order, or any other write action, from
-  the chat.** The SAP Extractor referenced above is inbound only (SAP → CDF); this PRD does
-  not scope a path back from CDF into SAP, and does not scope any new work-order resource in
-  CDF either. "Automatically generate a corrective work order on OEE drop" — the promise
-  Business has made to Veridion — is not in this PRD. See `adr.md` for why, and see
-  `../../../wiki/synthesis/knowledge-base-conflicts.md` for the open conflict this creates with
-  Business's commitment.
+- **Creating, updating, or triggering any SAP work order, or any other write action.** The
+  SAP Extractor referenced above is inbound only (SAP → CDF); this PRD does not scope a path
+  back from CDF into SAP, and does not scope any new work-order resource in CDF either.
+  "Automatically generate a corrective work order on OEE drop" — the promise Business has made
+  to Veridion — is not in this PRD. See `adr.md` for why, and see
+  `../../../wiki/synthesis/veridion-line3-oee-conflicts.md` for the open conflict this creates
+  with Business's commitment.
 - Any OEE threshold/alerting policy (what counts as "OEE dropped below target") — not defined
   anywhere yet, and a prerequisite for any future write capability.
 
@@ -60,5 +60,11 @@ Every answer cites the specific `(space, externalId)` instances it used.
 - A user can ask for an OEE trend over a date range and get a correct summary with citations.
 - A user can ask what drove an Availability loss and get the relevant downtime activity with
   citations.
-- The agent never returns a fabricated `externalId`; it says "not found" instead.
-- No tool in this product can write to CDF or to any source system.
+- The system never returns a fabricated `externalId`; it says "not found" instead.
+- No tool in this engagement can write to CDF or to any source system.
+
+## How this document is used in AdaptPro
+
+This PRD is **Product's exclusive source** for the `veridion-line3-oee` knowledge base.
+AdaptPro ingests it into the Product persona view so Business and Tech can query what was
+actually scoped for v1.

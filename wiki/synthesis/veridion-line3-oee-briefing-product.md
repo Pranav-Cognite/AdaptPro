@@ -1,17 +1,17 @@
 ---
 type: synthesis
-title: "OEE Chat Assistant — Product's briefing on Business and Tech"
-tags: [knowledge-base, briefing, oee]
-sources: [knowledge-base-business-use-case, knowledge-base-prd, knowledge-base-adr]
+title: "Veridion Line 3 OEE — Product's briefing on Business and Tech"
+tags: [veridion-line3-oee, briefing, oee]
+sources: [veridion-line3-oee-business-use-case, veridion-line3-oee-prd, veridion-line3-oee-adr]
 created: 2026-10-03
 updated: 2026-10-03
 ---
 
-# OEE Chat Assistant — Product's briefing on Business and Tech
+# Veridion Line 3 OEE — Product's briefing on Business and Tech
 
-Generated for: **Product**, before a cross-functional meeting on `knowledge-base`. Reads
-[[knowledge-base-product]], [[knowledge-base-business]], [[knowledge-base-tech]], and
-[[knowledge-base-conflicts]].
+Generated for: **Product**, before a cross-functional meeting on `veridion-line3-oee`. Reads
+[[veridion-line3-oee-product]], [[veridion-line3-oee-business]], [[veridion-line3-oee-tech]], and
+[[veridion-line3-oee-conflicts]].
 
 ## What Business is telling the customer that you should know
 
@@ -43,6 +43,6 @@ for this meeting, not something Product can resolve alone.
 
 ## One thing to walk in already knowing
 
-You are not the one who is wrong here. Point to [[knowledge-base-conflicts]]: it's Business's
+You are not the one who is wrong here. Point to [[veridion-line3-oee-conflicts]]: it's Business's
 promise against both Product and Tech, not a three-way disagreement where you need to pick a
 side.

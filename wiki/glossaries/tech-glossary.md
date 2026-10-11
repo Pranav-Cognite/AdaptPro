@@ -3,7 +3,7 @@ type: glossary
 title: "Tech glossary — for Business and Product"
 persona: tech
 tags: [glossary, tech, oee, cdf]
-sources: [knowledge-base-adr]
+sources: [veridion-line3-oee-adr]
 created: 2026-10-03
 updated: 2026-10-03
 ---
@@ -14,7 +14,7 @@ Terms Tech (architect/engineer) uses day-to-day. Written for Business and Produc
 they need to understand what Tech means, not for Tech's own reference.
 
 - **ADR (Architecture Decision Record)** — a specific technical decision, with the alternatives
-  considered and rejected. `knowledge-base-adr` here. Different from a PRD: a PRD says *what*,
+  considered and rejected. `veridion-line3-oee-adr` here. Different from a PRD: a PRD says *what*,
   an ADR says *how* and locks in a *why not*.
 - **CogniteAsset / CogniteTimeSeries / CogniteActivity / CogniteFile** — the Core Data Model
   (CDM) types this project's data is stored as. `CogniteActivity` is the modern equivalent of a

@@ -1,20 +1,20 @@
 ---
 type: persona
-title: "OEE Chat Assistant — Product view"
+title: "Veridion Line 3 OEE — Product view"
 persona: product
 status: current
-tags: [knowledge-base, product, oee]
-sources: [knowledge-base-prd]
+tags: [veridion-line3-oee, product, oee]
+sources: [veridion-line3-oee-prd]
 created: 2026-10-02
-updated: 2026-10-03
+updated: 2026-10-11
 ---
 
-# OEE Chat Assistant — Product view
+# Veridion Line 3 OEE — Product view
 
-This is Product's reading of `knowledge-base`, drawn only from [[knowledge-base-prd]] — the PRD
+This is Product's reading of `veridion-line3-oee`, drawn only from [[veridion-line3-oee-prd]] — the PRD
 is Product's exclusive source; Business and Tech may reference it but never own it. This page
 does not reflect what Business has promised the customer or how Tech phrases its constraints —
-see [[knowledge-base-conflicts]] for where this view disagrees with the other personas.
+see [[veridion-line3-oee-conflicts]] for where this view disagrees with the other personas.
 
 ## How the data gets into CDF
 
@@ -28,7 +28,7 @@ Three Cognite extractors feed the OEE data this product queries:
   Quality component.
 
 The actual CDM resources these extractors feed are owned and maintained by Tech — see
-[[knowledge-base-cdf-timeseries]] and [[knowledge-base-cdf-activities]] for the specific time
+[[veridion-line3-oee-cdf-timeseries]] and [[veridion-line3-oee-cdf-activities]] for the specific time
 series and activities this maps onto. Product scopes which questions are queryable; Tech owns
 what's actually there to query.
 
@@ -39,19 +39,18 @@ downtime history — all with citations. Product scoped this deliberately read-o
 
 ## What Product has explicitly scoped out
 
-- **Any write action** — creating or triggering a SAP work order, or any other write, from
-  the chat. The SAP Extractor is inbound-only (SAP → CDF); there is no path back out scoped
-  here.
+- **Any write action** — creating or triggering a SAP work order, or any other write. The
+  SAP Extractor is inbound-only (SAP → CDF); there is no path back out scoped here.
 - **Any OEE threshold/alerting policy** — nothing defines what "OEE dropped below target"
   means yet, which is a prerequisite for any future write capability Business might want.
 
 ## Open conflicts involving this view
 
-See [[knowledge-base-conflicts]] — Product's read-only scope here **matches** Tech's ADR, not
-Business's promise. The auto-work-order promise in [[knowledge-base-business]] is therefore in
+See [[veridion-line3-oee-conflicts]] — Product's read-only scope here **matches** Tech's ADR, not
+Business's promise. The auto-work-order promise in [[veridion-line3-oee-business]] is therefore in
 conflict with both Product and Tech, not just Tech alone.
 
-See [[knowledge-base-briefing-product]] for Product's homework on Business and Tech before a
+See [[veridion-line3-oee-briefing-product]] for Product's homework on Business and Tech before a
 cross-functional meeting.
 
 See [[product-glossary]] for the vocabulary used above, written for Business and Tech.

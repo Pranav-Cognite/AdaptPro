@@ -10,13 +10,13 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 
 ## Sources
 
-- [[knowledge-base-business-use-case]] — Business's OEE promise for Line 3: real-time OEE + auto-generated work order on drop.
-- [[knowledge-base-prd]] — Product's PRD: 3 extractors (OPC UA/SAP/DB) feed OEE; same read-only scope as the ADR.
-- [[knowledge-base-adr]] — ADR 001, Tech's read-only OEE tool set for Line 3; no write tool.
-- [[knowledge-base-cdf-assets]] — Tech's mock CDF asset hierarchy: plant → polymer unit → Line 3 → reactor/extruder.
-- [[knowledge-base-cdf-timeseries]] — Tech's mock CDF time series: OEE composite + 3 components + 2 feeder series.
-- [[knowledge-base-cdf-activities]] — Tech's mock CDF activities: one planned changeover, one unplanned valve-fault stop.
-- [[knowledge-base-cdf-files]] — Tech's mock CDF file: the Line 3 OEE calculation SOP.
+- [[veridion-line3-oee-business-use-case]] — Business's Line 3 OEE promise: real-time OEE + auto-generated work order on drop.
+- [[veridion-line3-oee-prd]] — Product's PRD: 3 extractors (OPC UA/SAP/DB) feed OEE; same read-only scope as the ADR.
+- [[veridion-line3-oee-adr]] — ADR 001, Tech's read-only OEE capability set for Line 3; no write path.
+- [[veridion-line3-oee-cdf-assets]] — Tech's mock CDF asset hierarchy: plant → polymer unit → Line 3 → reactor/extruder.
+- [[veridion-line3-oee-cdf-timeseries]] — Tech's mock CDF time series: OEE composite + 3 components + 2 feeder series.
+- [[veridion-line3-oee-cdf-activities]] — Tech's mock CDF activities: one planned changeover, one unplanned valve-fault stop.
+- [[veridion-line3-oee-cdf-files]] — Tech's mock CDF file: the Line 3 OEE calculation SOP.
 
 ## Entities
 
@@ -28,9 +28,9 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 
 ## Personas
 
-- [[knowledge-base-business]] — Business's view: real-time OEE + auto-generated work order on drop.
-- [[knowledge-base-product]] — Product's view: same read-only scope as Tech; no PRD write path.
-- [[knowledge-base-tech]] — Tech's view: read-only OEE snapshot/trend/downtime tools, no write tool, cluster-bound.
+- [[veridion-line3-oee-business]] — Business's view: real-time OEE + auto-generated work order on drop.
+- [[veridion-line3-oee-product]] — Product's view: same read-only scope as Tech; no write path in the PRD.
+- [[veridion-line3-oee-tech]] — Tech's view: read-only OEE snapshot/trend/downtime capabilities, no write path, cluster-bound.
 
 ## Glossaries
 
@@ -40,5 +40,5 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 
 ## Synthesis
 
-- [[knowledge-base-conflicts]] — RED: Business's auto-work-order promise vs. Product + Tech's read-only scope.
-- [[knowledge-base-briefing-product]] — worked example of a cross-persona briefing: Product's homework on Business and Tech before a meeting.
+- [[veridion-line3-oee-conflicts]] — RED: Business's auto-work-order promise vs. Product + Tech's read-only scope.
+- [[veridion-line3-oee-briefing-product]] — worked example of a cross-persona briefing: Product's homework on Business and Tech before a meeting.

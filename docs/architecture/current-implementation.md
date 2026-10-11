@@ -1,11 +1,13 @@
 # Architecture — current implementation
 
-What's actually built in this repo today: three source documents become three persona pages
-and one conflict record in the wiki; four read-only agents read that wiki to answer people.
+What's actually built in this repo today: engagement source documents are ingested into an
+LLM knowledge base as three exclusive persona pages plus one conflict record; four read-only
+agents query that knowledge base so Business, Product, and Tech can brief each other and check
+decision alignment. Ask-before-answering is a hard gate on every agent — never bypassed.
 
 ```mermaid
 flowchart TD
-    subgraph Sources["Source documents (docs/epics/01-knowledge-base/)"]
+    subgraph Sources["Source documents (docs/engagements/veridion-line3-oee/)"]
         BU["Business use case"]
         PRD["Product plan"]
         ADR["Engineering decision"]
@@ -21,7 +23,7 @@ flowchart TD
         ProdP["Product persona page"]
         TechP["Tech persona page"]
         Gloss["3 glossaries"]
-        Conflicts["Conflict record\n(knowledge-base-conflicts.md)"]
+        Conflicts["Conflict record\n(veridion-line3-oee-conflicts.md)"]
     end
 
     subgraph AgentsBox[".claude/agents/ (strictly read-only)"]

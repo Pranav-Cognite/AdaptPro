@@ -1,16 +1,16 @@
 ---
 type: source
-title: "OEE Chat Assistant — CDF time series (mock-cdf-project)"
-tags: [knowledge-base, tech, cdf, cdm, timeseries, oee]
+title: "Veridion Line 3 OEE — CDF time series (mock-cdf-project)"
+tags: [veridion-line3-oee, tech, cdf, cdm, timeseries, oee]
 authors: [Tech/Architecture]
 url: null
-raw: mock-cdf-project/modules/knowledge_base/data_modeling/timeseries.node.yaml
+raw: mock-cdf-project/modules/veridion_line3_oee/data_modeling/timeseries.node.yaml
 ingested: 2026-10-04
 created: 2026-10-04
 updated: 2026-10-04
 ---
 
-# OEE Chat Assistant — CDF time series (mock-cdf-project)
+# Veridion Line 3 OEE — CDF time series (mock-cdf-project)
 
 The six `CogniteTimeSeries` node instances behind Line 3's OEE: the composite
 (`ts_line3_oee_pct`) and its three components (`ts_line3_availability_pct`,
@@ -21,12 +21,12 @@ not included — this is a static fixture, not a running time series store; only
 definitions exist, which is enough to make every `externalId` the ADR and PRD reference
 resolvable and checkable.
 
-Full text: `mock-cdf-project/modules/knowledge_base/data_modeling/timeseries.node.yaml`
+Full text: `mock-cdf-project/modules/veridion_line3_oee/data_modeling/timeseries.node.yaml`
 
 ## Where this fits
 
-- [[knowledge-base-tech]] — Tech's "OEE snapshot" and "OEE trend" tools query exactly these
+- [[veridion-line3-oee-tech]] — Tech's "OEE snapshot" and "OEE trend" tools query exactly these
   series; Tech owns and maintains this CDF project.
-- [[knowledge-base-product]] — the PRD's three extractors (OPC UA, SAP, DB) each feed one of
+- [[veridion-line3-oee-product]] — the PRD's three extractors (OPC UA, SAP, DB) each feed one of
   these series or their inputs; Product scopes what's queryable, not how the data gets here.
-- [[knowledge-base-cdf-assets]] — the asset hierarchy these series are linked to.
+- [[veridion-line3-oee-cdf-assets]] — the asset hierarchy these series are linked to.

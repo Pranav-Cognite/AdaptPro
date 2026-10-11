@@ -1,7 +1,7 @@
 # Mock CDF project — Veridion Chemicals
 
 This is a **fictional, static** Cognite Data Fusion project. It exists only to ground the
-`knowledge-base` epic (see `../docs/epics/01-knowledge-base/`) in real Core Data Model (CDM)
+`veridion-line3-oee` engagement (see `../docs/engagements/veridion-line3-oee/`) in real Core Data Model (CDM)
 shapes, so that:
 
 - every `externalId` referenced by the business use case and the ADR resolves to something
@@ -28,7 +28,7 @@ there is no `CogniteEvent` view.
 ```
 mock-cdf-project/
 ├── config.dev.yaml                              fictional project/cluster name
-└── modules/knowledge_base/
+└── modules/veridion_line3_oee/
     └── data_modeling/
         ├── 01_space.yaml                         the one space used for this demo
         ├── assets.node.yaml                      plant -> polymer unit -> Line 3 -> reactor/extruder
@@ -37,7 +37,7 @@ mock-cdf-project/
         └── files.node.yaml                       Line 3's OEE calculation SOP
 ```
 
-## The use case: OEE for Production Line 3
+## The engagement example: OEE for Production Line 3
 
 **Veridion Chemicals**, Calder Valley Plant, runs **Production Line 3** (Reactor R-301 →
 Extruder EX-302) in its Polymer Production Unit. OEE = Availability x Performance x Quality:

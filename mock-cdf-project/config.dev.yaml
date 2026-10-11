@@ -8,4 +8,4 @@ environment:
   cluster: westeurope-1
   type: dev
   selected:
-    - modules/knowledge_base
+    - modules/veridion_line3_oee
