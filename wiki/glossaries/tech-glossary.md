@@ -25,8 +25,8 @@ they need to understand what Tech means, not for Tech's own reference.
   `CogniteAsset` it belongs to, via the `assets` relation. Without this, a query template has
   nothing to traverse — see the glossary note under Data Engineering's work if more detail is
   needed.
-- **Cluster boundary** — the agent only reads from the one CDF project/space defined for this
-  epic (`sp_veridion_demo`); it does not reach across projects or clusters.
+- **Cluster boundary** — the agent only reads from the one CDF project/space defined here
+  (`sp_veridion_demo`); it does not reach across projects or clusters.
 - **Tool** — a specific, registered capability the agent can call (e.g. "OEE snapshot"). "No
   write tool" means literally no registered capability can create/update/delete anything — not
   a permissions setting, a missing capability.

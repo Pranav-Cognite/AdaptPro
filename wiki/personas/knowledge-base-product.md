@@ -2,7 +2,6 @@
 type: persona
 title: "OEE Chat Assistant — Product view"
 persona: product
-epic: knowledge-base
 status: current
 tags: [knowledge-base, product, oee]
 sources: [knowledge-base-prd]
@@ -12,10 +11,10 @@ updated: 2026-10-03
 
 # OEE Chat Assistant — Product view
 
-This is Product's reading of the `knowledge-base` epic, drawn only from [[knowledge-base-prd]].
-It does not reflect what Business has promised the customer or how Tech phrases its
-constraints — see [[knowledge-base-conflicts]] for where this view disagrees with the other
-personas.
+This is Product's reading of `knowledge-base`, drawn only from [[knowledge-base-prd]] — the PRD
+is Product's exclusive source; Business and Tech may reference it but never own it. This page
+does not reflect what Business has promised the customer or how Tech phrases its constraints —
+see [[knowledge-base-conflicts]] for where this view disagrees with the other personas.
 
 ## How the data gets into CDF
 
@@ -27,6 +26,11 @@ Three Cognite extractors feed the OEE data this product queries:
   Feeds the Availability component (`CogniteActivity` instances).
 - **DB Extractor** — good/reject counts from the plant MES/quality database. Feeds the
   Quality component.
+
+The actual CDM resources these extractors feed are owned and maintained by Tech — see
+[[knowledge-base-cdf-timeseries]] and [[knowledge-base-cdf-activities]] for the specific time
+series and activities this maps onto. Product scopes which questions are queryable; Tech owns
+what's actually there to query.
 
 ## What Product has scoped for v1
 
@@ -48,6 +52,6 @@ Business's promise. The auto-work-order promise in [[knowledge-base-business]] i
 conflict with both Product and Tech, not just Tech alone.
 
 See [[knowledge-base-briefing-product]] for Product's homework on Business and Tech before a
-cross-functional meeting on this epic.
+cross-functional meeting.
 
 See [[product-glossary]] for the vocabulary used above, written for Business and Tech.

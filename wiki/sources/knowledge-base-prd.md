@@ -12,7 +12,7 @@ updated: 2026-10-03
 
 # OEE Chat Assistant — PRD (OEE for Line 3)
 
-The product-scoping artifact for the `knowledge-base` epic. Defines the data architecture —
+The product-scoping artifact for `knowledge-base`. Defines the data architecture —
 Cognite OPC UA Extractor (process time series), Cognite SAP Extractor (equipment master +
 downtime/maintenance activities), and Cognite DB Extractor (quality/reject data) — feeding the
 OEE composite and its three components for Production Line 3. Scopes the same three

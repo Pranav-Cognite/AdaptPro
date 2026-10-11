@@ -30,7 +30,7 @@ Status: **RED**. One open conflict, two personas on one side of it.
 
 ## Resolved — Product source was missing, now ingested
 
-As of 2026-10-02, Product had no PRD for this epic, which was itself flagged as a gap (see
+As of 2026-10-02, Product had no PRD, which was itself flagged as a gap (see
 wiki log). As of 2026-10-03, [[knowledge-base-prd]] was ingested. It independently scoped the
 same read-only boundary Tech had already committed to — so the missing-source gap closes, and
 it does **not** introduce a second, separate conflict: it reinforces Conflict 1 rather than
@@ -40,5 +40,5 @@ adding a new one. Two personas now agree; one does not.
 
 Someone needs to either resolve Conflict 1 (align the business promise with what Product and
 Tech have scoped) or sign a waiver that names the gap, assigns an owner, and accepts it.
-Until then, any persona asking "are we aligned?" about this epic should get: no — Business is
+Until then, any persona asking "are we aligned?" should get: no — Business is
 promising something neither Product nor Tech has scoped or built.

@@ -2,7 +2,6 @@
 type: persona
 title: "OEE Chat Assistant — Business view"
 persona: business
-epic: knowledge-base
 status: current
 tags: [knowledge-base, business, oee]
 sources: [knowledge-base-business-use-case]
@@ -12,10 +11,11 @@ updated: 2026-10-02
 
 # OEE Chat Assistant — Business view
 
-This is Business's reading of the `knowledge-base` epic, drawn only from
-[[knowledge-base-business-use-case]]. It does not reflect what Product has scoped or what Tech
-has committed to build — see [[knowledge-base-conflicts]] for where this view disagrees with
-the other two personas.
+This is Business's reading of `knowledge-base`, drawn only from
+[[knowledge-base-business-use-case]] — the business use case is Business's exclusive source;
+Product and Tech may reference it but never own it. This page does not reflect what Product has
+scoped or what Tech has committed to build — see [[knowledge-base-conflicts]] for where this
+view disagrees with the other two personas.
 
 ## What Business is promising the customer
 

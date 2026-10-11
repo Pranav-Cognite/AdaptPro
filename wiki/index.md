@@ -13,6 +13,10 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 - [[knowledge-base-business-use-case]] — Business's OEE promise for Line 3: real-time OEE + auto-generated work order on drop.
 - [[knowledge-base-prd]] — Product's PRD: 3 extractors (OPC UA/SAP/DB) feed OEE; same read-only scope as the ADR.
 - [[knowledge-base-adr]] — ADR 001, Tech's read-only OEE tool set for Line 3; no write tool.
+- [[knowledge-base-cdf-assets]] — Tech's mock CDF asset hierarchy: plant → polymer unit → Line 3 → reactor/extruder.
+- [[knowledge-base-cdf-timeseries]] — Tech's mock CDF time series: OEE composite + 3 components + 2 feeder series.
+- [[knowledge-base-cdf-activities]] — Tech's mock CDF activities: one planned changeover, one unplanned valve-fault stop.
+- [[knowledge-base-cdf-files]] — Tech's mock CDF file: the Line 3 OEE calculation SOP.
 
 ## Entities
 

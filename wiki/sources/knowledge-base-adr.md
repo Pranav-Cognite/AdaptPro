@@ -12,7 +12,7 @@ updated: 2026-10-02
 
 # OEE Chat Assistant — ADR 001 (read-only tool set)
 
-The architecture decision record for the `knowledge-base` epic. Registers exactly three
+The architecture decision record for `knowledge-base`. Registers exactly three
 read-only tools (OEE snapshot, OEE trend, downtime history) against the Veridion mock CDF
 project's Core Data Model instances, and explicitly **does not register a write tool**. Names
 the cluster-boundary and no-invented-`externalId` constraints. Explicitly rejects a "generate
@@ -25,4 +25,4 @@ Full text: `docs/epics/01-knowledge-base/adr.md`
 
 - [[knowledge-base-tech]] — the tech persona page drawn from this source.
 - [[knowledge-base-conflicts]] — this source's "no write tool" decision is the other half of
-  the epic's primary conflict with [[knowledge-base-business-use-case]].
+  the primary conflict with [[knowledge-base-business-use-case]].

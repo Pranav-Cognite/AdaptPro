@@ -16,8 +16,8 @@ understand what Product means, not for Product's own reference.
 - **PRD (Product Requirements Document)** — the scoping document: what's actually planned to
   ship, with explicit acceptance criteria. `knowledge-base-prd` here.
 - **In scope / out of scope** — explicit boundaries in the PRD. "Out of scope" means "not
-  decided or built yet," not "never" — that distinction is exactly where this epic's conflict
-  with Business's promise lives.
+  decided or built yet," not "never" — that distinction is exactly where the conflict with
+  Business's promise lives.
 - **Query template** — one of the three fixed question-shapes the product answers: OEE
   snapshot, OEE trend, downtime history. Product scopes the templates; Tech builds the tools
   behind them.
@@ -29,5 +29,4 @@ understand what Product means, not for Product's own reference.
   which one feeds which OEE component: OPC UA → Performance, SAP → Availability, DB → Quality.
   Product's job is deciding what's queryable, not how the data gets there.
 - **Threshold/alerting policy** — a rule for what counts as "OEE dropped below target." Does
-  not exist yet for this epic — a named prerequisite before any write capability could be
-  scoped.
+  not exist yet — a named prerequisite before any write capability could be scoped.
