@@ -12,6 +12,9 @@ updated: 2026-10-04
 
 # Veridion Line 3 OEE — CDF activities (mock-cdf-project)
 
+The downtime records for Production Line 3 in the fake plant data. One stop is planned and
+does not count as a loss. One stop is an unplanned valve fault and does count.
+
 The two `CogniteActivity` node instances driving the Availability component of Line 3's OEE:
 `activity_line3_changeover` (a planned grade changeover, excluded from loss) and
 `activity_line3_unplanned_stop_valve_fault` (an unplanned stop on Reactor R-301, counted as

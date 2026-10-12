@@ -1,5 +1,8 @@
 # Skill evolution records
 
+Tooling notes for experiments on the wiki skill. Not part of the Veridion story. Production
+Line 3, the polymer line at Calder Valley, is described in `docs/engagements/veridion-line3-oee/`.
+
 This directory contains canonical local experiment records, not a disposable cache. Back it up with the wiki. `wiki_evolve.py` creates one directory per experiment with complete baseline/candidate skill snapshots, motivating evidence, a diff, evaluation results, and apply/rollback receipts. Never edit snapshots or evaluation results to make a proposal pass.
 
 Search, lint, statistics and graph compilation exclude this directory. Curate useful lessons as ordinary source/concept pages and publish an experiment summary as a synthesis page, linked from the normal wiki index. Do not expose private traces or results in public plugin releases.

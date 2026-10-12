@@ -4,6 +4,14 @@
 **Owner:** Business / Solutions.  
 **Engagement slug:** `veridion-line3-oee`
 
+## In plain language
+
+Line 3 is Production Line 3, a polymer line at Calder Valley. Reactor R-301 feeds Extruder
+EX-302. OEE is how well that line ran in a shift. This document is only what Business told
+the customer: show OEE as it happens, and create a corrective work order when OEE drops below
+target. Product and Tech have not agreed to the work order. That gap is the point of the
+example.
+
 ## Customer pain (plain language)
 
 Production supervisors at Calder Valley pull OEE (Overall Equipment Effectiveness) numbers

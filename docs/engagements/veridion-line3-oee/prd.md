@@ -4,6 +4,13 @@
 **Owner:** Product  
 **Engagement:** Veridion Line 3 OEE (`veridion-line3-oee`) — Veridion Chemicals, Calder Valley Plant
 
+## In plain language
+
+Line 3 is the polymer production line at Calder Valley (`asset_line3`), from Reactor R-301
+through Extruder EX-302. This document is what Product will actually ship in v1: three
+read-only questions about that line's OEE and downtime. It does not include the automatic
+work order Business promised.
+
 ## Problem
 
 Production supervisors at Calder Valley pull OEE numbers from a separate reporting tool,

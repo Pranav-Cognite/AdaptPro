@@ -9,6 +9,10 @@ updated: 2026-10-03
 
 # Veridion Line 3 OEE — Product's briefing on Business and Tech
 
+Homework for Product before a meeting. Line 3 is the polymer line at Calder Valley. Business
+has promised the customer an automatic work order when its OEE drops. Product's own scope does
+not include that work order. This page says what Product should expect to be asked.
+
 Generated for: **Product**, before a cross-functional meeting on `veridion-line3-oee`. Reads
 [[veridion-line3-oee-product]], [[veridion-line3-oee-business]], [[veridion-line3-oee-tech]], and
 [[veridion-line3-oee-conflicts]].

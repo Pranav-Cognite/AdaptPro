@@ -1,5 +1,9 @@
 # Wiki Graph Layer
 
+A generated map of links between the wiki pages. The subject of those pages is still
+Production Line 3 at Calder Valley and the work-order disagreement. This folder is not a
+second copy of the story. The markdown pages are.
+
 This directory holds the compiled knowledge graph derived from the markdown
 wiki. **Markdown is canonical.** Everything here can be deleted and rebuilt
 without losing knowledge:

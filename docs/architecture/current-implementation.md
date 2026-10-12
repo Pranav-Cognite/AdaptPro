@@ -1,5 +1,10 @@
 # Architecture — current implementation
 
+**What is being addressed:** Business promised Veridion an automatic work order when Production
+Line 3's OEE drops. Product and Tech scoped a read-only lookup of that line. Line 3 is the
+polymer line at Calder Valley (Reactor R-301, then Extruder EX-302), not a software version.
+The diagram below is how this repo stores that disagreement today. It is not the plant system.
+
 What's actually built in this repo today: engagement source documents are ingested into an
 LLM knowledge base as three exclusive persona pages plus one conflict record; four read-only
 agents query that knowledge base so Business, Product, and Tech can brief each other and check

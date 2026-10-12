@@ -12,6 +12,10 @@ updated: 2026-10-11
 
 # Veridion Line 3 OEE — Business use case
 
+Summary of Business's source document. Line 3 is the polymer line at Calder Valley. The
+promise in that document includes an automatic work order. This page does not decide whether
+Product or Tech will build it.
+
 The business-facing artifact for `veridion-line3-oee` (Veridion Chemicals, Calder Valley
 Plant). States the customer pain (OEE loss understood too late; unclear path to action) and
 the customer-facing promise Sales has used: "see real-time OEE for any line, and automatically

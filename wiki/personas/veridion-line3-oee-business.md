@@ -11,6 +11,10 @@ updated: 2026-10-11
 
 # Veridion Line 3 OEE — Business view
 
+Line 3 is the polymer production line at Calder Valley (`asset_line3`): Reactor R-301, then
+Extruder EX-302. This page is only what Business promised about that line. It is not what
+Product scoped or what Tech will build.
+
 This is Business's reading of `veridion-line3-oee`, drawn only from
 [[veridion-line3-oee-business-use-case]] — the business use case is Business's exclusive
 source; Product and Tech may reference it but never own it. This page does not reflect what

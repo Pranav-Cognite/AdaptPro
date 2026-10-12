@@ -1,5 +1,10 @@
 # Architecture — for scale (not built)
 
+**What is being addressed:** the same Line 3 disagreement as the rest of the repo — Business
+promised an automatic work order; Product and Tech scoped a read-only OEE lookup. This page
+is the later design for checking that kind of disagreement when there are many documents. It
+is not built. Line 3 remains the polymer line at Calder Valley, not a software version.
+
 This is stage 3 of the maturity ladder from the README's Design Rationale: a claim store with
 a deterministic check and delta ingest. It is explicitly **not implemented** in this repo — this
 diagram documents the target, not the current state, and exists so the gap between "demo" and

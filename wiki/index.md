@@ -1,5 +1,10 @@
 # Wiki Index
 
+**Subject of this wiki:** Production Line 3 at Calder Valley, a polymer line (Reactor R-301,
+then Extruder EX-302). Business promised a live OEE number and an automatic work order when
+OEE drops. Product and Tech scoped a read-only lookup. The pages below keep those three
+views separate. The red conflict is the work order.
+
 The catalog of all pages in this wiki. Each entry: a wikilink to the page and a one-line summary. The LLM reads this first when answering queries to identify candidate pages.
 
 Keep summaries tight — one line each. The index is engineered to be cheap to read; a fat index defeats its purpose.

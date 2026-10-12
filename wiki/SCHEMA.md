@@ -1,5 +1,10 @@
 # Wiki Schema
 
+**Subject, in plain language:** Production Line 3 is a polymer line at Calder Valley (Reactor
+R-301, then Extruder EX-302), not a software version. This wiki holds Business's promise of an
+automatic work order against Product and Tech's read-only OEE lookup. The rules below say how
+pages are written. They are not the customer story.
+
 This file is the configuration for this wiki. It documents the conventions, page types, tag taxonomy, and any workflow customizations. The LLM reads this first when entering the wiki, and its conventions override the defaults documented in the `llm-wiki` skill.
 
 This file is **co-evolved with the user**. When the LLM notices a recurring pattern in your edits or feedback that isn't here, it will propose adding it. When something here stops fitting, prune it.

@@ -4,6 +4,13 @@
 **Owner:** Tech / Architecture  
 **Engagement:** Veridion Line 3 OEE (`veridion-line3-oee`) — Veridion Chemicals, Calder Valley Plant
 
+## In plain language
+
+Line 3 is the polymer production line at Calder Valley (`asset_line3`). This document is
+Tech's decision for v1: the delivery may look up that line's OEE and the downtime behind it.
+It may not create a work order. Business's promise includes that work order. This ADR is the
+record that Tech will not build it yet.
+
 ## Context
 
 The Veridion Line 3 OEE engagement needs natural-language questions about OEE (Overall

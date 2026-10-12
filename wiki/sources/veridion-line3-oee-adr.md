@@ -12,6 +12,9 @@ updated: 2026-10-11
 
 # Veridion Line 3 OEE — ADR 001 (read-only tool set)
 
+Summary of Tech's decision. For Production Line 3 (the polymer line at Calder Valley), v1 may
+read OEE and downtime. It may not create a work order.
+
 The architecture decision record for `veridion-line3-oee`. Registers exactly three
 read-only tools (OEE snapshot, OEE trend, downtime history) against the Veridion mock CDF
 project's Core Data Model instances, and explicitly **does not register a write tool**. Names

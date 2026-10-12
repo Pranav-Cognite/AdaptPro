@@ -12,6 +12,9 @@ updated: 2026-10-04
 
 # Veridion Line 3 OEE — CDF files (mock-cdf-project)
 
+The written procedure for how Production Line 3's OEE is calculated, stored as a file in the
+fake plant data. It defines the formula. It is not the customer promise.
+
 One `CogniteFile` node instance: `file_line3_oee_calculation_sop`, the standard operating
 procedure defining how Availability, Performance, and Quality are calculated for Line 3, linked
 to `asset_line3`. File content itself is not included — this is a static fixture, not a running

@@ -1,5 +1,9 @@
 # Wiki Log
 
+History of edits to this wiki. The subject of the wiki is Production Line 3 at Calder Valley
+(a polymer line, Reactor R-301 then Extruder EX-302) and the open disagreement: Business
+promised an automatic work order; Product and Tech scoped a read-only OEE lookup.
+
 Append-only chronological record of operations on the wiki. Each entry begins with `## [YYYY-MM-DD] <op> | <description>` so it's parseable with `grep "^## \[" log.md | tail -N`.
 
 Operations:
@@ -44,3 +48,5 @@ Operations:
 ## [2026-10-04] schema | Made source ownership explicit and exclusive, prompted by a gap noticed right after the CDF ingest above: it wasn't written down anywhere that each document/artifact belongs to exactly one persona's `sources:` frontmatter. Added a "Source ownership is exclusive, not shared" rule to SCHEMA.md's Personas section: Business solely owns the business use case, Product solely owns the PRD, Tech solely owns the ADR *and* the whole CDF project (`mock-cdf-project/`). A non-owning persona may reference another's source in prose but must never add it to its own `sources:` or restate it as its own claim; an artifact that doesn't obviously belong to one of the three gets asked about, not defaulted to "shared." Added a matching one-line ownership statement to the intro of all three persona pages so the rule is visible on the page itself, not just inferable from SCHEMA.md.
 
 ## [2026-10-11] schema | Renamed engagement slug from `knowledge-base` / `docs/epics/01-knowledge-base` to `veridion-line3-oee` / `docs/engagements/veridion-line3-oee`; renamed mock CDF module to `veridion_line3_oee`. Removed "OEE Chat Assistant" / chat-product framing everywhere — AdaptPro is the knowledge base + persona query + decision-alignment system; Veridion Line 3 OEE is the example engagement. README rewritten around KB building, Cognite delivery beachhead, and delivery-reversal / mis-scoped-AI stake. Ask-before-answering remains a hard gate (never bypassed). No Capture product language added.
+
+## [2026-10-12] schema | Added a plain-language lead to the Markdown pages: Production Line 3 is the polymer line at Calder Valley (Reactor R-301, then Extruder EX-302), and the open issue is Business's automatic work order against Product and Tech's read-only scope. `.claude/` agent files were not edited.

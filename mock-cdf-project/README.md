@@ -1,5 +1,9 @@
 # Mock CDF project — Veridion Chemicals
 
+**What these files are:** fake plant data for Production Line 3, so the documents can name
+real assets. Line 3 (`asset_line3`) is the polymer line under the Polymer Production Unit at
+Calder Valley: Reactor R-301, then Extruder EX-302. Nothing here is deployed.
+
 This is a **fictional, static** Cognite Data Fusion project. It exists only to ground the
 `veridion-line3-oee` engagement (see `../docs/engagements/veridion-line3-oee/`) in real Core Data Model (CDM)
 shapes, so that:

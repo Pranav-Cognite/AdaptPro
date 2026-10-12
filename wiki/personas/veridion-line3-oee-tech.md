@@ -11,6 +11,10 @@ updated: 2026-10-11
 
 # Veridion Line 3 OEE — Tech view
 
+Line 3 is the polymer production line at Calder Valley (`asset_line3`): Reactor R-301, then
+Extruder EX-302. This page is only what Tech will build for that line in v1: a read-only
+lookup of OEE and downtime. Creating a work order is refused here.
+
 This is Tech's reading of `veridion-line3-oee`, drawn from [[veridion-line3-oee-adr]] (what Tech has
 committed to and ruled out) plus the CDF project — [[veridion-line3-oee-cdf-assets]],
 [[veridion-line3-oee-cdf-timeseries]], [[veridion-line3-oee-cdf-activities]], and

@@ -11,7 +11,8 @@ updated: 2026-10-03
 # Tech glossary
 
 Terms Tech (architect/engineer) uses day-to-day. Written for Business and Product to read when
-they need to understand what Tech means, not for Tech's own reference.
+they need to understand what Tech means, not for Tech's own reference. `asset_line3` is
+Production Line 3, the polymer line at Calder Valley (Reactor R-301, then Extruder EX-302).
 
 - **ADR (Architecture Decision Record)** — a specific technical decision, with the alternatives
   considered and rejected. `veridion-line3-oee-adr` here. Different from a PRD: a PRD says *what*,

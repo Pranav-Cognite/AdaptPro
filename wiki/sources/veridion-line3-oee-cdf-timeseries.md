@@ -12,6 +12,9 @@ updated: 2026-10-04
 
 # Veridion Line 3 OEE — CDF time series (mock-cdf-project)
 
+The numbers for Production Line 3's OEE in the fake plant data. The composite is how well the
+line ran. The three components are time up, speed, and good output.
+
 The six `CogniteTimeSeries` node instances behind Line 3's OEE: the composite
 (`ts_line3_oee_pct`) and its three components (`ts_line3_availability_pct`,
 `ts_line3_performance_pct`, `ts_line3_quality_pct`), plus two feeder series

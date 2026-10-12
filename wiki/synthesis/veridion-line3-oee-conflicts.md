@@ -9,6 +9,11 @@ updated: 2026-10-11
 
 # Veridion Line 3 OEE — open conflicts
 
+Line 3 is the polymer production line at Calder Valley (Reactor R-301, then Extruder EX-302).
+The conflict is not about how to calculate OEE. Business promised an automatic work order when
+that line's OEE drops. Product and Tech scoped a read-only lookup and will not create the
+work order in v1.
+
 Status: **RED**. One open conflict, two personas on one side of it.
 
 ## Conflict 1 — auto-work-order promise vs. Product + Tech's read-only scope

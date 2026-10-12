@@ -1,5 +1,7 @@
 # AdaptPro
 
+**Start here.** AdaptPro is a self-maintaining knowledge base shared by Business, Product, and Tech. The base is an LLM wiki: pages compiled from source documents, linked so a claim can be followed back to the page and the source it came from. Three steps keep it: **ingest** adds a document and updates the pages, **query** answers from those pages in the persona of the person asking, and **lint** checks the pages for disagreement and stale claims as the base grows. Every use case in this repo is a question asked of that base. The Veridion write-up below is one example stored in it, not the product itself.
+
 **AdaptPro** is a persona-based, AI-native system that helps cross-functional teams stay
 aligned on decisions by building a continuously updated knowledge base — a shared source of
 truth that Business, Product, and Tech (and roles across the delivery stack) can query before
@@ -53,6 +55,10 @@ AdaptPro is not a plant chat product.
 
 **Veridion Chemicals** (fictional specialty-polymers manufacturer) has a delivery engagement
 around OEE for Production Line 3 at Calder Valley Plant, grounded in CDF data.
+
+Production Line 3 (`asset_line3`) sits in the Polymer Production Unit. Material passes through
+Reactor R-301 and Extruder EX-302. OEE multiplies three things: time the line was up
+(Availability), how fast it ran (Performance), and how much output was good (Quality).
 
 **Customer pain (plain language):** supervisors learn OEE dropped too late, cannot tell whether
 the loss was downtime, slow running, or scrap, and cannot turn that insight into action without

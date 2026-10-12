@@ -13,8 +13,13 @@ updated: 2026-10-03
 Terms Business (Sales/Solutions/Account) uses day-to-day. Written for Product and Tech to read
 when they need to understand what Business means, not for Business's own reference.
 
+Line 3 in these terms is always the polymer production line at Calder Valley, not a release
+number.
+
 ## Business-process terms
 
+- **Line 3 / Production Line 3** — the physical polymer line at Calder Valley (`asset_line3`),
+  from Reactor R-301 through Extruder EX-302. Not a version of the software.
 - **OEE** — Overall Equipment Effectiveness. The one number the customer cares about; Business
   talks in "OEE went up/down," not in Availability/Performance/Quality separately.
 - **The one-pager / GTM line** — the single sentence shown to a prospect or used in a renewal

@@ -11,7 +11,9 @@ updated: 2026-10-03
 # Product glossary
 
 Terms Product (PM/BA) uses day-to-day. Written for Business and Tech to read when they need to
-understand what Product means, not for Product's own reference.
+understand what Product means, not for Product's own reference. In this repo, "v1 scope" means
+three read-only questions about Production Line 3's OEE. Line 3 is the polymer line at Calder
+Valley, not a software version.
 
 - **PRD (Product Requirements Document)** — the scoping document: what's actually planned to
   ship, with explicit acceptance criteria. `veridion-line3-oee-prd` here.
