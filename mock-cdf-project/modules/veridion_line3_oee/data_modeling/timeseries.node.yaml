@@ -1,9 +1,12 @@
-# CogniteTimeSeries node instances for Line 3 OEE. `assets` links a time series back to
-# the CogniteAsset(s) it belongs to (assets.node.yaml). Data points themselves are not
-# included — this is a static fixture, not a running time series store.
+# CogniteTimeSeries node instances. `assets` links a series to the CogniteAsset(s) it belongs
+# to (assets.node.yaml). Datapoints are in ../timeseries/ (generated fixtures).
 #
 # OEE = Availability x Performance x Quality. ts_line3_oee_pct is the composite; the three
-# component series below it are what "what's driving the loss" questions decompose into.
+# component series are what "what's driving the loss" questions decompose into.
+# ts_line3_oee_pct_mes_legacy is the number supervisors see today and is defined differently.
+#
+# `sourceUnit` is populated on every series; the `unit` relation to the Core Data Model unit
+# catalogue is deliberately not mapped yet (see README, known gaps).
 
 - space: sp_veridion_demo
   externalId: ts_line3_oee_pct
@@ -14,14 +17,29 @@
         version: "v1"
         type: view
       properties:
-        name: Line 3 — OEE
-        description: Overall Equipment Effectiveness for Production Line 3 (Availability x Performance x Quality).
+        name: "Line 3 — OEE"
+        description: "Overall Equipment Effectiveness for Production Line 3 (Availability x Performance x Quality)."
         tags: [oee, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_cdf_oee_function }
+        sourceId: "fn_line3_oee_calc:oee"
         isStep: false
-        type: numeric
+        type: "numeric"
         sourceUnit: "%"
         assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "oee"
+        calcMethod: "Availability x Performance x Quality, per clock hour, SOP rev B"
+        samplingSeconds: 3600
+        definitionBasis: "sop-rev-b"
+        knownIssues: "No value for hours with missing process data. Differs from the legacy MES OEE by definition, not by error."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_line3_oee_calculation_sop }
 
 - space: sp_veridion_demo
   externalId: ts_line3_availability_pct
@@ -32,14 +50,29 @@
         version: "v1"
         type: view
       properties:
-        name: Line 3 — Availability
-        description: Actual run time over planned production time for Line 3.
+        name: "Line 3 — Availability"
+        description: "Actual run time over planned production time for Line 3."
         tags: [oee, availability, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_cdf_oee_function }
+        sourceId: "fn_line3_oee_calc:availability"
         isStep: false
-        type: numeric
+        type: "numeric"
         sourceUnit: "%"
         assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "component"
+        calcMethod: "Run time over planned time; planned downtime removed from planned time"
+        samplingSeconds: 3600
+        definitionBasis: "sop-rev-b"
+        knownIssues: "Ignores activities with no end time."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_line3_oee_calculation_sop }
 
 - space: sp_veridion_demo
   externalId: ts_line3_performance_pct
@@ -50,14 +83,29 @@
         version: "v1"
         type: view
       properties:
-        name: Line 3 — Performance
-        description: Actual throughput over theoretical maximum throughput for Line 3.
+        name: "Line 3 — Performance"
+        description: "Actual throughput over theoretical maximum throughput for Line 3."
         tags: [oee, performance, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_cdf_oee_function }
+        sourceId: "fn_line3_oee_calc:performance"
         isStep: false
-        type: numeric
+        type: "numeric"
         sourceUnit: "%"
         assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "component"
+        calcMethod: "Produced kg over (3,800 kg/h x run time), capped at 100 %"
+        samplingSeconds: 3600
+        definitionBasis: "sop-rev-b"
+        knownIssues: "Absorbs micro-stops and unlogged stops, which have no SAP notification."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_line3_oee_calculation_sop }
 
 - space: sp_veridion_demo
   externalId: ts_line3_quality_pct
@@ -68,14 +116,62 @@
         version: "v1"
         type: view
       properties:
-        name: Line 3 — Quality
-        description: Good units over total units produced on Line 3.
+        name: "Line 3 — Quality"
+        description: "Good units over total units produced on Line 3."
         tags: [oee, quality, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_cdf_oee_function }
+        sourceId: "fn_line3_oee_calc:quality"
         isStep: false
-        type: numeric
+        type: "numeric"
         sourceUnit: "%"
         assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "component"
+        calcMethod: "Good kg over (good + reject kg), from MES hourly counts"
+        samplingSeconds: 3600
+        definitionBasis: "sop-rev-b"
+        knownIssues: null
+        definitionDoc: { space: sp_veridion_demo, externalId: file_line3_oee_calculation_sop }
+
+- space: sp_veridion_demo
+  externalId: ts_line3_oee_pct_mes_legacy
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — OEE (legacy MES report)"
+        description: "OEE for Line 3 as the plant's legacy shift-end MES report computes it: 4,200 kg/h ideal rate and planned downtime counted as loss. Not comparable with ts_line3_oee_pct."
+        tags: [oee, line-3, legacy, mes]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.OEE_L3"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "oee"
+        calcMethod: "Legacy definition: ideal 4,200 kg/h, changeovers and planned maintenance counted as loss"
+        samplingSeconds: 3600
+        definitionBasis: "mes-legacy"
+        knownIssues: "Supervisors read this number today. Consistently below ts_line3_oee_pct."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_mes_legacy_oee_report_spec }
 
 - space: sp_veridion_demo
   externalId: ts_line3_output_rate_kg_per_hr
@@ -86,14 +182,29 @@
         version: "v1"
         type: view
       properties:
-        name: Line 3 — Output Rate
-        description: Extruded output rate from Extruder EX-302, feeds the Performance component.
+        name: "Line 3 — Output Rate"
+        description: "Extruded output rate from Extruder EX-302, feeds the Performance component."
         tags: [throughput, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.EX302.OUTPUT_RATE.PV"
         isStep: false
-        type: numeric
-        sourceUnit: kg/h
+        type: "numeric"
+        sourceUnit: "kg/h"
         assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_ex302 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "Zero during stops; micro-stops appear only as dips."
+        definitionDoc: null
 
 - space: sp_veridion_demo
   externalId: ts_reactor_r301_temperature_degc
@@ -104,11 +215,488 @@
         version: "v1"
         type: view
       properties:
-        name: Reactor R-301 — Temperature
-        description: Reactor process temperature, a leading indicator for unplanned stops.
+        name: "Reactor R-301 — Temperature"
+        description: "Reactor process temperature, a leading indicator for unplanned stops."
         tags: [temperature, reactor, line-3]
         aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.TT301A.PV"
         isStep: false
-        type: numeric
-        sourceUnit: degC
+        type: "numeric"
+        sourceUnit: "degC"
         assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_tt301a }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading from TT-301A"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "Drifts upward in the hours before some, not all, unplanned stops."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_temperature_b_degf
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301 — Temperature (redundant, degF)"
+        description: "Redundant reactor temperature from TT-301B. The OPC UA server publishes this transmitter in degF while the series sits next to degC series."
+        tags: [temperature, reactor, line-3, unit-mismatch]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.TT301B.PV"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "degF"
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_tt301b }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading from TT-301B"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "Unit is degF; no `unit` relation is mapped, so tools that assume degC will misread it."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_pressure_bar
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301 — Pressure"
+        description: "Reactor head pressure from PT-301."
+        tags: [pressure, reactor, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.PT301.PV"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "bar"
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_pt301 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading from PT-301"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "Frozen at a constant value for six hours on 2026-10-08 (transmitter stuck, extractor kept the last good value)."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_agitator_current_a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301 — Agitator motor current"
+        description: "Agitator motor M-301 current draw."
+        tags: [current, agitator, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.M301.CURRENT"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "A"
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_m301 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: null
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_feed_valve_fv301_position_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301 — Feed valve FV-301 position"
+        description: "Feed valve FV-301 actual position. Reads a flat 55.0 for the hours before the FV-301 stops, while a healthy valve moves a little every few minutes."
+        tags: [valve, feed, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.FV301.POS"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_fv301 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "A flat line here is the earliest visible sign of a sticking valve."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_reactor_r301_jacket_coolant_flow_m3h
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301 — Jacket coolant flow"
+        description: "Cooling-water flow through the R-301 jacket cooler."
+        tags: [flow, coolant, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.R301.HX301.FLOW"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "m3/h"
+        assets: [{ space: sp_veridion_demo, externalId: asset_reactor_r301 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_hx301 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: null
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_extruder_ex302_screw_speed_rpm
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302 — Screw speed"
+        description: "EX-302 screw speed."
+        tags: [speed, extruder, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.EX302.SCREW_SPEED"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "rpm"
+        assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_m302 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: null
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_extruder_ex302_motor_load_pct
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302 — Drive motor load"
+        description: "M-302 load as a percentage of rated torque."
+        tags: [load, motor, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.EX302.M302.LOAD"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_m302 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: null
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_extruder_ex302_melt_temperature_degc
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302 — Melt temperature"
+        description: "Melt temperature at the die inlet."
+        tags: [temperature, extruder, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.EX302.MELT_TEMP"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "degC"
+        assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_dh302 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "One sensor-error reading of 9999.0 on 2026-09-24 that was never cleaned."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_extruder_ex302_die_pressure_bar
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302 — Die pressure"
+        description: "Die-inlet melt pressure from PT-302."
+        tags: [pressure, extruder, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_opcua_calder_dcs }
+        sourceId: "ns=2;s=PLC3.EX302.PT302.PV"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "bar"
+        assets: [{ space: sp_veridion_demo, externalId: asset_extruder_ex302 }]
+        equipment: [{ space: sp_veridion_demo, externalId: equip_pt302 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "process"
+        calcMethod: "Raw reading from PT-302"
+        samplingSeconds: 900
+        definitionBasis: "raw"
+        knownIssues: "Rises before die-pressure trips."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_line3_good_output_kg
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — Good output (hourly)"
+        description: "Kilograms of in-spec product recorded by MES in each clock hour. Input to the Quality component."
+        tags: [mes, quality, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.L3.GOOD_KG"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "kg"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "count"
+        calcMethod: "Hourly sum from MES batch records"
+        samplingSeconds: 3600
+        definitionBasis: "raw"
+        knownIssues: null
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_line3_reject_output_kg
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — Reject output (hourly)"
+        description: "Kilograms of off-spec product recorded by MES in each clock hour. Input to the Quality component."
+        tags: [mes, quality, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.L3.REJECT_KG"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "kg"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "count"
+        calcMethod: "Hourly sum from MES batch records"
+        samplingSeconds: 3600
+        definitionBasis: "raw"
+        knownIssues: "Off-spec rises in the first hours after a restart or changeover."
+        definitionDoc: null
+
+- space: sp_veridion_demo
+  externalId: ts_line1_oee_pct_mes_legacy
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 1 — OEE (legacy MES report)"
+        description: "OEE for Line 1 from the legacy MES report. No SOP-based calculation exists for this line."
+        tags: [oee, line-1, legacy, mes]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.OEE_L1"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line1 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "oee"
+        calcMethod: "Legacy definition: ideal rate and loss rules as per the MES report"
+        samplingSeconds: 3600
+        definitionBasis: "mes-legacy"
+        knownIssues: "Not comparable with ts_line3_oee_pct. No component series exist."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_mes_legacy_oee_report_spec }
+
+- space: sp_veridion_demo
+  externalId: ts_line2_oee_pct_mes_legacy
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 2 — OEE (legacy MES report)"
+        description: "OEE for Line 2 from the legacy MES report. No SOP-based calculation exists for this line."
+        tags: [oee, line-2, legacy, mes]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.OEE_L2"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line2 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "oee"
+        calcMethod: "Legacy definition: ideal rate and loss rules as per the MES report"
+        samplingSeconds: 3600
+        definitionBasis: "mes-legacy"
+        knownIssues: "Not comparable with ts_line3_oee_pct. No component series exist."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_mes_legacy_oee_report_spec }
+
+- space: sp_veridion_demo
+  externalId: ts_line4_oee_pct_mes_legacy
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 4 — OEE (legacy MES report)"
+        description: "OEE for Line 4 from the legacy MES report. No SOP-based calculation exists for this line."
+        tags: [oee, line-4, legacy, mes]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_mes_batchdb }
+        sourceId: "MES.OEE_L4"
+        isStep: false
+        type: "numeric"
+        sourceUnit: "%"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line4 }]
+        equipment: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionTimeSeries
+        version: "v1"
+        type: view
+      properties:
+        signalRole: "oee"
+        calcMethod: "Legacy definition: ideal rate and loss rules as per the MES report"
+        samplingSeconds: 3600
+        definitionBasis: "mes-legacy"
+        knownIssues: "Not comparable with ts_line3_oee_pct. No component series exist."
+        definitionDoc: { space: sp_veridion_demo, externalId: file_mes_legacy_oee_report_spec }

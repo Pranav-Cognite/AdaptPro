@@ -21,7 +21,8 @@ number.
 - **Line 3 / Production Line 3** — the physical polymer line at Calder Valley (`asset_line3`),
   from Reactor R-301 through Extruder EX-302. Not a version of the software.
 - **OEE** — Overall Equipment Effectiveness. The one number the customer cares about; Business
-  talks in "OEE went up/down," not in Availability/Performance/Quality separately.
+  talks in "OEE went up/down," not in Availability/Performance/Quality separately. Under this
+  wiki's rules (`SCHEMA.md`) Business solely owns which definition of OEE counts; Product and Tech build to it.
 - **The one-pager / GTM line** — the single sentence shown to a prospect or used in a renewal
   conversation. Currently: "see real-time OEE for any line, and automatically generate a
   corrective work order the moment OEE drops below target." (See `veridion-line3-oee-business-use-case`.)

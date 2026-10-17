@@ -15,7 +15,7 @@ not include that work order. This page says what Product should expect to be ask
 
 Generated for: **Product**, before a cross-functional meeting on `veridion-line3-oee`. Reads
 [[veridion-line3-oee-product]], [[veridion-line3-oee-business]], [[veridion-line3-oee-tech]], and
-[[veridion-line3-oee-conflicts]].
+[[veridion-line3-oee-open-topics]].
 
 ## What Business is telling the customer that you should know
 
@@ -47,6 +47,6 @@ for this meeting, not something Product can resolve alone.
 
 ## One thing to walk in already knowing
 
-You are not the one who is wrong here. Point to [[veridion-line3-oee-conflicts]]: it's Business's
+You are not the one who is wrong here. Point to [[veridion-line3-oee-open-topics]]: it's Business's
 promise against both Product and Tech, not a three-way disagreement where you need to pick a
 side.

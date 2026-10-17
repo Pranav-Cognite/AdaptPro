@@ -27,6 +27,6 @@ Full text: `docs/engagements/veridion-line3-oee/prd.md`
 ## Where this fits
 
 - [[veridion-line3-oee-product]] — the product persona page drawn from this source.
-- [[veridion-line3-oee-conflicts]] — this source scopes the same read-only templates as
+- [[veridion-line3-oee-open-topics]] — this source scopes the same read-only templates as
   [[veridion-line3-oee-adr]], so it does not introduce a new conflict with Tech — it confirms
   Tech's position against Business's promise in [[veridion-line3-oee-business-use-case]].

@@ -1,0 +1,12 @@
+qmnum,qmart,qmtxt,tplnr,equnr,msaus,ausvn,auztv,ausbs,auztb,ursache,qmst,ernam_role
+000400118201,M3,Planned changeover — Line 3 (grade G-45 to G-52),CV-P-L3,,,20260917,060000,20260917,072000,PLN1,NOCO,Production planner
+000400118377,M1,Unplanned stop — EX-302 die pressure high trip,CV-P-L3-EX302-DH302,EQ-NES-DH-1180,X,20260919,234000,20260920,002500,PT02,NOCO,Shift operator
+000400118452,M3,Planned maintenance — EX-302 screen pack change,CV-P-L3-EX302-SC302,EQ-NES-SC-0912,,20260921,100000,20260921,111500,PM01,NOCO,Maintenance planner
+000400118590,M1,Unplanned stop — Feed pump P-301A trip,CV-P-L3-R301-P301A,EQ-BP-P-20311A,X,20260924,041000,20260924,053500,MP03,NOCO,Shift operator
+000400118744,M3,Planned changeover — Line 3,CV-P-L3,,,20260929,070000,20260929,083000,PLN1,NOCO,Production planner
+000400118802,M1,Unplanned stop — Reactor R-301 valve fault,CV-P-L3-R301,EQ-HVS-FV-18842,X,20260930,152200,20260930,164700,MV02,NOCO,Shift operator
+000400118811,M2,Maintenance notification — FV-301 repair,CV-P-L3-R301-FV301,EQ-HVS-FV-18842,X,20260930,153000,20260930,164000,MV02,NOCO,Maintenance technician
+000400119203,M3,Planned changeover — Line 3 (grade G-52 to G-45),CV-P-L3,,,20261007,140000,20261007,154000,PLN1,NOCO,Production planner
+000400119318,M1,Unplanned stop — FV-301 sticking (recurrence),CV-P-L3-R301-FV301,EQ-HVS-FV-18842,X,20261009,120500,20261009,132000,MV02,NOCO,Shift operator
+000400119402,M3,Planned maintenance — R-301 agitator seal inspection,CV-P-L3-R301-M301,EQ-TD-M-770113,,20261012,090000,20261012,123000,PM02,NOCO,Maintenance planner
+000400119577,M1,Unplanned stop — PL-303 cutter jam (notification not closed),CV-P-L3-PL303,EQ-NES-UWP-2271,X,20261014,203000,,,PT07,OSNO,Shift operator

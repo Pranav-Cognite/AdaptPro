@@ -1,0 +1,30 @@
+space: sp_veridion_dm
+externalId: VeridionDocumentExt
+name: Veridion document extension
+description: Document control attributes on top of CogniteFile.
+usedFor: node
+properties:
+  documentType:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "sop | moc | specification | pid | vendor-manual | procedure | guide | rca."
+  revision:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Document revision label."
+  documentStatus:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "draft | approved | effective | superseded."
+  supersedes:
+    type: { type: direct, container: { space: cdf_cdm, externalId: CogniteFile, type: container } }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "The file this revision replaces."

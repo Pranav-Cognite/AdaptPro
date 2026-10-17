@@ -27,5 +27,5 @@ Full text: `docs/engagements/veridion-line3-oee/adr.md`
 ## Where this fits
 
 - [[veridion-line3-oee-tech]] — the tech persona page drawn from this source.
-- [[veridion-line3-oee-conflicts]] — this source's "no write tool" decision is the other half of
+- [[veridion-line3-oee-open-topics]] — this source's "no write tool" decision is the other half of
   the primary conflict with [[veridion-line3-oee-business-use-case]].

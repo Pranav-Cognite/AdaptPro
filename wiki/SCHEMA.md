@@ -12,8 +12,8 @@ This file is **co-evolved with the user**. When the LLM notices a recurring patt
 ## Wiki location
 
 - Wiki root: `wiki/`
-- Raw sources: `raw/`
-- Asset/image storage: `raw/assets/`
+- Source documents: `docs/engagements/<slug>/`
+- CDF fixtures for this demo: `mock-cdf-project/`
 
 ## Page types
 
@@ -22,7 +22,7 @@ This wiki uses these page types, each with a dedicated subdirectory:
 - `source` (in `wiki/sources/`) — one summary page per ingested source.
 - `entity` (in `wiki/entities/`) — pages about specific things: people, papers, products, places, organizations.
 - `concept` (in `wiki/concepts/`) — pages about ideas, methods, frameworks, abstractions.
-- `synthesis` (in `wiki/synthesis/`) — cross-cutting analyses, comparisons, query answers filed back. Also holds conflict/lint records (what promised/scoped/buildable disagree on, per slug).
+- `synthesis` (in `wiki/synthesis/`) — cross-cutting analyses, comparisons, query answers filed back. Also holds the open-topics record per slug: what the personas have not yet settled, including any promise/scope/buildable mismatch.
 - `persona` (in `wiki/personas/`) — one page per `(slug, persona)` pair. A persona page is one function's reading of that slug's sources — what it promises, scopes, or commits to — never a blend of more than one persona's view. File naming: `<slug>-<persona>.md` (e.g. `veridion-line3-oee-business.md`).
 - `glossary` (in `wiki/glossaries/`) — one page per persona, not per slug: `business-glossary.md`,
   `product-glossary.md`, `tech-glossary.md`. Each defines the terms that persona uses
@@ -70,6 +70,23 @@ persona's `sources:` frontmatter — never two:
   persona's own claim.
 - If a new artifact doesn't obviously belong to one of the three, ask which persona owns it
   before ingesting — don't guess, and don't let it default to "shared."
+
+### Decision ownership: OEE
+
+**Business solely owns the definition of OEE** — which calculation counts as "the OEE" for a line
+(for example the ideal rate, whether planned downtime is a loss, and which of two competing numbers a
+customer-facing "OEE" refers to). Product scopes and Tech builds to the definition Business states; neither
+sets, changes or chooses between definitions. This is a rule about who decides, separate from source
+ownership above: the CDF series and SOP files that implement a definition stay Tech's sources.
+
+When a question or proposed decision turns on which OEE definition applies:
+
+- Say that it is Business's decision, not Product's or Tech's.
+- If Business's source document does not state the definition, the status is **undetermined**,
+  not aligned. A Product or Tech page that happens to use one definition does not settle it.
+- A Product or Tech proposal that changes which definition is reported (for example showing the legacy
+  MES number as "the OEE") is **not aligned** with this rule until Business has stated the definition.
+  Do not treat it as Business silently agreeing.
 
 ### Designations (routing only)
 
@@ -135,7 +152,7 @@ graph:
       # valid_from: 2025-01-15
       # valid_to: 2026-03-01
       # notes: "..."
-      # raw_ref: "raw/founder-dump.md#L42"
+      # raw_ref: "docs/engagements/veridion-line3-oee/business-use-case.md"
       # contradicts: edge-id-or-source-slug
       # supersedes: edge-id-or-source-slug
 ```
@@ -172,11 +189,9 @@ Generation is reproducible from markdown via `scripts/wiki_graph_extract.py`. Th
 
 ## Workflow customizations
 
-**Raw sources live in `docs/engagements/<slug>/`, not `raw/`.** These source documents (business use
-case, ADR) are versioned project documents, not freeform clippings, so they stay in
-`docs/engagements/` as the canonical copy. `raw/` is left for anything genuinely external (e.g. a
-pasted Slack export) if that's ever added later. Source pages in `wiki/sources/` cite back to
-`docs/engagements/...` paths instead of `raw/...` paths.
+**Source documents live in `docs/engagements/<slug>/`.** The business use case, PRD, and ADR stay
+there. The mock CDF project stays in `mock-cdf-project/`. Source pages in `wiki/sources/` cite
+those paths.
 
 **Persona declaration opens a query session.** Before answering any substantive question, the
 asker states which persona they're asking as: "I am a business guy" / "I am a product guy" /
@@ -186,10 +201,10 @@ without knowing which persona is asking means guessing whose version of "aligned
 
 On receiving a persona declaration for slug `S`:
 1. Read `wiki/personas/S-<persona>.md` first — that persona's own claims.
-2. Read `wiki/synthesis/S-conflicts.md` (if it exists) and surface every open conflict that
+2. Read `wiki/synthesis/S-open-topics.md` (if it exists) and surface every open topic that
    names this persona, before answering anything else.
 3. Only then answer the asker's actual question, from that persona's page plus the relevant
-   conflict entries — never silently blended with another persona's page.
+   open-topic entries — never silently blended with another persona's page.
 
 **A persona lens applies to every single answer — no exceptions, no neutral mode.** This is
 not just a rule for the first question in a session. Concretely:
@@ -204,59 +219,31 @@ not just a rule for the first question in a session. Concretely:
   to avoid is picking wrong silently, not asking too often.
 - There is no fourth, neutral option. A question here is always answered as Business, Product,
   or Tech — never as an unaffiliated narrator summarizing documents from no particular seat.
-- **First-person voice is not limited to open-ended exploration.** Whenever a fixed-format
-  output (a homework brief, an impact analysis, a decision verdict) states another persona's
-  position, phrase that position in that persona's own first-person voice — "my ADR rejected
-  this because..." — rather than a third-person narrator summary ("Tech's ADR rejected this
-  because..."). This applies inside every section of the fixed format, not just free-form
-  answers; the fixed section headers stay as written, but the content under them speaks as the
-  persona being described.
+- **First-person voice applies to every answer.** Whenever a brief, an impact write-up, or a
+  decision verdict states another persona's position, phrase that position in that persona's
+  own first-person voice — "my ADR rejected this because..." — rather than a third-person
+  narrator summary ("Tech's ADR rejected this because..."). Section headers stay as written.
+  The content under them speaks as the persona being described.
 
-**Ask before answering — like a human consultant would, not like a form.** Before producing any
-substantive response — a homework brief, an exploration answer, a Phase 3 impact analysis, a
-decision verdict, or an ingest — you MUST ask at least one sharp, specific, relevant clarifying
-question first, and stop there: do not also produce the substantive answer in the same turn.
-This is a hard gate, not a default that judgment can override — it applies even when the
-request seems unambiguous; the goal is the interaction style of a careful human professional who
-probes before advising, not a form that only asks when it's technically stuck. Concretely:
+**Ask only when a missing fact would change the answer.** A clarifying question is for a
+specific gap, not a step that runs before every reply. If the person already named the persona
+and the thing they want, answer it. Do not ask a question whose answer would not change what
+you say. Do not ask a vague question, an ambiguous question, or a question asked only so that
+a question was asked.
 
-- When a designation is stated, confirm the persona mapping and ask something relevant to the
-  actual request before answering — even for a designation already on the known list. Don't
-  treat a correct routing as license to skip understanding the real question.
-- When a designation isn't recognized, ask which persona they feel closer to (see
-  Designations above) — never guess.
-- Before a homework brief, impact analysis, or decision verdict, ask what concrete task this
-  serves, anchored to the person's actual job rather than a generic trigger — e.g. for Business,
-  a shift handover, troubleshooting a specific downtime/OEE dip, or prepping a stakeholder
-  conversation; for Product, sprint planning, a PRD update, or scoping a new feature request;
-  for Tech, debugging a pipeline, scoping a new ADR, or implementing a data model. These are
-  illustrative, not an exhaustive list — the agent's own file gives its persona's examples, and
-  the agent should offer a task-specific option that fits the actual conversation even if it
-  isn't on that list, plus always leave room for "something else." The right depth and framing
-  of an answer depends on this, so a vague trigger ("an upcoming meeting") is not specific
-  enough — get to the actual task.
-- This applies to ingest too: before adding or updating anything in the wiki, ask which
-  persona's page it belongs to, whether it supersedes or supplements existing content, and
-  anything else needed to ingest it correctly — don't infer these and proceed silently.
-- Judgment applies to *which* questions are relevant and how many to ask — not to *whether* to
-  ask at all. Asking at least once before the substantive answer is mandatory, never skippable
-  because the request looks clear.
-- **Ground at least one question in the actual wiki content, not just generic task
-  categories.** Before formulating clarifying questions, read the relevant persona pages and
-  the conflicts file for the slug in question. At least one question should surface something
-  real found there — the specific open conflict, a specific ADR rejection and its stated
-  reason, a named capability or gap — rather than staying at the level of "which task is this
-  for." Generic task-category questions still help with framing, but on their own they are not
-  extensive or impactful enough; a sharp question references the actual, specific thing in this
-  wiki that the person might not know to ask about.
-- If there is no further turn to wait for a reply in (e.g. a one-shot subagent invocation),
-  still stop after asking: return only the clarifying question(s), and let the calling
-  conversation relay them and re-invoke once answered. The absence of a multi-turn loop is not
-  license to fall through to the substantive answer.
-- Present each clarifying question as a short question with a small set of concrete, selectable
-  options (plus room for something else) — not a single open-ended sentence the person has to
-  answer in free text. This is the expected delivery format for every persona, confirmed by the
-  person this convention is for.
+- An unrecognized designation is a real gap. Ask which persona they feel closer to — Business,
+  Product, or Tech — and never guess. A known designation is enough to route. Do not add
+  another question just to confirm it.
+- On ingest, ask only what you cannot already see in the file: which persona page it belongs
+  to, and whether it supersedes or supplements what is already there, when that is not clear
+  from the document itself.
+- When you do ask, that turn is the question. Do not also produce the substantive answer.
+- If there is no further turn to wait for a reply in (a one-shot subagent invocation), return
+  only the question and let the calling conversation relay it and re-invoke you.
+- **Format, every question.** A short question, then 2–4 concrete selectable options drawn
+  from the wiki or from the person's ask, then an explicit line: "Or type your own answer."
+  The typed answer is a real choice. Never ask as one open-ended sentence, and never offer
+  options with no place to type something else.
 
 **Ingest is a team action, not an automated pipeline.** When a source document changes (a new
 PRD, an edited ADR, a revised business use case), a person updates the document under
@@ -264,62 +251,60 @@ PRD, an edited ADR, a revised business use case), a person updates the document 
 that watches these files and re-ingests them automatically. Before re-ingesting, ask the
 clarifying questions described under "Ask before answering" above — which persona's page it
 belongs to, whether it supersedes or supplements existing content, whether it's expected to
-touch the conflicts record. Once that's clear, re-ingesting means: re-read the changed source,
+touch the open-topics record. Once that's clear, re-ingesting means: re-read the changed source,
 update the one persona page it belongs to, and re-check that persona's claims against the
-other two personas' pages in `wiki/synthesis/<slug>-conflicts.md`. Do not touch a persona
+other two personas' pages in `wiki/synthesis/<slug>-open-topics.md`. Do not touch a persona
 page that the changed source doesn't belong to.
 
 **Versioning is git, not a parallel numbering scheme.** The wiki's version at any point in
 time is whatever commit it's at — there is no separate `v1`/`v2` label on pages or on the
-conflicts record. A later sign-off mechanism (recording which commit a named person accepted)
+open-topics record. A later sign-off mechanism (recording which commit a named person accepted)
 is deferred; for now, git history is the only version record.
 
-**Cross-persona briefing has three dedicated agents, each with three phases.** Implemented as
-Claude Code subagents under `.claude/agents/`: `brief-product-on-business-and-tech.md`,
+**Cross-persona briefing has three dedicated agents.** Implemented as Claude Code subagents
+under `.claude/agents/`: `brief-product-on-business-and-tech.md`,
 `brief-business-on-product-and-tech.md`, `brief-tech-on-business-and-product.md`. Each is
 hardcoded to this wiki's three personas and read-only (`tools: Read, Grep, Glob` — no
-write/edit access). Invoke by declaring persona and asking to be briefed, e.g. "I am a product
-guy, explain business and tech to me."
+write/edit access). Invoke by declaring a persona and asking the question, e.g. "I am a
+product guy. Business promised an automatic work order on an OEE drop. Does my read-only
+scope cover that, and what has Tech ruled out?"
 
-- **Phase 1 — Homework** (fixed format, same invocation that starts the agent). Reads the
-  asker's own persona page, both other personas' pages, and
-  `wiki/synthesis/veridion-line3-oee-conflicts.md`. Produces: what the other two personas are
-  claiming that the asker should know, which of the asker's own commitments have no source in
-  the other two pages, the sharpest question to expect in a cross-functional meeting, and one
-  thing to walk in already knowing. May be filed as
-  `wiki/synthesis/veridion-line3-oee-briefing-<persona>.md`, but only on request — never
-  unprompted.
-- **Phase 2 — Exploration** (anything asked after the brief, in the same session). Open-ended:
-  not limited to this one use case or to the business/product/tech comparison — the agent may read
-  any file under `wiki/`, `docs/`, or `mock-cdf-project/` to answer. Exploration answers are
-  **never** filed, even on request — they are intentionally ephemeral. If someone wants a
-  persistent record, they ask for a Phase 1 or Phase 3 output instead.
-- **Phase 3 — Impact of work** (asked for explicitly, any time in the session, e.g. "how does
-  my work affect the other two"). Reads the same files as Phase 1. Produces: what the other two
-  personas are counting on from the asker's own work, what breaks for them if that work is
-  wrong/late/incomplete, how this connects to the current open conflict (if at all), and the
-  one thing to get right first. May be filed as
-  `wiki/synthesis/veridion-line3-oee-impact-<persona>.md`, only on request. Persona-level only —
-  no sub-role granularity (e.g. "I'm specifically a Data Engineer within Tech") is modeled yet;
-  that question gets answered within the Tech-level analysis, not a separate structure.
+There is no phase sequence. The agent answers the one use case the question is, from the
+list in `README.md`:
+
+1. **Explore beyond your role** — what the other two personas have committed to, in their voices.
+2. **Homework before a cross-functional meeting** — the fixed brief. May be filed as
+   `wiki/synthesis/veridion-line3-oee-briefing-<persona>.md`, only on request.
+3. **Check a decision** — the three-persona verdict belongs to `check-decision-alignment`.
+   From this seat the briefing agent says how the decision sits against the other two pages.
+4. **Impact of your work** — the impact write-up. May be filed as
+   `wiki/synthesis/veridion-line3-oee-impact-<persona>.md`, only on request. A designation
+   such as Data Engineer does not get its own analysis.
+5. **Slack**, 6. **Jira**, 7. **Teams**, 8. **Look ahead**, 9. **History plus now** — named,
+   and not in this demo. Answer only what is already written under `wiki/`, `docs/`, and
+   `mock-cdf-project/`. Do not invent a thread, a ticket, a failure history, or a recent change.
 
 These three agents are deliberately specific to this one engagement (`veridion-line3-oee`),
 not general-purpose — they do not take a slug as a parameter. If a second engagement is added
 to this wiki, decide then whether to extend these agents or add new ones; don't speculatively
 generalize them now.
 
-**A fourth agent checks a proposed decision against all three personas at once.**
-`.claude/agents/check-decision-alignment.md` — also read-only, also hardcoded to this engagement.
-Unlike the three briefing agents, it isn't invoked by declaring a persona; anyone proposes a
-specific, concrete decision (e.g. "what if we scoped a work-order-draft path that only suggests
-text"), and it reads all three persona pages, all three glossaries, and the conflicts record,
-then reports each persona's position separately — in that persona's own voice — plus an overall
-verdict: **aligned**, **not aligned** (names the specific contradiction), or **undetermined**
-(no documented position exists to check against). It never writes to
-`wiki/synthesis/veridion-line3-oee-conflicts.md`, even if a real conflict is found and even if
+**A fourth agent checks a proposed decision by running the three briefing agents first.**
+`.claude/agents/check-decision-alignment.md` — read-only, hardcoded to this engagement, and
+allowed to spawn only `brief-business-on-product-and-tech`,
+`brief-product-on-business-and-tech`, and `brief-tech-on-business-and-product`. This is not
+lint. Lint is a health check of the wiki. This agent answers one proposed decision. Anyone
+proposes a specific, concrete decision (e.g. "what if we scoped a work-order-draft path that
+only suggests text"). Before the user sees a verdict, it runs all three briefing agents on
+that decision and waits for all three. Each briefing agent returns only its own seat's
+documented position. The decision agent then reports each position separately — in that
+persona's own voice — plus an overall verdict: **aligned**, **not aligned** (names the
+specific contradiction), or **undetermined** (no documented position exists to check against).
+It never writes to
+`wiki/synthesis/veridion-line3-oee-open-topics.md`, even if a real mismatch is found and even if
 asked — it can draft the entry's text in conversation for a human to add. This is the one
 mechanism in this wiki for checking a *new* decision before it's made, rather than reading the
-one conflict that's already on record.
+one topic that's already on record.
 
 ## User preferences
 
@@ -349,6 +334,10 @@ down anywhere. If the asker's question goes past what the document says, say so 
 ("that's not something I've actually written down") rather than inventing an answer.
 
 ## Lint cadence
+
+Lint is a health check of the wiki: contradictions between pages, stale claims, orphan pages,
+and missing cross-references. It is not the decision-alignment agent. That agent checks one
+proposed decision in the chat.
 
 - Structural lint: after every 5 ingests.
 - Semantic lint: weekly or after every 20 ingests.

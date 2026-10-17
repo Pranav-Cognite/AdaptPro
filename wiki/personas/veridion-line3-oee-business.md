@@ -18,7 +18,7 @@ Product scoped or what Tech will build.
 This is Business's reading of `veridion-line3-oee`, drawn only from
 [[veridion-line3-oee-business-use-case]] — the business use case is Business's exclusive
 source; Product and Tech may reference it but never own it. This page does not reflect what
-Product has scoped or what Tech has committed to build — see [[veridion-line3-oee-conflicts]]
+Product has scoped or what Tech has committed to build — see [[veridion-line3-oee-open-topics]]
 for where this view disagrees with the other two personas.
 
 ## What Business is promising the customer
@@ -45,7 +45,7 @@ a separate tooling chase.
 
 ## Open conflicts involving this view
 
-See [[veridion-line3-oee-conflicts]] — the auto-work-order promise above has no backing
+See [[veridion-line3-oee-open-topics]] — the auto-work-order promise above has no backing
 capability, no threshold policy, and no work-order schema in either
 [[veridion-line3-oee-product]] or [[veridion-line3-oee-tech]].
 

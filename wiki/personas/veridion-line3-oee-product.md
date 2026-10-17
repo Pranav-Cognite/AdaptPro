@@ -18,7 +18,7 @@ questions. The automatic work order is not in this scope.
 This is Product's reading of `veridion-line3-oee`, drawn only from [[veridion-line3-oee-prd]] — the PRD
 is Product's exclusive source; Business and Tech may reference it but never own it. This page
 does not reflect what Business has promised the customer or how Tech phrases its constraints —
-see [[veridion-line3-oee-conflicts]] for where this view disagrees with the other personas.
+see [[veridion-line3-oee-open-topics]] for where this view disagrees with the other personas.
 
 ## How the data gets into CDF
 
@@ -50,7 +50,7 @@ downtime history — all with citations. Product scoped this deliberately read-o
 
 ## Open conflicts involving this view
 
-See [[veridion-line3-oee-conflicts]] — Product's read-only scope here **matches** Tech's ADR, not
+See [[veridion-line3-oee-open-topics]] — Product's read-only scope here **matches** Tech's ADR, not
 Business's promise. The auto-work-order promise in [[veridion-line3-oee-business]] is therefore in
 conflict with both Product and Tech, not just Tech alone.
 

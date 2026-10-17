@@ -1,0 +1,66 @@
+# CogniteSourceSystem nodes: where each instance's data came from. Assets, equipment,
+# time series and activities point back to these through their `source` relation.
+
+- space: sp_veridion_demo
+  externalId: src_opcua_calder_dcs
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteSourceSystem
+        version: "v1"
+        type: view
+      properties:
+        name: "Calder Valley DCS/PLC (OPC UA)"
+        description: "OPC UA servers on the Polymer Production Unit DCS and PLC network, read by the Cognite OPC UA Extractor."
+        tags: [opcua, process]
+        aliases: []
+        version: "Plant OPC UA servers"
+        manufacturer: null
+
+- space: sp_veridion_demo
+  externalId: src_sap_pm_cv
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteSourceSystem
+        version: "v1"
+        type: view
+      properties:
+        name: "SAP PM — Calder Valley"
+        description: "SAP Plant Maintenance: functional locations, equipment master and maintenance notifications, read by the Cognite SAP Extractor."
+        tags: [sap, maintenance]
+        aliases: []
+        version: "SAP S/4HANA"
+        manufacturer: null
+
+- space: sp_veridion_demo
+  externalId: src_mes_batchdb
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteSourceSystem
+        version: "v1"
+        type: view
+      properties:
+        name: "Plant MES / batch quality database"
+        description: "MES batch and quality database (hourly good and reject counts), read by the Cognite DB Extractor."
+        tags: [mes, quality]
+        aliases: []
+        version: "Plant MES"
+        manufacturer: null
+
+- space: sp_veridion_demo
+  externalId: src_cdf_oee_function
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteSourceSystem
+        version: "v1"
+        type: view
+      properties:
+        name: "CDF Function fn_line3_oee_calc"
+        description: "Series calculated inside CDF from the three feeds above, per the Line 3 OEE Calculation SOP."
+        tags: [derived]
+        aliases: []
+        version: "Cognite Functions"
+        manufacturer: null

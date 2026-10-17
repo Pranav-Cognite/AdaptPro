@@ -1,0 +1,28 @@
+space: sp_veridion_dm
+externalId: VeridionDowntimeActivity
+version: v1
+name: Veridion downtime activity
+implements:
+  - { type: view, space: cdf_cdm, externalId: CogniteActivity, version: v1 }
+properties:
+  downtimeCategory:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: downtimeCategory
+  lossClass:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: lossClass
+  countsAsAvailabilityLoss:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: countsAsAvailabilityLoss
+  sapNotificationId:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: sapNotificationId
+  causeCode:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: causeCode
+  shift:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: shift
+  reportedByRole:
+    container: { space: sp_veridion_dm, externalId: VeridionDowntime, type: container }
+    containerPropertyIdentifier: reportedByRole

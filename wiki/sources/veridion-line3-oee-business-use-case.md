@@ -28,5 +28,5 @@ Full text: `docs/engagements/veridion-line3-oee/business-use-case.md`
 ## Where this fits
 
 - [[veridion-line3-oee-business]] — the business persona page drawn from this source.
-- [[veridion-line3-oee-conflicts]] — this source's auto-work-order promise is the origin of the
+- [[veridion-line3-oee-open-topics]] — this source's auto-work-order promise is the origin of the
   primary conflict with [[veridion-line3-oee-adr]] and [[veridion-line3-oee-prd]].

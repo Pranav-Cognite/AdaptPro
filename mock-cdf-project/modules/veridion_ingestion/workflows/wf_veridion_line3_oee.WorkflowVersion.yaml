@@ -1,0 +1,26 @@
+workflowExternalId: wf_veridion_line3_oee
+version: v1
+workflowDefinition:
+  description: Load SAP notifications as activities, then recompute the trailing six hours of OEE.
+  tasks:
+    - externalId: load_activities
+      type: transformation
+      parameters:
+        transformation:
+          externalId: tr_sap_notifications_to_activities
+          concurrencyPolicy: fail
+      retries: 2
+      timeout: 1800
+      onFailure: abortWorkflow
+    - externalId: compute_oee
+      type: function
+      parameters:
+        function:
+          externalId: fn_line3_oee_calc
+          data: { hours_back: 6 }
+        isAsyncComplete: false
+      retries: 1
+      timeout: 900
+      onFailure: abortWorkflow
+      dependsOn:
+        - externalId: load_activities

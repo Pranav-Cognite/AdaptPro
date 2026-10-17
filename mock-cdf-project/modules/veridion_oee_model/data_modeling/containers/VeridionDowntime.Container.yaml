@@ -1,0 +1,52 @@
+space: sp_veridion_dm
+externalId: VeridionDowntime
+name: Veridion downtime classification
+description: Loss classification and SAP provenance for downtime activities.
+usedFor: node
+properties:
+  downtimeCategory:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "changeover | planned-maintenance | process-trip | equipment-failure."
+  lossClass:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "planned | unplanned. Planned downtime is removed from planned production time (SOP rev B)."
+  countsAsAvailabilityLoss:
+    type: { type: boolean, list: false }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "True when the SOP counts this stop as Availability loss."
+  sapNotificationId:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "SAP PM notification number (QMNUM) this activity was created from."
+  causeCode:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "SAP cause code as entered by the reporter. See the downtime cause code guide."
+  shift:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Plant shift A, B or C at the start of the stop (local time)."
+  reportedByRole:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Role of the person who raised the notification. Deliberately a role, not a name."
+indexes:
+  sapNotificationIdIdx:
+    properties: [sapNotificationId]
+    indexType: btree

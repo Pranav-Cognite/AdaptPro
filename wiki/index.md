@@ -3,7 +3,7 @@
 **Subject of this wiki:** Production Line 3 at Calder Valley, a polymer line (Reactor R-301,
 then Extruder EX-302). Business promised a live OEE number and an automatic work order when
 OEE drops. Product and Tech scoped a read-only lookup. The pages below keep those three
-views separate. The red conflict is the work order.
+views separate. The main open topic is the work order.
 
 The catalog of all pages in this wiki. Each entry: a wikilink to the page and a one-line summary. The LLM reads this first when answering queries to identify candidate pages.
 
@@ -18,10 +18,11 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 - [[veridion-line3-oee-business-use-case]] — Business's Line 3 OEE promise: real-time OEE + auto-generated work order on drop.
 - [[veridion-line3-oee-prd]] — Product's PRD: 3 extractors (OPC UA/SAP/DB) feed OEE; same read-only scope as the ADR.
 - [[veridion-line3-oee-adr]] — ADR 001, Tech's read-only OEE capability set for Line 3; no write path.
-- [[veridion-line3-oee-cdf-assets]] — Tech's mock CDF asset hierarchy: plant → polymer unit → Line 3 → reactor/extruder.
-- [[veridion-line3-oee-cdf-timeseries]] — Tech's mock CDF time series: OEE composite + 3 components + 2 feeder series.
-- [[veridion-line3-oee-cdf-activities]] — Tech's mock CDF activities: one planned changeover, one unplanned valve-fault stop.
-- [[veridion-line3-oee-cdf-files]] — Tech's mock CDF file: the Line 3 OEE calculation SOP.
+- [[veridion-line3-oee-cdf-assets]] — Tech's mock CDF asset hierarchy: 40 assets, plant → areas → lines → Line 3 reactor/extruder and their equipment.
+- [[veridion-line3-oee-cdf-timeseries]] — Tech's mock CDF time series: 21 series (OEE, components, process signals, MES counts, legacy MES OEE) with 30 days of datapoints.
+- [[veridion-line3-oee-cdf-activities]] — Tech's mock CDF activities: 11 downtime records, including a stop logged twice, one with no end time, and a repeat valve fault.
+- [[veridion-line3-oee-cdf-files]] — Tech's mock CDF files: the Line 3 OEE calculation SOP (rev B and superseded rev A), the legacy MES report spec, and related records.
+- [[veridion-line3-oee-cdf-model-and-pipelines]] — Tech's mock CDF data model, extractors, transformation, OEE function and access groups.
 
 ## Entities
 
@@ -45,5 +46,5 @@ When this file exceeds ~300 lines or the wiki passes ~150 pages, shard into `wik
 
 ## Synthesis
 
-- [[veridion-line3-oee-conflicts]] — RED: Business's auto-work-order promise vs. Product + Tech's read-only scope.
+- [[veridion-line3-oee-open-topics]] — what the three personas have not yet settled: the work-order promise vs. the read-only scope, and which OEE number counts.
 - [[veridion-line3-oee-briefing-product]] — worked example of a cross-persona briefing: Product's homework on Business and Tech before a meeting.

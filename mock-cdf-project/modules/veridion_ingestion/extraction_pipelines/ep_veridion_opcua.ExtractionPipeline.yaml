@@ -1,0 +1,14 @@
+externalId: ep_veridion_opcua
+name: Veridion — OPC UA extractor (Polymer Production Unit)
+dataSetExternalId: ds_veridion_opcua
+description: Reads Line 1-4 process signals from the plant DCS/PLC OPC UA servers into CogniteTimeSeries instances.
+schedule: Continuous
+source: Plant OPC UA servers (calder-dcs-01, calder-plc-03)
+contacts:
+  - name: Data engineering on-call
+    role: Owner
+    sendNotification: true
+documentation: >
+  Subscribes to the PV nodes listed in the extractor config. After a server restart the extractor
+  re-subscribes automatically; datapoints during the outage are not backfilled, which is the
+  cause of the 2026-10-03 02:10 to 05:50 UTC gap.

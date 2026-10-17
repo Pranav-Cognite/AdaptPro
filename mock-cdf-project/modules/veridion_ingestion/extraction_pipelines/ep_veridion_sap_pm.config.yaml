@@ -1,0 +1,30 @@
+externalId: ep_veridion_sap_pm
+description: Cognite SAP extractor config, abbreviated. Illustrative; not validated against the extractor's schema.
+config: |
+  logger:
+    console: { level: INFO }
+  cognite:
+    project: ${CDF_PROJECT}
+    idp-authentication:
+      tenant: ${IDP_TENANT}
+      client-id: ${IDP_CLIENT_ID}
+      secret: ${IDP_CLIENT_SECRET}
+      scopes: [https://westeurope-1.cognitedata.com/.default]
+    extraction-pipeline:
+      external-id: ep_veridion_sap_pm
+  sap:
+    gateway-url: https://sap-gw.veridion.internal/sap/opu/odata/sap
+    client: "100"
+    username: ${SAP_USERNAME}
+    password: ${SAP_PASSWORD}
+  endpoints:
+    - name: pm_notifications
+      sap-service: API_MAINTNOTIFICATION
+      sap-entity: MaintenanceNotification
+      # Incremental on change date; closed notifications that are later edited are re-sent.
+      incremental-field: LastChangeDate
+      destination: { type: raw, database: db_veridion_sap_raw, table: pm_notifications }
+    - name: pm_functional_locations
+      sap-service: API_FUNCTIONALLOCATION
+      sap-entity: FunctionalLocation
+      destination: { type: raw, database: db_veridion_sap_raw, table: pm_functional_locations }

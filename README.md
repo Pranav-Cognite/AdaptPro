@@ -1,6 +1,6 @@
 # AdaptPro
 
-**Start here.** AdaptPro is a self-maintaining knowledge base shared by Business, Product, and Tech. The base is an LLM wiki: pages compiled from source documents, linked so a claim can be followed back to the page and the source it came from. Three steps keep it: **ingest** adds a document and updates the pages, **query** answers from those pages in the persona of the person asking, and **lint** checks the pages for disagreement and stale claims as the base grows. Every use case in this repo is a question asked of that base. The Veridion write-up below is one example stored in it, not the product itself.
+**Start here.** AdaptPro is a knowledge base shared by Business, Product, and Tech. The base is an LLM wiki: pages compiled from source documents, linked so a claim can be followed back to the page and the source it came from. Three steps keep it. **Ingest** adds a document and updates the pages. **Query** answers from those pages in the persona of the person asking. **Lint** is a health check of the wiki: pages that disagree, claims a newer source has replaced, orphan pages, and missing links. It is not the decision check. Checking one proposed decision against the three personas is a separate agent, `check-decision-alignment`. In this demo a person maintains the wiki after ingest or lint. A self-maintaining loop, and a Capture phase that stores the signed decision, come later. The Veridion write-up below is one example stored in the base, not the product itself.
 
 **AdaptPro** is a persona-based, AI-native system that helps cross-functional teams stay
 aligned on decisions by building a continuously updated knowledge base — a shared source of
@@ -37,15 +37,15 @@ Nothing here requires a real Cognite Data Fusion project, tenant, or credentials
 ## What this is
 
 A working demo of one idea: **build a knowledge base from engagement sources**, keep Business /
-Product / Tech claims in separate persona views, let each persona **query** that knowledge
-base, and **surface whether a proposed decision is aligned** — before kickoff pretends everyone
-agreed.
+Product / Tech claims in separate persona views, and let each persona **query** that knowledge
+base to understand the other two sides, prepare for meetings with good questions, and, when a
+decision is coming, check whether it is aligned.
 
 This repo implements the simplest version of that idea:
 
 1. **Ingest** source documents into an LLM wiki
-2. **Persona pages** (exclusive ownership — no blending)
-3. **Conflict record** when promise / scope / buildable disagree
+2. **Persona pages** — three pages for one engagement, under `wiki/personas/`. Business, Product, and Tech each have their own page, written only from that side's documents. They are not mixed into one summary.
+3. **Open topics** record of what the personas have not yet settled (including any promise / scope / buildable mismatch)
 4. **Four read-only agents** that query the knowledge base (briefing + decision alignment)
 
 Persona queries may look like a conversation. That is how someone **asks the knowledge base** —
@@ -70,9 +70,10 @@ tool-hopping.
   query capabilities (OEE snapshot, OEE trend, downtime history) and explicitly rule out any
   write path for v1 — no work-order schema, no threshold policy, no write capability.
 
-That's the conflict the knowledge base is built to surface, not hide: Business is promising
-something neither Product nor Tech has scoped or built. Left unresolved, this is the shape of
-**delivery reversal / mis-scoped AI** risk.
+That is one of the open topics the knowledge base keeps visible: Business has promised
+something neither Product nor Tech has scoped or built yet. Surfacing it early, along with the
+questions it raises, is what keeps it from turning into **delivery reversal / mis-scoped AI** risk.
+It is an example topic, not what AdaptPro is for.
 
 ## Design rationale — why this approach, and why it's not the end state
 
@@ -129,18 +130,20 @@ AdaptPro/
 │   └── adr.md
 ├── docs/architecture/                     Current vs for-scale architecture notes
 ├── mock-cdf-project/                      Fictional CDF project grounding externalIds
-│   └── modules/veridion_line3_oee/
+│   └── modules/ (platform, oee_model, line3_oee, ingestion)
 ├── wiki/                                  The LLM knowledge base
 │   ├── SCHEMA.md                          Conventions — read this first
 │   ├── sources/                           One summary page per ingested document
 │   ├── personas/                          Business / Product / Tech views
 │   ├── glossaries/                        Per-persona vocabulary for the other two
-│   └── synthesis/                         Conflict record + filed briefs
+│   └── synthesis/                         Open topics + filed briefs
 └── .claude/agents/                        Four read-only agents that query the wiki
 ```
 
 `mock-cdf-project/` is static and fictional — no deployed CDF tenant, cluster, or credentials.
-It exists so every `externalId` the documents reference resolves to something real.
+It exists so every `externalId` the documents reference resolves to something real. It is a
+full Toolkit-shaped project (data model, extractors, transformation, OEE function, access groups,
+30 days of datapoints with deliberate data-quality flaws); see its README.
 
 ## How the knowledge base is built (this demo)
 
@@ -151,11 +154,10 @@ For `veridion-line3-oee`:
 | `docs/engagements/veridion-line3-oee/business-use-case.md` | Business | persona + source pages |
 | `docs/engagements/veridion-line3-oee/prd.md` | Product | persona + source pages |
 | `docs/engagements/veridion-line3-oee/adr.md` + `mock-cdf-project/` | Tech | persona + source pages |
-| Cross-check of the three | — | `wiki/synthesis/veridion-line3-oee-conflicts.md` |
+| Open topics across the three | — | `wiki/synthesis/veridion-line3-oee-open-topics.md` |
 
 Ingest is a **team action**, not an automated pipeline: edit a source under
-`docs/engagements/<slug>/`, then ask for re-ingest (see `wiki/SCHEMA.md`). Ask-before-answering
-applies to ingest and to every agent query — it is never bypassed.
+`docs/engagements/<slug>/`, then ask for re-ingest (see `wiki/SCHEMA.md`).
 
 **Future source types** (not in this repo's clean three docs yet): Zoom summaries, Slack,
 Google Drive, Jira, Confluence, customer KT, Teams, shared folders, pre-sales decks. See
@@ -168,37 +170,26 @@ Google Drive, Jira, Confluence, customer KT, Teams, shared folders, pre-sales de
 **1. Query the knowledge base as one persona (get briefed on the other two).**
 
 - **Business** → `brief-business-on-product-and-tech.md`  
-  e.g. "I am a business guy, explain product and tech to me."
+  e.g. "I am a business guy. We promised an automatic work order when Line 3 OEE drops. What have Product and Tech actually scoped?"
 - **Product** → `brief-product-on-business-and-tech.md`  
-  e.g. "I am a product guy, explain business and tech to me."
+  e.g. "I am a product guy. Business promised an automatic work order on an OEE drop. Does my read-only scope cover that, and what has Tech ruled out?"
 - **Tech** → `brief-tech-on-business-and-product.md`  
-  e.g. "I am a tech guy, explain business and product to me."
+  e.g. "I am a tech guy. Business promised an automatic work order when Line 3 OEE drops. Does our read-only decision cover that promise?"
 
 Known designations route to personas — Business → Plant Operator, Maintenance Manager, Plant
 Supervisor; Product → Technical Product Manager; Tech → Data Engineer, Data Scientist,
 Solutions Architect. Unrecognized designations get asked which persona they are closer to,
 never guessed.
 
-**Every agent asks before answering — hard gate, never bypassed.** First response is clarifying
-questions only (grounded in wiki content where possible), then:
-
-1. **Homework (Phase 1)** — fixed-format brief; may be filed under `wiki/synthesis/` on request
-2. **Exploration (Phase 2)** — open-ended follow-up; never filed
-3. **Impact of work (Phase 3)** — fixed-format impact analysis; filable on request
-
-Other personas' claims are spoken in first-person voice. Glossary terms and technical
-identifiers are defined inline on first use.
-
 **2. Check a proposed decision against all three personas.**
 
-> "If we added a work-order-draft path that only suggests text, would everyone be fine with it?"  
-> "Check this decision against all three personas: scoping a 4th query template for shift-level summaries."
+> "We will ship v1 as a read-only OEE lookup and leave the automatic work-order promise in the customer conversation. Are Business, Product, and Tech aligned?"
 
-Invokes `.claude/agents/check-decision-alignment.md`. Same ask-before-answering gate. Verdicts:
-**Aligned**, **Not aligned**, or **Undetermined** (silence never rounds up to Aligned). Drafts
-conflict-entry text for a human to add — never writes the conflicts file itself.
+This is not lint. It invokes `.claude/agents/check-decision-alignment.md`. Verdicts:
+**Aligned**, **Not aligned**, or **Undetermined** (silence never rounds up to Aligned).
+Drafts open-topic text for a human to add — never writes the open-topics file itself.
 
-**Check wiki structural health:**
+**Lint the wiki structure** (broken links, missing pages, frontmatter — not a verdict on one decision, and not the cross-persona disagreement check):
 
 ```bash
 python3 ~/.claude/skills/llm-wiki/scripts/wiki_lint.py wiki/
@@ -207,16 +198,31 @@ python3 ~/.claude/skills/llm-wiki/scripts/wiki_lint.py wiki/
 **Update a source document.** Edit under `docs/engagements/veridion-line3-oee/`, then ask for
 re-ingest.
 
-## Product jobs (what people hire AdaptPro for)
+## Use cases
 
-1. Homework before a cross-functional meeting
-2. Explore what another persona claims — without blending it into yours
-3. See how your work fits the bigger picture (impact)
-4. Check whether a proposed decision is aligned across personas before you commit
+1. **Explore beyond your role** — read what the other personas in the engagement have actually committed to.
+2. **Homework before a cross-functional meeting** — walk in knowing the other sides' documents and the bigger picture, with the sharp questions to ask them, each grounded in what their pages leave open.
+3. **Check a decision** — for each decision, see whether Business, Product, and Tech are aligned and ready.
+4. **Impact of your work** — see how your contribution sits in the engagement and what it does to the business.
+5. **Slack** — an agent joins a long cross-persona thread and bridges the people in it. Not in this demo.
+6. **Jira** — when a ticket is created, flag dependencies between personas and other concerns, and help align priorities. Not in this demo.
+7. **Teams** — an agent joins a long cross-persona thread and bridges the people in it. Not in this demo.
+8. **Look ahead** — compare the current plan with historical failure patterns, see dependencies early, and suggest what to change. Not in this demo.
+9. **History plus now** — use what the engagement already decided together with what just changed. Not in this demo.
+
+## Demo use case: check a decision
+
+This repo demos use case 3, on one engagement: Veridion Line 3 OEE.
+
+Production Line 3 is the polymer line at Calder Valley (Reactor R-301, then Extruder EX-302). Business promised a live OEE number and an automatic corrective work order when OEE drops. The PRD and the ADR scope three read-only queries — OEE snapshot, OEE trend, downtime history — and no write path. The knowledge base holds those as three persona pages. The conflict page records that the work-order promise is not what Product or Tech will build.
+
+In the chat, ask whether a decision is aligned, for example: "If we added a work-order path, would everyone be fine with it?" The `check-decision-alignment` agent reads the three persona pages and answers per persona: aligned, not aligned, or undetermined. Silence is not treated as agreement. It can draft a conflict entry. A person files that entry. The agent does not write the wiki.
 
 ## Known gaps
 
-- **No sign-off mechanism.** Conflicts are recorded and explained; resolution still happens
+- **Maintenance is human, on purpose, for this demo.** A person re-ingests a changed source and acts on a lint report. A self-maintaining loop is the later idea.
+- **No Capture phase.** The signed decision is not stored as its own object. That phase comes after this chat demo.
+- **No sign-off mechanism.** Open topics are recorded and explained; resolution still happens
   outside this repo.
 - **Git is the only version record.** No link yet between a sign-off and a specific commit.
 - **New agents need a fresh session.** Claude Code only picks up the first agent added to a new
@@ -231,9 +237,21 @@ re-ingest.
 
 ## Cognite ecosystem opportunities (later)
 
-- Deeper integration with CDF as industrial evidence
-- Atlas AI (richer context for agents / investigations)
-- Flows apps (surfaces where delivery teams act)
+### Integration with CDF
+
+The CDF project is one of the sources ingested into the knowledge base. In this demo that source is `mock-cdf-project/`. A real delivery ingests the real CDF project the same way. CDF is part of the base, not a separate system AdaptPro has to be wired onto afterwards.
+
+### Integration with Flows apps
+
+Three shapes:
+
+- AdaptPro itself is a Flows custom app.
+- An AdaptPro tab or panel inside a Flows app.
+- AdaptPro is a service, and Flows apps call its API.
+
+### Integration with Atlas AI
+
+AdaptPro is a plugin, skill, or subagent for Atlas AI. It gives Atlas the engagement's persona pages and open topics, so a root-cause analysis has that context instead of only the incident in front of it.
 
 ## Architecture
 

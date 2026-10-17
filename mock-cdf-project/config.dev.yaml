@@ -8,4 +8,19 @@ environment:
   cluster: westeurope-1
   type: dev
   selected:
+    - modules/veridion_platform
+    - modules/veridion_oee_model
     - modules/veridion_line3_oee
+    - modules/veridion_ingestion
+
+variables:
+  modules:
+    veridion_platform:
+      OEE_READERS_GROUP_SOURCE_ID: 00000000-0000-0000-0000-00000000a001
+      EXTRACTORS_GROUP_SOURCE_ID: 00000000-0000-0000-0000-00000000a002
+      PIPELINE_RUNNER_GROUP_SOURCE_ID: 00000000-0000-0000-0000-00000000a003
+      DATA_ENGINEERS_GROUP_SOURCE_ID: 00000000-0000-0000-0000-00000000a004
+    veridion_ingestion:
+      CDF_ENVIRONMENT: dev
+      PIPELINE_RUNNER_CLIENT_ID: ${PIPELINE_RUNNER_CLIENT_ID}
+      PIPELINE_RUNNER_CLIENT_SECRET: ${PIPELINE_RUNNER_CLIENT_SECRET}

@@ -1,0 +1,22 @@
+# Data sets scope access and lineage. Raw feeds are write-protected so only the extractors'
+# service principal can change them; the derived OEE set is written only by the OEE function.
+- externalId: ds_veridion_opcua
+  name: Veridion — OPC UA process signals
+  description: Process time series read from the Calder Valley DCS/PLC network.
+  writeProtected: true
+  metadata: { source: opcua, owner-role: data-engineering }
+- externalId: ds_veridion_sap_pm
+  name: Veridion — SAP PM
+  description: Functional locations, equipment and maintenance notifications from SAP PM (inbound only).
+  writeProtected: true
+  metadata: { source: sap-pm, owner-role: data-engineering }
+- externalId: ds_veridion_mes
+  name: Veridion — MES counts
+  description: Hourly good and reject counts from the plant MES.
+  writeProtected: true
+  metadata: { source: mes, owner-role: data-engineering }
+- externalId: ds_veridion_line3_oee
+  name: Veridion — Line 3 OEE (derived)
+  description: OEE and its components, calculated in CDF from the three raw data sets.
+  writeProtected: true
+  metadata: { source: cdf-function, owner-role: data-engineering }

@@ -55,7 +55,7 @@ Every answer cites the specific `(space, externalId)` instances it used.
   back from CDF into SAP, and does not scope any new work-order resource in CDF either.
   "Automatically generate a corrective work order on OEE drop" — the promise Business has made
   to Veridion — is not in this PRD. See `adr.md` for why, and see
-  `../../../wiki/synthesis/veridion-line3-oee-conflicts.md` for the open conflict this creates
+  `../../../wiki/synthesis/veridion-line3-oee-open-topics.md` for the open conflict this creates
   with Business's commitment.
 - Any OEE threshold/alerting policy (what counts as "OEE dropped below target") — not defined
   anywhere yet, and a prerequisite for any future write capability.
