@@ -1,0 +1,361 @@
+# CogniteEquipment node instances for Line 3. Assets are functional locations (where
+# something sits); equipment is the physical item installed there. The split follows the
+# Core Data Model and matches SAP PM, where a functional location can outlive the equipment
+# installed in it. Manufacturer names and serial numbers are fictional.
+
+- space: sp_veridion_demo
+  externalId: equip_r301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301"
+        description: "Equipment-master record for Reactor R-301."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-BPV-19-0301"
+        asset: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_reactor }
+        manufacturer: "Brandt Process Vessels"
+        serialNumber: "BPV-19-0301"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_fv301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Valve FV-301"
+        description: "Equipment-master record for Feed Valve FV-301."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-HVS-FV-18842"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_valve }
+        manufacturer: "Halvorsen Valve Systems"
+        serialNumber: "HVS-FV-18842"
+        files: [{ space: sp_veridion_demo, externalId: file_fv301_valve_maintenance_manual }]
+
+- space: sp_veridion_demo
+  externalId: equip_m301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Agitator Motor M-301"
+        description: "Equipment-master record for Agitator Motor M-301."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-TD-M-770113"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_agitator_m301 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_motor }
+        manufacturer: "Tessing Drives"
+        serialNumber: "TD-M-770113"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_p301a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Pump P-301A"
+        description: "Equipment-master record for Feed Pump P-301A."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-BP-P-20311A"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_feed_pump_p301a }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_pump }
+        manufacturer: "Brandt Pumpen"
+        serialNumber: "BP-P-20311A"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_p301b
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Pump P-301B"
+        description: "Equipment-master record for Feed Pump P-301B."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-BP-P-20311B"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_feed_pump_p301b }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_pump }
+        manufacturer: "Brandt Pumpen"
+        serialNumber: "BP-P-20311B"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_hx301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Jacket Cooler HX-301"
+        description: "Equipment-master record for Jacket Cooler HX-301."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-AT-HX-3301"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_jacket_hx301 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_heat_exchanger }
+        manufacturer: "Alder Thermal"
+        serialNumber: "AT-HX-3301"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_tt301a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Temperature Transmitter TT-301A"
+        description: "Equipment-master record for Temperature Transmitter TT-301A."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-KI-TT-90412"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_temp_transmitter_tt301a }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_transmitter }
+        manufacturer: "Kestrel Instruments"
+        serialNumber: "KI-TT-90412"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_tt301b
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Temperature Transmitter TT-301B"
+        description: "Equipment-master record for Temperature Transmitter TT-301B."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-KI-TT-90977"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_temp_transmitter_tt301b }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_transmitter }
+        manufacturer: "Kestrel Instruments"
+        serialNumber: "KI-TT-90977"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_pt301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Pressure Transmitter PT-301"
+        description: "Equipment-master record for Pressure Transmitter PT-301."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-KI-PT-55120"
+        asset: { space: sp_veridion_demo, externalId: asset_r301_pressure_transmitter_pt301 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_transmitter }
+        manufacturer: "Kestrel Instruments"
+        serialNumber: "KI-PT-55120"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_ex302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302"
+        description: "Equipment-master record for Extruder EX-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-ZSK-4417"
+        asset: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_extruder }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-ZSK-4417"
+        files: [{ space: sp_veridion_demo, externalId: file_ex302_screen_pack_change_procedure }]
+
+- space: sp_veridion_demo
+  externalId: equip_m302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Screw Drive Motor M-302"
+        description: "Equipment-master record for Screw Drive Motor M-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-TD-M-770204"
+        asset: { space: sp_veridion_demo, externalId: asset_ex302_screw_drive_m302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_motor }
+        manufacturer: "Tessing Drives"
+        serialNumber: "TD-M-770204"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_gb302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Gearbox GB-302"
+        description: "Equipment-master record for Gearbox GB-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-GB-3320"
+        asset: { space: sp_veridion_demo, externalId: asset_ex302_gearbox_gb302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_gearbox }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-GB-3320"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_dh302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Die Head DH-302"
+        description: "Equipment-master record for Die Head DH-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-DH-1180"
+        asset: { space: sp_veridion_demo, externalId: asset_ex302_die_head_dh302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_die }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-DH-1180"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_sc302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Screen Changer SC-302"
+        description: "Equipment-master record for Screen Changer SC-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-SC-0912"
+        asset: { space: sp_veridion_demo, externalId: asset_ex302_screen_changer_sc302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_screen_changer }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-SC-0912"
+        files: [{ space: sp_veridion_demo, externalId: file_ex302_screen_pack_change_procedure }]
+
+- space: sp_veridion_demo
+  externalId: equip_pt302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Die Pressure Transmitter PT-302"
+        description: "Equipment-master record for Die Pressure Transmitter PT-302."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-KI-PT-55342"
+        asset: { space: sp_veridion_demo, externalId: asset_ex302_melt_pressure_transmitter_pt302 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_transmitter }
+        manufacturer: "Kestrel Instruments"
+        serialNumber: "KI-PT-55342"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_pl303
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Underwater Pelletizer PL-303"
+        description: "Equipment-master record for Underwater Pelletizer PL-303."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-UWP-2271"
+        asset: { space: sp_veridion_demo, externalId: asset_pelletizer_pl303 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_pelletizer }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-UWP-2271"
+        files: []
+
+- space: sp_veridion_demo
+  externalId: equip_dr304
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipment
+        version: "v1"
+        type: view
+      properties:
+        name: "Centrifugal Dryer DR-304"
+        description: "Equipment-master record for Centrifugal Dryer DR-304."
+        tags: [line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "EQ-NES-CD-0845"
+        asset: { space: sp_veridion_demo, externalId: asset_dryer_dr304 }
+        equipmentType: { space: sp_veridion_demo, externalId: etype_dryer }
+        manufacturer: "Norcross Extrusion Systems"
+        serialNumber: "NES-CD-0845"
+        files: []

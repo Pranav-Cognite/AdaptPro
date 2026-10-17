@@ -1,0 +1,14 @@
+# The function recomputes a trailing window every run, so a late MES correction or a closed
+# SAP notification is picked up within six hours without a backfill job.
+- name: fn_line3_oee_calc
+  externalId: fn_line3_oee_calc
+  description: Hourly OEE, Availability, Performance and Quality for Line 3 per the OEE Calculation SOP rev B.
+  owner: Data engineering
+  runtime: py311
+  functionPath: handler.py
+  dataSetExternalId: ds_veridion_line3_oee
+  envVars:
+    CDF_ENV: ${CDF_ENVIRONMENT}
+  metadata:
+    sop: file_line3_oee_calculation_sop
+    ideal_rate_kg_per_hr: "3800"

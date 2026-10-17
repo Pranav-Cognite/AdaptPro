@@ -1,0 +1,8 @@
+# Schema space: holds the Veridion containers, views and data model. Instances (the plant data)
+# live in a different space, sp_veridion_demo, so that read access to data and write access to the
+# model can be granted separately (see veridion_platform/auth).
+space: sp_veridion_dm
+name: Veridion OEE data model
+description: >
+  Containers, views and the VeridionOEE data model for the Veridion Chemicals Calder Valley
+  engagement. Extends the Cognite Core Data Model (cdf_cdm) views. Contains no instances.

@@ -1,0 +1,17 @@
+externalId: ep_veridion_sap_pm
+name: Veridion — SAP PM extractor
+dataSetExternalId: ds_veridion_sap_pm
+description: Reads functional locations, equipment and maintenance notifications from SAP PM into RAW. One-way, SAP to CDF. No path writes back to SAP.
+schedule: "*/15 * * * *"
+source: SAP PM (S/4HANA, OData)
+contacts:
+  - name: Data engineering on-call
+    role: Owner
+    sendNotification: true
+rawTables:
+  - { dbName: db_veridion_sap_raw, tableName: pm_notifications }
+  - { dbName: db_veridion_sap_raw, tableName: pm_functional_locations }
+documentation: >
+  SAP stores notification times as local date and time with no zone. The transformation
+  sap_notifications_to_activities converts them from Europe/London to UTC. SAP work orders are
+  not extracted; they exist only in SAP.

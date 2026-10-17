@@ -1,0 +1,9 @@
+externalId: wft_veridion_line3_oee_hourly
+workflowExternalId: wf_veridion_line3_oee
+workflowVersion: v1
+triggerRule:
+  triggerType: schedule
+  cronExpression: "10 * * * *"
+authentication:
+  clientId: ${PIPELINE_RUNNER_CLIENT_ID}
+  clientSecret: ${PIPELINE_RUNNER_CLIENT_SECRET}

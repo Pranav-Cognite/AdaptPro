@@ -1,0 +1,268 @@
+# CogniteAssetClass nodes. Codes are Veridion's own short codes, not an external standard
+# (`standard` is left null on purpose).
+
+- space: sp_veridion_demo
+  externalId: class_plant
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Plant"
+        description: "Veridion asset class: plant."
+        code: "PLANT"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_area
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Area"
+        description: "Veridion asset class: area."
+        code: "AREA"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_line
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Production line"
+        description: "Veridion asset class: production line."
+        code: "LINE"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_reactor
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor"
+        description: "Veridion asset class: reactor."
+        code: "RX"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_extruder
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder"
+        description: "Veridion asset class: extruder."
+        code: "EX"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_valve
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Valve"
+        description: "Veridion asset class: valve."
+        code: "VLV"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_pump
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Pump"
+        description: "Veridion asset class: pump."
+        code: "PMP"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_motor
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Motor"
+        description: "Veridion asset class: motor."
+        code: "MTR"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_gearbox
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Gearbox"
+        description: "Veridion asset class: gearbox."
+        code: "GBX"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_heat_exchanger
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Heat exchanger"
+        description: "Veridion asset class: heat exchanger."
+        code: "HX"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_instrument
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Instrument"
+        description: "Veridion asset class: instrument."
+        code: "INST"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_pelletizer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Pelletizer"
+        description: "Veridion asset class: pelletizer."
+        code: "PLT"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_dryer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Dryer"
+        description: "Veridion asset class: dryer."
+        code: "DRY"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_packaging
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Packaging station"
+        description: "Veridion asset class: packaging station."
+        code: "PKG"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_utility
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Utility system"
+        description: "Veridion asset class: utility system."
+        code: "UTIL"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_storage
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Storage"
+        description: "Veridion asset class: storage."
+        code: "STG"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_lab_instrument
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Laboratory instrument"
+        description: "Veridion asset class: laboratory instrument."
+        code: "LAB"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_die
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Extrusion die"
+        description: "Veridion asset class: extrusion die."
+        code: "DIE"
+        standard: null
+
+- space: sp_veridion_demo
+  externalId: class_screen_changer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAssetClass
+        version: "v1"
+        type: view
+      properties:
+        name: "Screen changer"
+        description: "Veridion asset class: screen changer."
+        code: "SCR"
+        standard: null

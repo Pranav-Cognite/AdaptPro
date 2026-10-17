@@ -1,0 +1,19 @@
+space: sp_veridion_dm
+externalId: VeridionDocument
+version: v1
+name: Veridion document
+implements:
+  - { type: view, space: cdf_cdm, externalId: CogniteFile, version: v1 }
+properties:
+  documentType:
+    container: { space: sp_veridion_dm, externalId: VeridionDocumentExt, type: container }
+    containerPropertyIdentifier: documentType
+  revision:
+    container: { space: sp_veridion_dm, externalId: VeridionDocumentExt, type: container }
+    containerPropertyIdentifier: revision
+  documentStatus:
+    container: { space: sp_veridion_dm, externalId: VeridionDocumentExt, type: container }
+    containerPropertyIdentifier: documentStatus
+  supersedes:
+    container: { space: sp_veridion_dm, externalId: VeridionDocumentExt, type: container }
+    containerPropertyIdentifier: supersedes

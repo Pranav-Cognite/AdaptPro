@@ -1,0 +1,26 @@
+externalId: ep_veridion_mes
+description: Cognite DB extractor config, abbreviated. Illustrative; not validated against the extractor's schema.
+config: |
+  databases:
+    - name: mes
+      type: odbc
+      connection-string: ${MES_CONNECTION_STRING}
+      timeout: 60
+  queries:
+    - name: line3-hourly-counts
+      database: mes
+      query: >
+        select 'ts_line3_good_output_kg' as externalId, hour_start as timestamp, good_kg as value from dbo.line_hourly where line_id = 3
+        union all
+        select 'ts_line3_reject_output_kg', hour_start, reject_kg from dbo.line_hourly where line_id = 3
+      destination: { type: time_series, space: sp_veridion_demo }
+      primary-key: "{externalId}-{timestamp}"
+  cognite:
+    project: ${CDF_PROJECT}
+    idp-authentication:
+      tenant: ${IDP_TENANT}
+      client-id: ${IDP_CLIENT_ID}
+      secret: ${IDP_CLIENT_SECRET}
+      scopes: [https://westeurope-1.cognitedata.com/.default]
+    extraction-pipeline:
+      external-id: ep_veridion_mes

@@ -1,0 +1,4 @@
+# SAP functional location to OPC UA tag path. Maintained by hand. R-301 appears twice: once for
+# the current PLC3 tag and once for the pre-migration DCS1 tag.
+- dbName: db_veridion_sap_raw
+  tableName: asset_tag_map

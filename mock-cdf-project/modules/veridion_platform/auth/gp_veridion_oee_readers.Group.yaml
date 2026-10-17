@@ -1,0 +1,20 @@
+# Principals that may use the OEE lookup. Read only. This group is how the ADR's "no write
+# capability" decision is also enforced in CDF itself: even if a tool were mis-built, the
+# identity it runs as cannot write instances, time series or files.
+name: gp_veridion_oee_readers
+sourceId: ${OEE_READERS_GROUP_SOURCE_ID}
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - dataModelsAcl:
+      actions: [READ]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_dm, cdf_cdm] } }
+  - dataModelInstancesAcl:
+      actions: [READ]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_demo] } }
+  - timeSeriesAcl:
+      actions: [READ]
+      scope: { datasetScope: { ids: [ds_veridion_opcua, ds_veridion_mes, ds_veridion_line3_oee] } }
+  - filesAcl:
+      actions: [READ]
+      scope: { datasetScope: { ids: [ds_veridion_sap_pm, ds_veridion_line3_oee] } }

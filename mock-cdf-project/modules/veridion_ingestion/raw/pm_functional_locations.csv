@@ -1,0 +1,41 @@
+tplnr,pltxt,status,asset_external_id,line_asset_external_id
+CV,Calder Valley Plant,ACTIVE,plant_caldervalley,
+CV-P,Polymer Production Unit,ACTIVE,area_polymer_unit,
+CV-U,Utilities,ACTIVE,area_utilities,
+CV-W,Packaging and Warehouse,ACTIVE,area_packaging_warehouse,
+CV-Q,Quality Laboratory,ACTIVE,area_quality_lab,
+CV-P-L1,Production Line 1,ACTIVE,asset_line1,asset_line1
+CV-P-L2,Production Line 2,ACTIVE,asset_line2,asset_line2
+CV-P-L3,Production Line 3,ACTIVE,asset_line3,asset_line3
+CV-P-L4,Production Line 4,ACTIVE,asset_line4,asset_line4
+CV-P-L1-R101,Reactor R-101,ACTIVE,asset_reactor_r101,asset_line1
+CV-P-L1-EX102,Extruder EX-102,ACTIVE,asset_extruder_ex102,asset_line1
+CV-P-L2-R201,Reactor R-201,ACTIVE,asset_reactor_r201,asset_line2
+CV-P-L2-EX202,Extruder EX-202,ACTIVE,asset_extruder_ex202,asset_line2
+CV-P-L4-R401,Reactor R-401,ACTIVE,asset_reactor_r401,asset_line4
+CV-P-L4-EX402,Extruder EX-402,ACTIVE,asset_extruder_ex402,asset_line4
+CV-P-L3-R301,Reactor R-301,ACTIVE,asset_reactor_r301,asset_line3
+CV-P-L3-EX302,Extruder EX-302,ACTIVE,asset_extruder_ex302,asset_line3
+CV-P-L3-R301-FV301,Feed Valve FV-301,ACTIVE,asset_r301_feed_valve_fv301,asset_line3
+CV-P-L3-R301-M301,Agitator Motor M-301,ACTIVE,asset_r301_agitator_m301,asset_line3
+CV-P-L3-R301-P301A,Feed Pump P-301A,ACTIVE,asset_r301_feed_pump_p301a,asset_line3
+CV-P-L3-R301-P301B,Feed Pump P-301B,ACTIVE,asset_r301_feed_pump_p301b,asset_line3
+CV-P-L3-R301-HX301,Jacket Cooler HX-301,ACTIVE,asset_r301_jacket_hx301,asset_line3
+CV-P-L3-R301-TT301A,Temperature Transmitter TT-301A,ACTIVE,asset_r301_temp_transmitter_tt301a,asset_line3
+CV-P-L3-R301-TT301B,Temperature Transmitter TT-301B,ACTIVE,asset_r301_temp_transmitter_tt301b,asset_line3
+CV-P-L3-R301-PT301,Pressure Transmitter PT-301,ACTIVE,asset_r301_pressure_transmitter_pt301,asset_line3
+CV-P-L3-EX302-M302,Screw Drive Motor M-302,ACTIVE,asset_ex302_screw_drive_m302,asset_line3
+CV-P-L3-EX302-GB302,Gearbox GB-302,ACTIVE,asset_ex302_gearbox_gb302,asset_line3
+CV-P-L3-EX302-DH302,Die Head DH-302,ACTIVE,asset_ex302_die_head_dh302,asset_line3
+CV-P-L3-EX302-SC302,Screen Changer SC-302,ACTIVE,asset_ex302_screen_changer_sc302,asset_line3
+CV-P-L3-EX302-PT302,Die Pressure Transmitter PT-302,ACTIVE,asset_ex302_melt_pressure_transmitter_pt302,asset_line3
+CV-P-L3-PL303,Underwater Pelletizer PL-303,ACTIVE,asset_pelletizer_pl303,asset_line3
+CV-P-L3-DR304,Centrifugal Dryer DR-304,ACTIVE,asset_dryer_dr304,asset_line3
+CV-P-L3-PK305,Packaging Station PK-305,ACTIVE,asset_packaging_pk305,asset_line3
+CV-P-L3-R301,R-301 (legacy DCS tag),INAC,asset_reactor_r301_dcs_legacy,
+CV-U-CW01,Cooling Water System CW-01,ACTIVE,asset_utilities_cooling_water_cw01,
+CV-U-ST01,Steam Header ST-01,ACTIVE,asset_utilities_steam_header_st01,
+CV-U-CA01,Compressed Air CA-01,ACTIVE,asset_utilities_compressed_air_ca01,
+CV-W-WH01,Finished Goods Warehouse WH-01,ACTIVE,asset_warehouse_wh01,
+CV-Q-MFI01,Melt Flow Indexer MFI-01,ACTIVE,asset_lab_mfi01,
+CV-Q-DSC01,Differential Scanning Calorimeter DSC-01,ACTIVE,asset_lab_dsc01,

@@ -1,0 +1,42 @@
+space: sp_veridion_dm
+externalId: VeridionTimeSeriesExt
+name: Veridion time series extension
+description: How a series is produced and what to be careful about when reading it.
+usedFor: node
+properties:
+  signalRole:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "oee | component | process | count."
+  calcMethod:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "How the value is derived from its inputs."
+  samplingSeconds:
+    type: { type: int32, list: false }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Nominal sampling interval in seconds."
+  definitionBasis:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "sop-rev-b | mes-legacy | raw. Series with different bases are not comparable."
+  knownIssues:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Known data-quality issues, in plain language. Null if none are known."
+  definitionDoc:
+    type: { type: direct, container: { space: cdf_cdm, externalId: CogniteFile, type: container } }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "The document that defines this series."

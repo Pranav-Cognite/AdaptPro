@@ -1,0 +1,21 @@
+# Service principal used by the three Cognite extractors. Writes raw data and instances, never the model.
+name: gp_veridion_extractors
+sourceId: ${EXTRACTORS_GROUP_SOURCE_ID}
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - dataModelsAcl:
+      actions: [READ]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_dm, cdf_cdm] } }
+  - dataModelInstancesAcl:
+      actions: [READ, WRITE]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_demo] } }
+  - timeSeriesAcl:
+      actions: [READ, WRITE]
+      scope: { datasetScope: { ids: [ds_veridion_opcua, ds_veridion_mes] } }
+  - rawAcl:
+      actions: [READ, WRITE]
+      scope: { tableScope: { dbsToTables: { db_veridion_sap_raw: [] } } }
+  - extractionPipelinesAcl:
+      actions: [READ, WRITE]
+      scope: { datasetScope: { ids: [ds_veridion_opcua, ds_veridion_sap_pm, ds_veridion_mes] } }
