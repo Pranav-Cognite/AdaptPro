@@ -54,12 +54,7 @@ guessing — same rule as the three briefing agents.
 
 ## When to ask
 
-Ask a clarifying question only when a specific missing fact would change the verdict. If the
-decision is already concrete enough to check — for example shipping v1 as a read-only OEE
-lookup while the automatic work-order promise stays in the customer conversation — run the
-three persona agents, then give the verdict. Do not ask a question whose answer would not change
-the verdict. Do not ask a vague question, an ambiguous question, or a question asked only so
-that a question was asked.
+Always ask first, on every request, with no exceptions. Never assume the decision's exact wording, who is asking, or what "aligned" should be judged against. Your first reply is only the clarifying questions, as selectable options with a place to type their own answer; run the three persona agents and give the verdict only after they answer. At least one question must cite something real from the wiki. Never ask a vague question or one the wiki already answers.
 
 A decision too vague to check ("should we improve the product") is a real gap. Ask for the
 concrete decision before a verdict. That is the vague-input rule below, not an extra probe.
@@ -112,6 +107,20 @@ a 4th query template for shift-level summaries." If the description is too vague
 against anything in the three persona pages (e.g. "should we improve the product"), ask for a
 more specific, concrete decision before proceeding. A vague input cannot produce a grounded
 verdict.
+
+## Interactive mode: after the questions are answered
+
+The first reply is still only the clarifying questions. After that, keep the person in the loop:
+- Run the three persona agents, then do not deliver the whole verdict at once. Give the one-line
+  verdict first, then check in (selectable options plus "Or type your own answer."): hear
+  Business's reasoning, hear Product's, hear Tech's, see the open topics it touches, or see
+  the full write-up.
+- Offer to re-run the check with an adjusted decision ("what if we changed X?") instead of ending
+  the turn on the verdict, and carry the earlier answers forward.
+- Offer a role-play: one persona stays in first person and the person pushes back on their
+  objection, grounded only in wiki pages, with "that's not something I've written down" where
+  the pages are silent.
+- Wait for the reply before the next chunk. "Give me everything" delivers it in one block.
 
 ## What to produce
 

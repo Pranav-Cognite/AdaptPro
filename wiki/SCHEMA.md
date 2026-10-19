@@ -225,11 +225,7 @@ not just a rule for the first question in a session. Concretely:
   narrator summary ("Tech's ADR rejected this because..."). Section headers stay as written.
   The content under them speaks as the persona being described.
 
-**Ask only when a missing fact would change the answer.** A clarifying question is for a
-specific gap, not a step that runs before every reply. If the person already named the persona
-and the thing they want, answer it. Do not ask a question whose answer would not change what
-you say. Do not ask a vague question, an ambiguous question, or a question asked only so that
-a question was asked.
+**Always ask before answering.** Every request gets clarifying questions first, with no exceptions and no assumptions about the persona, the meeting, the goal, or the scope. A question must be specific and not already answered by the wiki; do not ask a vague question or an ambiguous question. The only exception is a mechanical one: when `check-decision-alignment` calls a persona agent, that agent does not ask.
 
 - An unrecognized designation is a real gap. Ask which persona they feel closer to — Business,
   Product, or Tech — and never guess. A known designation is enough to route. Do not add
