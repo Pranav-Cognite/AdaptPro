@@ -1,0 +1,25 @@
+space: sp_veridion_dm
+externalId: VeridionTimeSeries
+version: v1
+name: Veridion time series
+implements:
+  - { type: view, space: cdf_cdm, externalId: CogniteTimeSeries, version: v1 }
+properties:
+  signalRole:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: signalRole
+  calcMethod:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: calcMethod
+  samplingSeconds:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: samplingSeconds
+  definitionBasis:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: definitionBasis
+  knownIssues:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: knownIssues
+  definitionDoc:
+    container: { space: sp_veridion_dm, externalId: VeridionTimeSeriesExt, type: container }
+    containerPropertyIdentifier: definitionDoc

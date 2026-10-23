@@ -1,0 +1,22 @@
+space: sp_veridion_dm
+externalId: VeridionAsset
+version: v1
+name: Veridion asset
+implements:
+  - { type: view, space: cdf_cdm, externalId: CogniteAsset, version: v1 }
+properties:
+  sapFunctionalLocation:
+    container: { space: sp_veridion_dm, externalId: VeridionAssetExt, type: container }
+    containerPropertyIdentifier: sapFunctionalLocation
+  opcuaTagPath:
+    container: { space: sp_veridion_dm, externalId: VeridionAssetExt, type: container }
+    containerPropertyIdentifier: opcuaTagPath
+  lifecycleStatus:
+    container: { space: sp_veridion_dm, externalId: VeridionAssetExt, type: container }
+    containerPropertyIdentifier: lifecycleStatus
+  criticality:
+    container: { space: sp_veridion_dm, externalId: VeridionAssetExt, type: container }
+    containerPropertyIdentifier: criticality
+  commissioningYear:
+    container: { space: sp_veridion_dm, externalId: VeridionAssetExt, type: container }
+    containerPropertyIdentifier: commissioningYear

@@ -1,0 +1,28 @@
+# Identity the transformations and the OEE function run as. May write instances and the derived
+# data set; cannot change the data model.
+name: gp_veridion_pipeline_runner
+sourceId: ${PIPELINE_RUNNER_GROUP_SOURCE_ID}
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - dataModelsAcl:
+      actions: [READ]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_dm, cdf_cdm] } }
+  - dataModelInstancesAcl:
+      actions: [READ, WRITE]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_demo] } }
+  - timeSeriesAcl:
+      actions: [READ, WRITE]
+      scope: { datasetScope: { ids: [ds_veridion_line3_oee] } }
+  - rawAcl:
+      actions: [READ]
+      scope: { tableScope: { dbsToTables: { db_veridion_sap_raw: [] } } }
+  - transformationsAcl:
+      actions: [READ, WRITE]
+      scope: { all: {} }
+  - functionsAcl:
+      actions: [READ, WRITE]
+      scope: { all: {} }
+  - workflowOrchestrationAcl:
+      actions: [READ, WRITE]
+      scope: { all: {} }

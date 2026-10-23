@@ -1,0 +1,40 @@
+space: sp_veridion_dm
+externalId: VeridionAssetExt
+name: Veridion asset extension
+description: Veridion-specific attributes on top of CogniteAsset.
+usedFor: node
+properties:
+  sapFunctionalLocation:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "SAP PM functional location, e.g. CV-P-L3-R301."
+  opcuaTagPath:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "OPC UA tag path prefix for this asset, e.g. PLC3/R301. Null where the asset has no control-system tag."
+  lifecycleStatus:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "operating | decommissioned."
+  criticality:
+    type: { type: text, list: false, collation: ucs_basic }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "A, B or C, as set in the SAP PM criticality analysis."
+  commissioningYear:
+    type: { type: int32, list: false }
+    nullable: true
+    immutable: false
+    autoIncrement: false
+    description: "Year the asset was commissioned."
+indexes:
+  sapFunctionalLocationIdx:
+    properties: [sapFunctionalLocation]
+    indexType: btree

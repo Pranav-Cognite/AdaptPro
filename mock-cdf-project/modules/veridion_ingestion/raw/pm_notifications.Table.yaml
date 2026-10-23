@@ -1,0 +1,4 @@
+# Rows in pm_notifications.csv use SAP PM field names (QMEL), lower-cased. The file is a
+# simplified extract: only the fields the transformation reads. Times are local (Europe/London).
+- dbName: db_veridion_sap_raw
+  tableName: pm_notifications

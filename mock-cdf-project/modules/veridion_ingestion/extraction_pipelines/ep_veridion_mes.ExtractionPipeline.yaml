@@ -1,0 +1,13 @@
+externalId: ep_veridion_mes
+name: Veridion — MES counts (DB extractor)
+dataSetExternalId: ds_veridion_mes
+description: Reads hourly good and reject kilograms per line from the plant MES batch database into CogniteTimeSeries instances.
+schedule: "5 * * * *"
+source: Plant MES batch quality database (SQL Server)
+contacts:
+  - name: Data engineering on-call
+    role: Owner
+    sendNotification: true
+documentation: >
+  Runs five minutes past each hour for the previous hour. MES posts late batch corrections for up
+  to 24 hours, so the query re-reads the last 24 hourly rows each run.

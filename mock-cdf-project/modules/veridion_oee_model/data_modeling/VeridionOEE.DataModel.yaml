@@ -1,0 +1,16 @@
+space: sp_veridion_dm
+externalId: VeridionOEE
+version: v1
+name: Veridion OEE
+description: >
+  Core Data Model views plus four Veridion views for the Calder Valley OEE engagement.
+  Read-only consumers (the OEE lookup) query this model; only the ingestion module writes to it.
+views:
+  - { type: view, space: sp_veridion_dm, externalId: VeridionAsset, version: v1 }
+  - { type: view, space: sp_veridion_dm, externalId: VeridionDowntimeActivity, version: v1 }
+  - { type: view, space: sp_veridion_dm, externalId: VeridionTimeSeries, version: v1 }
+  - { type: view, space: sp_veridion_dm, externalId: VeridionDocument, version: v1 }
+  - { type: view, space: cdf_cdm, externalId: CogniteEquipment, version: v1 }
+  - { type: view, space: cdf_cdm, externalId: CogniteSourceSystem, version: v1 }
+  - { type: view, space: cdf_cdm, externalId: CogniteAssetClass, version: v1 }
+  - { type: view, space: cdf_cdm, externalId: CogniteEquipmentType, version: v1 }

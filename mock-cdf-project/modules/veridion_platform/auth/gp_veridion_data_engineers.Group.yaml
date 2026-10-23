@@ -1,0 +1,18 @@
+# Humans who maintain the model and pipelines (the Tech persona's data engineers). The only group that can write the schema space.
+name: gp_veridion_data_engineers
+sourceId: ${DATA_ENGINEERS_GROUP_SOURCE_ID}
+metadata:
+  origin: cognite-toolkit
+capabilities:
+  - dataModelsAcl:
+      actions: [READ, WRITE]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_dm] } }
+  - dataModelInstancesAcl:
+      actions: [READ, WRITE]
+      scope: { spaceIdScope: { spaceIds: [sp_veridion_demo] } }
+  - datasetsAcl:
+      actions: [READ, OWNER]
+      scope: { all: {} }
+  - groupsAcl:
+      actions: [READ]
+      scope: { all: {} }

@@ -1,0 +1,193 @@
+# CogniteEquipmentType nodes.
+
+- space: sp_veridion_demo
+  externalId: etype_reactor
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor"
+        description: "Veridion equipment type: reactor."
+        code: "RX"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_extruder
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder"
+        description: "Veridion equipment type: extruder."
+        code: "EX"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_valve
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Control valve"
+        description: "Veridion equipment type: control valve."
+        code: "VLV"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_pump
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Centrifugal pump"
+        description: "Veridion equipment type: centrifugal pump."
+        code: "PMP"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_motor
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Electric motor"
+        description: "Veridion equipment type: electric motor."
+        code: "MTR"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_gearbox
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Gearbox"
+        description: "Veridion equipment type: gearbox."
+        code: "GBX"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_heat_exchanger
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Heat exchanger"
+        description: "Veridion equipment type: heat exchanger."
+        code: "HX"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_transmitter
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Transmitter"
+        description: "Veridion equipment type: transmitter."
+        code: "XMTR"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_pelletizer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Pelletizer"
+        description: "Veridion equipment type: pelletizer."
+        code: "PLT"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_dryer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Dryer"
+        description: "Veridion equipment type: dryer."
+        code: "DRY"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_die
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Extrusion die"
+        description: "Veridion equipment type: extrusion die."
+        code: "DIE"
+        equipmentClass: null
+        standard: null
+        standardReference: null
+
+- space: sp_veridion_demo
+  externalId: etype_screen_changer
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteEquipmentType
+        version: "v1"
+        type: view
+      properties:
+        name: "Screen changer"
+        description: "Veridion equipment type: screen changer."
+        code: "SCR"
+        equipmentClass: null
+        standard: null
+        standardReference: null

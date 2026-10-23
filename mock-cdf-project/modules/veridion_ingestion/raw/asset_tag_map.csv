@@ -1,0 +1,10 @@
+tplnr,opcua_path,mapped_by_role,valid_from,valid_to
+CV-P-L3,,Data engineer,2021-06-01,
+CV-P-L3-R301,PLC3/R301,Data engineer,2021-06-01,
+CV-P-L3-R301,DCS1/R301,Data engineer,2019-04-01,2021-05-31
+CV-P-L3-R301-FV301,PLC3/R301/FV301,Data engineer,2021-06-01,
+CV-P-L3-R301-TT301A,PLC3/R301/TT301A,Data engineer,2021-06-01,
+CV-P-L3-R301-TT301B,PLC3/R301/TT301B,Data engineer,2021-06-01,
+CV-P-L3-EX302,PLC3/EX302,Data engineer,2021-06-01,
+CV-P-L3-EX302-DH302,PLC3/EX302/DH302,Data engineer,2021-06-01,
+CV-P-L3-PL303,PLC3/PL303,Data engineer,2021-06-01,

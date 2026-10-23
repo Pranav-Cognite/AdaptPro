@@ -1,0 +1,7 @@
+# Fictional data space for the Veridion Line 3 OEE demo.
+# Numbered "01_" per Toolkit convention: spaces must exist before any instances reference them.
+# Holds every instance (assets, equipment, time series, activities, files). The schema lives in
+# sp_veridion_dm (modules/veridion_oee_model).
+space: sp_veridion_demo
+name: Veridion Chemicals — Veridion Line 3 OEE demo
+description: Static demo space for the Veridion Chemicals Calder Valley plant (veridion-line3-oee engagement). Holds all instances, in Core Data Model and Veridion views.

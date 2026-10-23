@@ -1,0 +1,308 @@
+# CogniteFile node instances. `assets` links a file to the CogniteAsset(s) it documents.
+# File content itself is not included — this is a static fixture, not a running File
+# service — only the metadata needed for citation exists. VeridionDocument adds document
+# type, revision, status and the revision it supersedes.
+
+- space: sp_veridion_demo
+  externalId: file_line3_oee_calculation_sop
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — OEE Calculation SOP"
+        description: "Standard operating procedure defining how Availability, Performance, and Quality are calculated for Line 3."
+        tags: [sop, oee, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/"
+        isUploaded: true
+        uploadedTime: "2025-09-01T09:00:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "sop"
+        revision: "B"
+        documentStatus: "effective"
+        supersedes: { space: sp_veridion_demo, externalId: file_line3_oee_calculation_sop_rev_a }
+
+- space: sp_veridion_demo
+  externalId: file_line3_oee_calculation_sop_rev_a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — OEE Calculation SOP (rev A)"
+        description: "Superseded by rev B. Rev A used the 4,200 kg/h nameplate ideal rate; rev B uses the 3,800 kg/h demonstrated rate approved under MOC-2025-014."
+        tags: [sop, oee, line-3, superseded]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/archive/"
+        isUploaded: true
+        uploadedTime: "2024-02-14T09:00:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "sop"
+        revision: "A"
+        documentStatus: "superseded"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_moc_2025_014_line3_ideal_rate
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "MOC-2025-014 — Line 3 ideal rate change"
+        description: "Management-of-change record approving the move of Line 3's OEE ideal rate from 4,200 kg/h to 3,800 kg/h. Records that the legacy MES report was not in the change scope."
+        tags: [moc, oee, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/moc/"
+        isUploaded: true
+        uploadedTime: "2025-08-22T14:00:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "moc"
+        revision: "1"
+        documentStatus: "approved"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_mes_legacy_oee_report_spec
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "Plant MES — Legacy OEE report specification"
+        description: "Specification of the shift-end OEE report supervisors use today: ideal rate 4,200 kg/h; changeovers and planned maintenance counted as availability loss."
+        tags: [mes, oee, legacy]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/mes/"
+        isUploaded: true
+        uploadedTime: "2022-11-03T10:30:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line1 }
+          - { space: sp_veridion_demo, externalId: asset_line2 }
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_line4 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "specification"
+        revision: "3"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_line3_pid_reactor_section
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — P&ID reactor section R-301"
+        description: "Piping and instrumentation diagram for the R-301 feed, jacket and agitator systems."
+        tags: [pid, reactor, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/pid/"
+        isUploaded: true
+        uploadedTime: "2024-06-18T08:15:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+          - { space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "pid"
+        revision: "7"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_line3_pid_extruder_section
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "Line 3 — P&ID extruder section EX-302"
+        description: "Piping and instrumentation diagram for EX-302, the screen changer, die and pelletizer."
+        tags: [pid, extruder, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/pid/"
+        isUploaded: true
+        uploadedTime: "2024-06-18T08:20:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+          - { space: sp_veridion_demo, externalId: asset_ex302_die_head_dh302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "pid"
+        revision: "5"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_fv301_valve_maintenance_manual
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "FV-301 — Valve maintenance manual"
+        description: "Vendor maintenance manual for the FV-301 feed control valve, including actuator and positioner service intervals."
+        tags: [vendor-manual, valve, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/vendor/"
+        isUploaded: true
+        uploadedTime: "2019-04-02T12:00:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "vendor-manual"
+        revision: "2"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_ex302_screen_pack_change_procedure
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "EX-302 — Screen pack change procedure"
+        description: "Work procedure for changing the screen pack on SC-302. Planned task, typically 60 to 90 minutes."
+        tags: [procedure, extruder, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/procedures/"
+        isUploaded: true
+        uploadedTime: "2023-01-17T09:45:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_ex302_screen_changer_sc302 }
+          - { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "procedure"
+        revision: "4"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_sap_downtime_cause_code_guide
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "SAP PM — Downtime cause code guide"
+        description: "How operators and maintenance should classify breakdown causes in SAP PM. Does not say who owns reconciling a stop logged by both Production and Maintenance."
+        tags: [sap, downtime, guide]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/maintenance/"
+        isUploaded: true
+        uploadedTime: "2023-09-05T13:00:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "guide"
+        revision: "2"
+        documentStatus: "effective"
+        supersedes: null
+
+- space: sp_veridion_demo
+  externalId: file_rca_2026_09_30_fv301_valve_fault
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteFile
+        version: "v1"
+        type: view
+      properties:
+        name: "RCA (draft) — 2026-09-30 FV-301 valve fault"
+        description: "Draft root-cause analysis for the 30 September unplanned stop. Actuator positioner suspected; corrective actions not yet closed."
+        tags: [rca, valve, line-3]
+        aliases: []
+        mimeType: "application/pdf"
+        directory: "/plant-docs/caldervalley/line-3/rca/"
+        isUploaded: true
+        uploadedTime: "2026-10-02T15:30:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDocument
+        version: "v1"
+        type: view
+      properties:
+        documentType: "rca"
+        revision: "0.1"
+        documentStatus: "draft"
+        supersedes: null

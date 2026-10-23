@@ -1,0 +1,453 @@
+# CogniteActivity node instances — downtime events that drive the Availability component
+# of Line 3's OEE. Note there is no CogniteEvent view in the Core Data Model;
+# CogniteActivity is the correct concept, and it carries scheduling fields
+# (CogniteSchedulable) instead of a single timestamp. VeridionDowntimeActivity adds the
+# loss classification and SAP notification id.
+#
+# Things to know about this set (also listed in the project README):
+#   * 2026-09-30: one stop appears twice (operator notification + maintenance notification).
+#   * 2026-10-14: an unplanned stop whose SAP notification has no end time.
+#   * Micro-stops under 10 minutes are not logged in SAP at all and appear only as output-rate dips.
+#   * The two FV-301 stops (09-30 and 10-09) share a failure signature.
+
+- space: sp_veridion_demo
+  externalId: activity_line3_changeover_20260917
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Planned changeover — Line 3 (grade G-45 to G-52)"
+        description: >
+          Scheduled grade changeover on Line 3, counted as planned downtime and excluded
+          from the Availability loss calculation.
+        tags: [changeover, planned, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118201"
+        startTime: "2026-09-17T05:00:00Z"
+        endTime: "2026-09-17T06:20:00Z"
+        scheduledStartTime: "2026-09-17T05:00:00Z"
+        scheduledEndTime: "2026-09-17T06:20:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "changeover"
+        lossClass: "planned"
+        countsAsAvailabilityLoss: false
+        sapNotificationId: "000400118201"
+        causeCode: "PLN1"
+        shift: "A"
+        reportedByRole: "Production planner"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_die_pressure_trip_20260919
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Unplanned stop — EX-302 die pressure high trip"
+        description: >
+          Extruder tripped on high die pressure. Screen pack partially blocked; cleared
+          and restarted by shift.
+        tags: [unplanned-stop, extruder, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118377"
+        startTime: "2026-09-19T22:40:00Z"
+        endTime: "2026-09-19T23:25:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+          - { space: sp_veridion_demo, externalId: asset_ex302_die_head_dh302 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_dh302 }]
+        timeSeries: [{ space: sp_veridion_demo, externalId: ts_extruder_ex302_die_pressure_bar }]
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "process-trip"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400118377"
+        causeCode: "PT02"
+        shift: "C"
+        reportedByRole: "Shift operator"
+
+- space: sp_veridion_demo
+  externalId: activity_ex302_screen_pack_change_20260921
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Planned maintenance — EX-302 screen pack change"
+        description: >
+          Scheduled screen pack change on SC-302 per the screen pack change procedure.
+        tags: [planned, maintenance, extruder, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118452"
+        startTime: "2026-09-21T09:00:00Z"
+        endTime: "2026-09-21T10:15:00Z"
+        scheduledStartTime: "2026-09-21T09:00:00Z"
+        scheduledEndTime: "2026-09-21T10:15:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+          - { space: sp_veridion_demo, externalId: asset_ex302_screen_changer_sc302 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_sc302 }]
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "planned-maintenance"
+        lossClass: "planned"
+        countsAsAvailabilityLoss: false
+        sapNotificationId: "000400118452"
+        causeCode: "PM01"
+        shift: "A"
+        reportedByRole: "Maintenance planner"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_feed_pump_p301a_trip_20260924
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Unplanned stop — Feed pump P-301A trip"
+        description: >
+          P-301A tripped on low suction pressure. Standby P-301B started manually after
+          the stop.
+        tags: [unplanned-stop, pump, reactor, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118590"
+        startTime: "2026-09-24T03:10:00Z"
+        endTime: "2026-09-24T04:35:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+          - { space: sp_veridion_demo, externalId: asset_r301_feed_pump_p301a }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_p301a }]
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "equipment-failure"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400118590"
+        causeCode: "MP03"
+        shift: "C"
+        reportedByRole: "Shift operator"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_changeover
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Planned changeover — Line 3"
+        description: >
+          Scheduled grade changeover on Line 3, counted as planned downtime and excluded
+          from the Availability loss calculation.
+        tags: [changeover, planned, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118744"
+        startTime: "2026-09-29T06:00:00Z"
+        endTime: "2026-09-29T07:30:00Z"
+        scheduledStartTime: "2026-09-29T06:00:00Z"
+        scheduledEndTime: "2026-09-29T07:30:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "changeover"
+        lossClass: "planned"
+        countsAsAvailabilityLoss: false
+        sapNotificationId: "000400118744"
+        causeCode: "PLN1"
+        shift: "A"
+        reportedByRole: "Production planner"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_valve_fault
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Unplanned stop — Reactor R-301 valve fault"
+        description: >
+          Unplanned stop on Line 3 caused by a feed valve fault on Reactor R-301.
+          Counted as Availability loss.
+        tags: [unplanned-stop, reactor, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118802"
+        startTime: "2026-09-30T14:22:00Z"
+        endTime: "2026-09-30T15:47:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_fv301 }]
+        timeSeries: 
+          - { space: sp_veridion_demo, externalId: ts_reactor_r301_temperature_degc }
+          - { space: sp_veridion_demo, externalId: ts_reactor_r301_feed_valve_fv301_position_pct }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "equipment-failure"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400118802"
+        causeCode: "MV02"
+        shift: "B"
+        reportedByRole: "Shift operator"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_valve_fault_maint_notification
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Maintenance notification — FV-301 repair"
+        description: >
+          Maintenance's own notification for the 30 September FV-301 repair. Overlaps
+          the operator's stop record for the same event; both are in SAP as separate
+          notifications.
+        tags: [unplanned-stop, valve, line-3, possible-duplicate]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400118811"
+        startTime: "2026-09-30T14:30:00Z"
+        endTime: "2026-09-30T15:40:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_fv301 }]
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "equipment-failure"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400118811"
+        causeCode: "MV02"
+        shift: "B"
+        reportedByRole: "Maintenance technician"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_changeover_20261007
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Planned changeover — Line 3 (grade G-52 to G-45)"
+        description: >
+          Scheduled grade changeover on Line 3, counted as planned downtime and excluded
+          from the Availability loss calculation.
+        tags: [changeover, planned, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400119203"
+        startTime: "2026-10-07T13:00:00Z"
+        endTime: "2026-10-07T14:40:00Z"
+        scheduledStartTime: "2026-10-07T13:00:00Z"
+        scheduledEndTime: "2026-10-07T14:40:00Z"
+        assets: [{ space: sp_veridion_demo, externalId: asset_line3 }]
+        equipment: []
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "changeover"
+        lossClass: "planned"
+        countsAsAvailabilityLoss: false
+        sapNotificationId: "000400119203"
+        causeCode: "PLN1"
+        shift: "B"
+        reportedByRole: "Production planner"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_valve_sticking_20261009
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Unplanned stop — FV-301 sticking (recurrence)"
+        description: >
+          Feed valve FV-301 stuck again, same failure signature as 30 September. Cleared
+          by cycling the actuator; the draft RCA actions were still open.
+        tags: [unplanned-stop, valve, reactor, line-3, recurrence]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400119318"
+        startTime: "2026-10-09T11:05:00Z"
+        endTime: "2026-10-09T12:20:00Z"
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+          - { space: sp_veridion_demo, externalId: asset_r301_feed_valve_fv301 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_fv301 }]
+        timeSeries: 
+          - { space: sp_veridion_demo, externalId: ts_reactor_r301_temperature_degc }
+          - { space: sp_veridion_demo, externalId: ts_reactor_r301_feed_valve_fv301_position_pct }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "equipment-failure"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400119318"
+        causeCode: "MV02"
+        shift: "A"
+        reportedByRole: "Shift operator"
+
+- space: sp_veridion_demo
+  externalId: activity_r301_agitator_seal_inspection_20261012
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Planned maintenance — R-301 agitator seal inspection"
+        description: >
+          Quarterly inspection of the M-301 agitator mechanical seal.
+        tags: [planned, maintenance, reactor, line-3]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400119402"
+        startTime: "2026-10-12T08:00:00Z"
+        endTime: "2026-10-12T11:30:00Z"
+        scheduledStartTime: "2026-10-12T08:00:00Z"
+        scheduledEndTime: "2026-10-12T11:30:00Z"
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+          - { space: sp_veridion_demo, externalId: asset_r301_agitator_m301 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_m301 }]
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "planned-maintenance"
+        lossClass: "planned"
+        countsAsAvailabilityLoss: false
+        sapNotificationId: "000400119402"
+        causeCode: "PM02"
+        shift: "A"
+        reportedByRole: "Maintenance planner"
+
+- space: sp_veridion_demo
+  externalId: activity_line3_unplanned_stop_pelletizer_20261014
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteActivity
+        version: "v1"
+        type: view
+      properties:
+        name: "Unplanned stop — PL-303 cutter jam (notification not closed)"
+        description: >
+          Pelletizer cutter jam. The SAP notification has a start time but was never
+          given an end time; production resumed about 25 minutes later.
+        tags: [unplanned-stop, pelletizer, line-3, open-ended]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "000400119577"
+        startTime: "2026-10-14T19:30:00Z"
+        endTime: null
+        scheduledStartTime: null
+        scheduledEndTime: null
+        assets: 
+          - { space: sp_veridion_demo, externalId: asset_line3 }
+          - { space: sp_veridion_demo, externalId: asset_pelletizer_pl303 }
+        equipment: [{ space: sp_veridion_demo, externalId: equip_pl303 }]
+        timeSeries: []
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionDowntimeActivity
+        version: "v1"
+        type: view
+      properties:
+        downtimeCategory: "process-trip"
+        lossClass: "unplanned"
+        countsAsAvailabilityLoss: true
+        sapNotificationId: "000400119577"
+        causeCode: "PT07"
+        shift: "B"
+        reportedByRole: "Shift operator"

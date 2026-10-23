@@ -1,0 +1,37 @@
+externalId: ep_veridion_opcua
+description: Cognite OPC UA extractor config, abbreviated. Illustrative; not validated against the extractor's schema.
+config: |
+  version: 1
+  source:
+    endpoint-url: opc.tcp://calder-plc-03.veridion.internal:4840
+    username: ${OPCUA_USERNAME}
+    password: ${OPCUA_PASSWORD}
+    keep-alive-interval: 5000
+  cognite:
+    project: ${CDF_PROJECT}
+    idp-authentication:
+      tenant: ${IDP_TENANT}
+      client-id: ${IDP_CLIENT_ID}
+      secret: ${IDP_CLIENT_SECRET}
+      scopes: [https://westeurope-1.cognitedata.com/.default]
+    data-set:
+      external-id: ds_veridion_opcua
+    extraction-pipeline:
+      external-id: ep_veridion_opcua
+    # Write to Core Data Model time series instead of the legacy /timeseries API
+    metadata-targets:
+      data-models:
+        space: sp_veridion_demo
+        model-space: cdf_cdm
+        instance-space: sp_veridion_demo
+  extraction:
+    root-node: { node-id: { namespace-uri: urn:veridion:plc3, node-id: PLC3 } }
+    node-map: ./node_map.yaml
+    data-types:
+      auto-identify-types: true
+      unknown-as-scalar: false
+    # Latest good value is re-sent when a transmitter stops updating, which is why a frozen
+    # sensor shows a flat line instead of a gap (see ts_reactor_r301_pressure_bar, 2026-10-08).
+    subscriptions:
+      data-change-policy: { trigger: StatusValue }
+      sampling-interval: 5000

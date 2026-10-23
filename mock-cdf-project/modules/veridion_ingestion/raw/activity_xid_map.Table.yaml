@@ -1,0 +1,5 @@
+# Legacy mapping from SAP notification number to a hand-assigned activity externalId. Two
+# activities were created by hand before the transformation existed and are cited by the ADR,
+# so their ids are kept. Every other notification gets a generated id.
+- dbName: db_veridion_sap_raw
+  tableName: activity_xid_map

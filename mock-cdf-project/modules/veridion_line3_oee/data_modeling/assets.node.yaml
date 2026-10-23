@@ -1,0 +1,1177 @@
+# CogniteAsset node instances — Calder Valley Plant functional-location hierarchy.
+# Each node is populated through two views: the Core Data Model CogniteAsset view, and
+# VeridionAsset (modules/veridion_oee_model), which adds SAP functional location, OPC UA
+# tag path, lifecycle status, criticality and commissioning year.
+#
+# Hierarchy (Line 3 shown in full; Lines 1, 2 and 4 are reactor + extruder only):
+#   plant_caldervalley
+#   ├── area_polymer_unit
+#   │   ├── asset_line1 / asset_line2 / asset_line4  (reactor, extruder)
+#   │   ├── asset_line3
+#   │   │   ├── asset_reactor_r301     (FV-301, M-301, P-301A/B, HX-301, TT-301A/B, PT-301)
+#   │   │   ├── asset_extruder_ex302   (M-302, GB-302, DH-302, SC-302, PT-302)
+#   │   │   └── asset_pelletizer_pl303, asset_dryer_dr304, asset_packaging_pk305
+#   │   └── asset_reactor_r301_dcs_legacy   (decommissioned duplicate of R-301 — see README)
+#   ├── area_utilities
+#   ├── area_packaging_warehouse
+#   └── area_quality_lab
+
+- space: sp_veridion_demo
+  externalId: plant_caldervalley
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Calder Valley Plant"
+        description: "Veridion Chemicals specialty polymers manufacturing site."
+        tags: [plant, chemical]
+        aliases: [Calder Valley, CV]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV"
+        assetClass: { space: sp_veridion_demo, externalId: class_plant }
+        parent: null
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: area_polymer_unit
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Polymer Production Unit"
+        description: "Production area housing the polymer manufacturing lines."
+        tags: [production-unit, polymer]
+        aliases: [PPU]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P"
+        assetClass: { space: sp_veridion_demo, externalId: class_area }
+        parent: { space: sp_veridion_demo, externalId: plant_caldervalley }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: area_utilities
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Utilities"
+        description: "Cooling water, steam and compressed air serving the production units."
+        tags: [utilities]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-U"
+        assetClass: { space: sp_veridion_demo, externalId: class_area }
+        parent: { space: sp_veridion_demo, externalId: plant_caldervalley }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-U"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: area_packaging_warehouse
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Packaging and Warehouse"
+        description: "Bagging, palletising and finished-goods storage."
+        tags: [packaging, warehouse]
+        aliases: []
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-W"
+        assetClass: { space: sp_veridion_demo, externalId: class_area }
+        parent: { space: sp_veridion_demo, externalId: plant_caldervalley }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-W"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2012
+
+- space: sp_veridion_demo
+  externalId: area_quality_lab
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Quality Laboratory"
+        description: "On-site laboratory for melt-flow, thermal and colour release testing."
+        tags: [quality, lab]
+        aliases: [QC Lab]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-Q"
+        assetClass: { space: sp_veridion_demo, externalId: class_area }
+        parent: { space: sp_veridion_demo, externalId: plant_caldervalley }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-Q"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2012
+
+- space: sp_veridion_demo
+  externalId: asset_line1
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Production Line 1"
+        description: "Batch-to-continuous polymerization line; oldest line on site."
+        tags: [line, line-1]
+        aliases: [Line 1, L1]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L1"
+        assetClass: { space: sp_veridion_demo, externalId: class_line }
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L1"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: asset_line2
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Production Line 2"
+        description: "Continuous polymerization line, reactor through extrusion."
+        tags: [line, line-2]
+        aliases: [Line 2, L2]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L2"
+        assetClass: { space: sp_veridion_demo, externalId: class_line }
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L2"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2014
+
+- space: sp_veridion_demo
+  externalId: asset_line3
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Production Line 3"
+        description: "Continuous polymerization line, reactor through extrusion and packaging."
+        tags: [line, line-3, oee]
+        aliases: [Line 3, L3]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3"
+        assetClass: { space: sp_veridion_demo, externalId: class_line }
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_line4
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Production Line 4"
+        description: "Continuous polymerization line commissioned alongside the 2022 expansion."
+        tags: [line, line-4]
+        aliases: [Line 4, L4]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L4"
+        assetClass: { space: sp_veridion_demo, externalId: class_line }
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L4"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2022
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r101
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-101"
+        description: "Polymerization reactor feeding Line 1."
+        tags: [reactor, line-1]
+        aliases: [R-101]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L1-R101"
+        assetClass: { space: sp_veridion_demo, externalId: class_reactor }
+        parent: { space: sp_veridion_demo, externalId: asset_line1 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L1-R101"
+        opcuaTagPath: "PLC1/R101"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: asset_extruder_ex102
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-102"
+        description: "Extrusion unit downstream of R-101 on Line 1."
+        tags: [extruder, line-1]
+        aliases: [EX-102]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L1-EX102"
+        assetClass: { space: sp_veridion_demo, externalId: class_extruder }
+        parent: { space: sp_veridion_demo, externalId: asset_line1 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L1-EX102"
+        opcuaTagPath: "PLC1/EX102"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r201
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-201"
+        description: "Polymerization reactor feeding Line 2."
+        tags: [reactor, line-2]
+        aliases: [R-201]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L2-R201"
+        assetClass: { space: sp_veridion_demo, externalId: class_reactor }
+        parent: { space: sp_veridion_demo, externalId: asset_line2 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L2-R201"
+        opcuaTagPath: "PLC2/R201"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2014
+
+- space: sp_veridion_demo
+  externalId: asset_extruder_ex202
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-202"
+        description: "Extrusion unit downstream of R-201 on Line 2."
+        tags: [extruder, line-2]
+        aliases: [EX-202]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L2-EX202"
+        assetClass: { space: sp_veridion_demo, externalId: class_extruder }
+        parent: { space: sp_veridion_demo, externalId: asset_line2 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L2-EX202"
+        opcuaTagPath: "PLC2/EX202"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2014
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r401
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-401"
+        description: "Polymerization reactor feeding Line 4."
+        tags: [reactor, line-4]
+        aliases: [R-401]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L4-R401"
+        assetClass: { space: sp_veridion_demo, externalId: class_reactor }
+        parent: { space: sp_veridion_demo, externalId: asset_line4 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L4-R401"
+        opcuaTagPath: "PLC4/R401"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2022
+
+- space: sp_veridion_demo
+  externalId: asset_extruder_ex402
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-402"
+        description: "Extrusion unit downstream of R-401 on Line 4."
+        tags: [extruder, line-4]
+        aliases: [EX-402]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L4-EX402"
+        assetClass: { space: sp_veridion_demo, externalId: class_extruder }
+        parent: { space: sp_veridion_demo, externalId: asset_line4 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L4-EX402"
+        opcuaTagPath: "PLC4/EX402"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2022
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Reactor R-301"
+        description: "Continuous polymerization reactor feeding Line 3."
+        tags: [reactor, line-3]
+        aliases: [R-301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301"
+        assetClass: { space: sp_veridion_demo, externalId: class_reactor }
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301"
+        opcuaTagPath: "PLC3/R301"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_extruder_ex302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Extruder EX-302"
+        description: "Extrusion unit downstream of Reactor R-301 on Line 3."
+        tags: [extruder, line-3]
+        aliases: [EX-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302"
+        assetClass: { space: sp_veridion_demo, externalId: class_extruder }
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302"
+        opcuaTagPath: "PLC3/EX302"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_feed_valve_fv301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Valve FV-301"
+        description: "Monomer feed control valve on Reactor R-301."
+        tags: [valve, feed, line-3]
+        aliases: [FV-301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-FV301"
+        assetClass: { space: sp_veridion_demo, externalId: class_valve }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-FV301"
+        opcuaTagPath: "PLC3/R301/FV301"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_agitator_m301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Agitator Motor M-301"
+        description: "Drive motor of the R-301 agitator."
+        tags: [motor, agitator, line-3]
+        aliases: [M-301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-M301"
+        assetClass: { space: sp_veridion_demo, externalId: class_motor }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-M301"
+        opcuaTagPath: "PLC3/R301/M301"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_feed_pump_p301a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Pump P-301A"
+        description: "Duty monomer feed pump for Reactor R-301."
+        tags: [pump, feed, line-3]
+        aliases: [P-301A]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-P301A"
+        assetClass: { space: sp_veridion_demo, externalId: class_pump }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-P301A"
+        opcuaTagPath: "PLC3/R301/P301A"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_feed_pump_p301b
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Feed Pump P-301B"
+        description: "Standby monomer feed pump for Reactor R-301."
+        tags: [pump, feed, line-3, standby]
+        aliases: [P-301B]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-P301B"
+        assetClass: { space: sp_veridion_demo, externalId: class_pump }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-P301B"
+        opcuaTagPath: "PLC3/R301/P301B"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_jacket_hx301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Jacket Cooler HX-301"
+        description: "Cooling-water heat exchanger on the R-301 jacket loop."
+        tags: [heat-exchanger, line-3]
+        aliases: [HX-301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-HX301"
+        assetClass: { space: sp_veridion_demo, externalId: class_heat_exchanger }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-HX301"
+        opcuaTagPath: "PLC3/R301/HX301"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_temp_transmitter_tt301a
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Temperature Transmitter TT-301A"
+        description: "Primary reactor process temperature transmitter (degC)."
+        tags: [instrument, temperature, line-3]
+        aliases: [TT-301A]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-TT301A"
+        assetClass: { space: sp_veridion_demo, externalId: class_instrument }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-TT301A"
+        opcuaTagPath: "PLC3/R301/TT301A"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_r301_temp_transmitter_tt301b
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Temperature Transmitter TT-301B"
+        description: "Redundant reactor temperature transmitter. Configured in degF on the OPC UA server."
+        tags: [instrument, temperature, line-3]
+        aliases: [TT-301B]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-TT301B"
+        assetClass: { space: sp_veridion_demo, externalId: class_instrument }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-TT301B"
+        opcuaTagPath: "PLC3/R301/TT301B"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2021
+
+- space: sp_veridion_demo
+  externalId: asset_r301_pressure_transmitter_pt301
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Pressure Transmitter PT-301"
+        description: "Reactor head pressure transmitter (bar)."
+        tags: [instrument, pressure, line-3]
+        aliases: [PT-301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301-PT301"
+        assetClass: { space: sp_veridion_demo, externalId: class_instrument }
+        parent: { space: sp_veridion_demo, externalId: asset_reactor_r301 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301-PT301"
+        opcuaTagPath: "PLC3/R301/PT301"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_ex302_screw_drive_m302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Screw Drive Motor M-302"
+        description: "Main drive motor of the EX-302 screw."
+        tags: [motor, drive, line-3]
+        aliases: [M-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302-M302"
+        assetClass: { space: sp_veridion_demo, externalId: class_motor }
+        parent: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302-M302"
+        opcuaTagPath: "PLC3/EX302/M302"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_ex302_gearbox_gb302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Gearbox GB-302"
+        description: "Reduction gearbox between M-302 and the screw."
+        tags: [gearbox, line-3]
+        aliases: [GB-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302-GB302"
+        assetClass: { space: sp_veridion_demo, externalId: class_gearbox }
+        parent: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302-GB302"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_ex302_die_head_dh302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Die Head DH-302"
+        description: "Strand die at the extruder outlet."
+        tags: [die, line-3]
+        aliases: [DH-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302-DH302"
+        assetClass: { space: sp_veridion_demo, externalId: class_die }
+        parent: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302-DH302"
+        opcuaTagPath: "PLC3/EX302/DH302"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_ex302_screen_changer_sc302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Screen Changer SC-302"
+        description: "Melt filtration screen changer ahead of the die."
+        tags: [screen-changer, line-3]
+        aliases: [SC-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302-SC302"
+        assetClass: { space: sp_veridion_demo, externalId: class_screen_changer }
+        parent: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302-SC302"
+        opcuaTagPath: "PLC3/EX302/SC302"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_ex302_melt_pressure_transmitter_pt302
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Die Pressure Transmitter PT-302"
+        description: "Die-inlet melt pressure transmitter (bar)."
+        tags: [instrument, pressure, line-3]
+        aliases: [PT-302]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-EX302-PT302"
+        assetClass: { space: sp_veridion_demo, externalId: class_instrument }
+        parent: { space: sp_veridion_demo, externalId: asset_extruder_ex302 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-EX302-PT302"
+        opcuaTagPath: "PLC3/EX302/PT302"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_pelletizer_pl303
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Underwater Pelletizer PL-303"
+        description: "Cuts the extruded strand into pellets."
+        tags: [pelletizer, line-3]
+        aliases: [PL-303]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-PL303"
+        assetClass: { space: sp_veridion_demo, externalId: class_pelletizer }
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-PL303"
+        opcuaTagPath: "PLC3/PL303"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_dryer_dr304
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Centrifugal Dryer DR-304"
+        description: "Removes process water from pellets after PL-303."
+        tags: [dryer, line-3]
+        aliases: [DR-304]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-DR304"
+        assetClass: { space: sp_veridion_demo, externalId: class_dryer }
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-DR304"
+        opcuaTagPath: "PLC3/DR304"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_packaging_pk305
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Packaging Station PK-305"
+        description: "Weighing and bagging of Line 3 pellets."
+        tags: [packaging, line-3]
+        aliases: [PK-305]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-PK305"
+        assetClass: { space: sp_veridion_demo, externalId: class_packaging }
+        parent: { space: sp_veridion_demo, externalId: asset_line3 }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-PK305"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_reactor_r301_dcs_legacy
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "R-301 (legacy DCS tag)"
+        description: "Pre-migration DCS representation of Reactor R-301. Decommissioned; retained because historian series from before the 2021 DCS migration are still attached to it."
+        tags: [reactor, line-3, legacy, duplicate]
+        aliases: [DCS1.R301]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-P-L3-R301"
+        assetClass: { space: sp_veridion_demo, externalId: class_reactor }
+        parent: { space: sp_veridion_demo, externalId: area_polymer_unit }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-P-L3-R301"
+        opcuaTagPath: "DCS1/R301"
+        lifecycleStatus: "decommissioned"
+        criticality: "C"
+        commissioningYear: 2019
+
+- space: sp_veridion_demo
+  externalId: asset_utilities_cooling_water_cw01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Cooling Water System CW-01"
+        description: "Closed-loop cooling water serving Lines 1 to 4."
+        tags: [utility, cooling-water]
+        aliases: [CW-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-U-CW01"
+        assetClass: { space: sp_veridion_demo, externalId: class_utility }
+        parent: { space: sp_veridion_demo, externalId: area_utilities }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-U-CW01"
+        opcuaTagPath: "UTIL/CW01"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: asset_utilities_steam_header_st01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Steam Header ST-01"
+        description: "Medium-pressure steam header for reactor heating."
+        tags: [utility, steam]
+        aliases: [ST-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-U-ST01"
+        assetClass: { space: sp_veridion_demo, externalId: class_utility }
+        parent: { space: sp_veridion_demo, externalId: area_utilities }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-U-ST01"
+        opcuaTagPath: "UTIL/ST01"
+        lifecycleStatus: "operating"
+        criticality: "A"
+        commissioningYear: 2011
+
+- space: sp_veridion_demo
+  externalId: asset_utilities_compressed_air_ca01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Compressed Air CA-01"
+        description: "Instrument and plant air compressors."
+        tags: [utility, compressed-air]
+        aliases: [CA-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-U-CA01"
+        assetClass: { space: sp_veridion_demo, externalId: class_utility }
+        parent: { space: sp_veridion_demo, externalId: area_utilities }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-U-CA01"
+        opcuaTagPath: "UTIL/CA01"
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2013
+
+- space: sp_veridion_demo
+  externalId: asset_warehouse_wh01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Finished Goods Warehouse WH-01"
+        description: "Palletised polymer storage."
+        tags: [warehouse]
+        aliases: [WH-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-W-WH01"
+        assetClass: { space: sp_veridion_demo, externalId: class_storage }
+        parent: { space: sp_veridion_demo, externalId: area_packaging_warehouse }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-W-WH01"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "C"
+        commissioningYear: 2012
+
+- space: sp_veridion_demo
+  externalId: asset_lab_mfi01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Melt Flow Indexer MFI-01"
+        description: "Laboratory melt flow indexer used for batch release."
+        tags: [lab, melt-flow]
+        aliases: [MFI-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-Q-MFI01"
+        assetClass: { space: sp_veridion_demo, externalId: class_lab_instrument }
+        parent: { space: sp_veridion_demo, externalId: area_quality_lab }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-Q-MFI01"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "B"
+        commissioningYear: 2016
+
+- space: sp_veridion_demo
+  externalId: asset_lab_dsc01
+  sources:
+    - source:
+        space: cdf_cdm
+        externalId: CogniteAsset
+        version: "v1"
+        type: view
+      properties:
+        name: "Differential Scanning Calorimeter DSC-01"
+        description: "Laboratory DSC for thermal characterisation."
+        tags: [lab, thermal]
+        aliases: [DSC-01]
+        source: { space: sp_veridion_demo, externalId: src_sap_pm_cv }
+        sourceId: "CV-Q-DSC01"
+        assetClass: { space: sp_veridion_demo, externalId: class_lab_instrument }
+        parent: { space: sp_veridion_demo, externalId: area_quality_lab }
+    - source:
+        space: sp_veridion_dm
+        externalId: VeridionAsset
+        version: "v1"
+        type: view
+      properties:
+        sapFunctionalLocation: "CV-Q-DSC01"
+        opcuaTagPath: null
+        lifecycleStatus: "operating"
+        criticality: "C"
+        commissioningYear: 2018
